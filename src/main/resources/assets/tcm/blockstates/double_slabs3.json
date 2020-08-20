@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all"
+    },
+    "variants": {
+        "variant": {
+            "packedice":{ "model": "packed_ice"},
+            "ice": { "model": "ice" },
+            "darkprismarine": { "model": "prismarine_dark" },
+            "smoothsandstone": { "model": "sandstone_smooth" },
+            "crackedstonebrick": { "model": "stonebrick_cracked" },
+            "granitestonebrick": { 
+                "textures": {
+                    "all": "tcm:blocks/stones/granitestonebrick"
+                }
+            },    
+            "marblebrick": {
+                "textures": {
+                    "all": "tcm:blocks/stones/marble_brick"
+                }
+            },
+            "gravelstone": {
+                "textures": {
+                    "all": "tcm:blocks/stones/gravelstone"
+                }
+            }
+        }
+    }
+}

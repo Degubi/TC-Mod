@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x"
+  ],
+  "key": {
+    "x":  {
+        "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "item": "tcm:glowstone_button"
+  }
+}

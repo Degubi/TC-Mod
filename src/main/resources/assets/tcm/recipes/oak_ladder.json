@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XYX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:stick"
+    },
+    "Y": {
+      "item": "minecraft:planks",
+      "data": 0
+    }
+  },
+  "result": {
+        "item": "minecraft:ladder",
+        "count": 4
+  }
+}

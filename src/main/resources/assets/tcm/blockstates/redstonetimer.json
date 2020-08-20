@@ -1,0 +1,22 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tcm:RedstoneTimer",
+        "textures": {
+            "top": "tcm:blocks/timer_off",
+            "torch": "blocks/redstone_torch_off"
+        }
+    },
+    "variants": {
+        "ispowered": {
+            "true": {
+                "textures": {
+                    "top": "tcm:blocks/timer_on",
+                    "torch": "blocks/redstone_torch_on"
+                }
+            },
+            "false": {}
+        },
+        "inventory": [{}]
+    }
+}

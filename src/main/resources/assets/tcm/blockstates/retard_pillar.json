@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+           "textures": {
+            "end": "tcm:blocks/block_retard",
+            "texture": "tcm:blocks/block_retard"
+        },
+        "model": "tcm:pillarbase"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "tcm:andesitestonebrick"
+        }
+    },
+    "result": {
+      "item": "tcm:single_slabs2",
+      "count": 6,
+      "data": 7
+    }
+}

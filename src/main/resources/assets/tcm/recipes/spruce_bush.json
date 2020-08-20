@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:leaves",
+        "data": 1
+      }
+  },
+  "result": {
+    "item": "tcm:spruce_bush",
+    "count": 6
+  }
+}

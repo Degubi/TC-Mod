@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:log2",
+      "data": 1
+    }
+  },
+  "result": {
+    "item": "tcm:darkoaklog_door",
+    "count": 2
+  }
+}

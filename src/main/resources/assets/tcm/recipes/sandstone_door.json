@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:sandstone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "tcm:sandstone_door",
+    "count": 2
+  }
+}

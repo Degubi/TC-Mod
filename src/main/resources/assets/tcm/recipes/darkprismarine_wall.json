@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:prismarine",
+        "data": 2
+      }
+  },
+  "result": {
+    "item": "tcm:darkprismarine_wall",
+    "count": 6
+  }
+}

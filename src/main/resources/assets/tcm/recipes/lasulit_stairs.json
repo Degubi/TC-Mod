@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lapis_block"
+    }
+  },
+  "result": {
+    "item": "tcm:lasulit_stairs",
+    "count": 4
+  }
+}

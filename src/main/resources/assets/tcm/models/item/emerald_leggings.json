@@ -1,0 +1,6 @@
+{
+    "parent": "item/diamond_leggings",
+    "textures": {
+        "layer0": "items/diamond_leggings"
+    }
+}

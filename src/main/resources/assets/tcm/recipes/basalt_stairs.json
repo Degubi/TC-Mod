@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "X  ", 
+      "XX ",
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "tcm:smoothbasalt"
+        }
+    },
+    "result": {
+      "item": "tcm:basalt_stairs",
+      "count": 4
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+            "textures": {
+                "all": "tcm:blocks/meatblock"
+            }
+    },
+    "variants": {
+        "bites": {
+            "0": {},
+            "1": {"model": "tcm:meatblock_slice1"},
+            "2": {"model": "tcm:meatblock_slice2"},
+            "3": {"model": "tcm:meatblock_slice3"},
+            "4": {"model": "tcm:meatblock_slice4"},
+            "5": {"model": "tcm:meatblock_slice5"},
+            "6": {"model": "tcm:meatblock_slice6"},
+            "7": {"model": "tcm:meatblock_slice7"}
+        },
+        "inventory": [{}]
+    }
+}

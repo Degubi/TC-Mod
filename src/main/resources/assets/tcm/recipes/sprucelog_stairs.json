@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "X  ", 
+      "XX ",
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:log",
+        "data": 1
+        }
+    },
+    "result": {
+      "item": "tcm:sprucelog_stairs",
+      "count": 4
+    }
+}

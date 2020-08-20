@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:ice"
+      }
+  },
+  "result": {
+    "item": "tcm:ice_wall",
+    "count": 6
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all",
+        "textures": {
+            "all": "blocks/wool_colored_white"
+        }
+    },
+        "variants": {
+        "normal": [{}],
+        "inventory": {
+            "model": "tcm:baseitem",
+            "textures": {
+                "layer0": "tcm:items/tools/woolsignit"
+            }
+        }
+    }
+}

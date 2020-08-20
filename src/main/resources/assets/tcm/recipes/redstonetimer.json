@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:redstone_torch"
+    },
+    "A": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "B": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+        "item": "tcm:redstonetimer"
+  }
+}

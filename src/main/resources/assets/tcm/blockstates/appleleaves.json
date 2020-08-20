@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "leaves",
+        "textures": {
+            "all": "tcm:blocks/apple_leaves"
+        }
+    },
+    "variants": {
+        "hasapple": {
+            "true": {},
+            "false": {
+                "textures": {
+                    "all": "blocks/leaves_oak"
+                }
+            }
+        },
+        "inventory": [{}]
+    }
+}

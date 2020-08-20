@@ -1,0 +1,19 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "end": "tcm:blocks/quartz/pillar",
+            "side": "tcm:blocks/quartz/pillar_side"
+        },
+        "model": "cube_column"
+    },
+    "variants": {
+        "axis": {
+            "z": { "x": 90 },
+            "x": { "x": 90, "y": 90 },
+            "y": {},
+            "none": {}
+        },
+        "inventory": [{}]
+    }
+}

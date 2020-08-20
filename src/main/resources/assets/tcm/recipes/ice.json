@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "Y"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:snowball"
+    },
+    "Y": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+        "item": "minecraft:ice"
+  }
+}

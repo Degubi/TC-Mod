@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+      "X": [
+      {
+        "item": "minecraft:cooked_beef"
+      },
+      {
+        "item": "minecraft:cooked_porkchop"
+      },
+      {
+        "item": "minecraft:cooked_chicken"
+      },
+      {
+        "item": "tcm:cookedgoat_meat"
+      },
+      {
+        "item": "tcm:cookedsheep_meat"
+      }
+    ]
+  },
+  "result": {
+    "item": "tcm:meatblock"
+  }
+}

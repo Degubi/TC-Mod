@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "item": "tcm:glass_door",
+    "count": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "Y"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:wheat_seeds"
+    },
+    "Y": {
+      "item": "minecraft:dirt",
+      "data": 0
+    }
+  },
+  "result": {
+        "item": "minecraft:grass"
+  }
+}

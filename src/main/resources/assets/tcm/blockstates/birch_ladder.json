@@ -1,0 +1,32 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "tcm:blocks/ladders/birch",
+            "texture": "tcm:blocks/ladders/birch"
+        },
+        "model": "ladder"
+    },
+    "variants": {
+        "facing": {
+            "north": {
+                
+            },
+            "east": {
+                "y": 90
+            },
+            "south": {
+                "y": 180
+            },
+            "west": {
+                "y": 270
+            }
+        },
+        "inventory": {
+            "model": "tcm:baseitem",
+            "textures": {
+                "layer0": "tcm:blocks/ladders/birch"
+            }
+        }
+    }
+}

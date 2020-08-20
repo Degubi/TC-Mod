@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "X  ", 
+      "XX ",
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:quartz_block",
+        "data": 2
+        }
+    },
+    "result": {
+      "item": "tcm:quartzpillar_stairs",
+      "count": 4
+    }
+}

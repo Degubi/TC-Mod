@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      "XXX"
+    ],
+    "key": {
+      "X": {
+        "item": "minecraft:quartz_block",
+        "data": 2
+        }
+    },
+    "result": {
+      "item": "tcm:single_slabs1",
+      "count": 6,
+      "data": 6
+    }
+}

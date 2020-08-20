@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+           "textures": {
+            "end": "blocks/log_spruce_top",
+            "texture": "blocks/log_spruce"
+        },
+        "model": "tcm:pillarbase"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:planks",
+        "data": 1
+    }
+  },
+  "result": {
+    "item": "tcm:spruce_trapdoor",
+    "count": 2
+  }
+}

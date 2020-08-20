@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "end": "tcm:blocks/conveyor",
+            "side": "blocks/iron_block"
+        },
+        "model": "cube_column"
+    },
+    "variants": {
+        "facing": {
+            "north": {},
+            "east": {
+                "y": 90
+            },
+            "south": {
+                "y": 180
+            },
+            "west": {
+                "y": 270
+            }
+        },
+        "inventory": [{}]
+    }
+}

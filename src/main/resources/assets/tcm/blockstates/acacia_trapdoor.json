@@ -1,0 +1,27 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tcm:WhiteTrapDoor_bottom"
+    },
+    "variants": {
+        "facing": {
+            "north": {},
+            "south": {"y": 180},
+            "east": {"y": 90},
+            "west": {"y": 270}
+        },
+        "open": {
+            "true": {"model": "tcm:WhiteTrapDoor_open"},
+            "false": {}
+        },
+        "half": {
+            "top": {"model": "tcm:WhiteTrapDoor_top"},
+            "bottom": {}
+        },        
+        "facing=north,half=top,open=true": { "model": "tcm:WhiteTrapDoor_open" },
+        "facing=south,half=top,open=true": { "model": "tcm:WhiteTrapDoor_open", "y": 180 },
+        "facing=east,half=top,open=true": { "model": "tcm:WhiteTrapDoor_open", "y": 90 },
+        "facing=west,half=top,open=true": { "model": "tcm:WhiteTrapDoor_open", "y": 270 },
+        "inventory": [{}]
+    }
+}

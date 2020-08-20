@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "tcm:blocks/spideregg",
+            "all": "tcm:blocks/spideregg"
+        },
+        "model": "dragon_egg"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

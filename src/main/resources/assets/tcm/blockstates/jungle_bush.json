@@ -1,0 +1,41 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tcm:coloredwall_inventory",
+        "textures": {
+            "wall": "blocks/leaves_jungle"
+        }
+    },
+    "variants": {
+        "east": {
+            "true": {
+                "submodel": "tcm:coloredwall_side", "y": 90, "uvlock": true
+            },
+            "false": {}
+        },
+        "south": {
+            "true": {
+                "submodel": "tcm:coloredwall_side", "y": 180, "uvlock": true
+            },
+            "false": {}
+        },
+        "west": {
+            "true": {
+                "submodel": "tcm:coloredwall_side", "y": 270, "uvlock": true
+            },
+            "false": {}
+        },
+        "north": {
+            "true": {
+                "submodel": "tcm:coloredwall_side", "uvlock": true
+            },
+            "false": {}
+        },
+        "up": {
+            "true": {
+                "model": "tcm:coloredwall_post"},
+            "false": {}
+        },
+        "inventory": [{}]
+    }
+}

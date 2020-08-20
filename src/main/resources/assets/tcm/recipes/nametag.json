@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "aba", 
+    "bcb", 
+    "aba"
+  ],
+  "key": {
+    "a": {
+        "item": "minecraft:wool",
+        "data": 0
+    },
+    "b": {
+        "item": "minecraft:string"
+    },
+    "c": {
+        "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "minecraft:name_tag"
+  }
+}

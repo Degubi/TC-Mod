@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:quartz_block",
+        "data": 2
+      }
+  },
+  "result": {
+    "item": "tcm:quartzpillar_wall",
+    "count": 6
+  }
+}

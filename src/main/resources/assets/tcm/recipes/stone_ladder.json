@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XYX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "tcm:stonerod"
+    },
+    "Y": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+        "item": "tcm:stone_ladder",
+        "count": 8
+  }
+}

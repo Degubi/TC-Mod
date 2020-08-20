@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tcm:marblecobble"
+    }
+  },
+  "result": {
+    "item": "tcm:marblecobble_stairs",
+    "count": 4
+  }
+}

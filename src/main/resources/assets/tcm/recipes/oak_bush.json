@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": [{
+        "item": "minecraft:leaves",
+        "data": 0
+      },
+      {
+        "item": "minecraft:leaves2",
+        "data": 0
+      },
+      {
+        "item": "minecraft:leaves",
+        "data": 1
+      }]
+  },
+  "result": {
+    "item": "tcm:oak_bush",
+    "count": 6
+  }
+}

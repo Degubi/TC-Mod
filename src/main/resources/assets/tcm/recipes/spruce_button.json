@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x"
+  ],
+  "key": {
+    "x": {
+        "item": "minecraft:planks",
+        "data": 1
+    }
+  },
+  "result": {
+    "item": "tcm:spruce_button"
+  }
+}

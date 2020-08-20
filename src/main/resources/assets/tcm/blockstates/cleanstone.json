@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_column",
+            "textures": {
+                "end": "tcm:blocks/stones/stone_block_bottom",
+                "side": "tcm:blocks/stones/stone_block_side"
+            }
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

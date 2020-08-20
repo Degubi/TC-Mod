@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "result": {
+    "item": "tcm:glass_preplate"
+  }
+}

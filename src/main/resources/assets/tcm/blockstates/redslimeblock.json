@@ -1,0 +1,14 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "tcm:blocks/redslime",
+            "texture": "tcm:blocks/redslime"
+        },
+        "model": "slime"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

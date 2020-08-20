@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:stone",
+        "data": 1
+      }
+  },
+  "result": {
+    "item": "tcm:granite_wall",
+    "count": 6
+  }
+}

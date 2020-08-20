@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+           "textures": {
+            "texture": "blocks/log_acacia"
+        },
+        "model": "tcm:crafttablebase"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

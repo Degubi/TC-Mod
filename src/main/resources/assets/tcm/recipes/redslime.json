@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:slime_ball"
+    },
+    "Y": {
+        "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "tcm:redslimeblock"
+  }
+}

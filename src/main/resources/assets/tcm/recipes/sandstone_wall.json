@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:sandstone",
+      "data": 0
+      }
+  },
+  "result": {
+    "item": "tcm:sandstone_wall",
+    "count": 6
+  }
+}

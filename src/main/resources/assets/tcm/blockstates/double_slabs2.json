@@ -1,0 +1,26 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cube_all"
+    },
+    "variants": {
+        "variant": {
+            "oaklog":{ "model": "oak_log"},
+            "sprucelog": { "model": "spruce_log" },
+            "birchlog": { "model": "birch_log" },
+            "junglelog": { "model": "jungle_log" },
+            "acacialog": { "model": "acacia_log" },
+            "darkoaklog": { "model": "dark_oak_log" },
+            "retard": {
+                "textures": {
+                    "all": "tcm:blocks/block_retard"
+                }
+            },
+            "andesitestonebrick": {
+                "textures": {
+                    "all": "tcm:blocks/stones/andesitestonebrick"
+                }
+            }
+        }
+    }
+}

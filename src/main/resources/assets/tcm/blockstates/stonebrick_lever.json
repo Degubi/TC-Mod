@@ -1,0 +1,43 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "particle": "blocks/stonebrick",
+            "base": "blocks/stonebrick"
+        },
+        "model": "lever"
+    },
+    "variants": {
+        "powered": {
+            "true": {},
+            "false": {
+                "model": "lever_off"
+            }
+        },
+        "facing": {
+            "north": {
+                "x": 90
+            },
+            "east": {
+                "x": 90, "y": 90
+            },
+            "south": {
+                "x": 90, "y": 180
+            },
+            "west": {
+                "x": 90, "y": 270
+            },
+            "down_z": {
+                "x": 180, "y": 180
+            },
+            "down_x": {
+                "x": 180, "y": 90
+            },
+            "up_z": {},
+            "up_x": {
+                "y": 270
+            }
+        },
+        "inventory": [{}]
+    }
+}

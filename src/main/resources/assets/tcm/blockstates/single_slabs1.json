@@ -1,0 +1,136 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "half_slab"
+    },
+    "variants": {
+        "half": {
+            "bottom": {},
+            "top": {
+                "model": "upper_slab"
+            }
+        },
+        "variant": {
+            "andesite":{
+                "textures": {
+                    "bottom": "blocks/stone_andesite_smooth",
+                    "top": "blocks/stone_andesite_smooth",
+                    "side": "blocks/stone_andesite_smooth"
+                }
+            },
+            "diorite": {
+                "textures": {
+                    "bottom": "blocks/stone_diorite_smooth",
+                    "top": "blocks/stone_diorite_smooth",
+                    "side": "blocks/stone_diorite_smooth"
+                }
+            },
+            "granite": {
+                "textures": {
+                    "bottom": "blocks/stone_granite_smooth",
+                    "top": "blocks/stone_granite_smooth",
+                    "side": "blocks/stone_granite_smooth"
+                }
+            },
+            "basalt": {
+                "textures": {
+                    "bottom": "tcm:blocks/stones/basalt_smooth",
+                    "top": "tcm:blocks/stones/basalt_smooth",
+                    "side": "tcm:blocks/stones/basalt_smooth"
+                }
+            },
+            "quartz": {
+                "textures": {
+                    "bottom": "blocks/quartz_block_bottom",
+                    "top": "blocks/quartz_block_top",
+                    "side": "blocks/quartz_block_side"
+                }
+            },
+            "chiseledquartz": {
+                "textures": {
+                    "bottom": "blocks/quartz_block_chiseled",
+                    "top": "blocks/quartz_block_chiseled_top",
+                    "side": "blocks/quartz_block_chiseled"
+                }
+            },
+            "quartzpillar": {
+                "textures": {
+                    "bottom": "blocks/quartz_block_lines_top",
+                    "top": "blocks/quartz_block_lines_top",
+                    "side": "blocks/quartz_block_lines"
+                }
+            },
+            "glowstone": {
+                "textures": {
+                    "bottom": "blocks/glowstone",
+                    "top": "blocks/glowstone",
+                    "side": "blocks/glowstone"
+                }
+            }
+        },
+        "inventory_0": {
+            "model": "half_slab",
+            "textures": {
+                "bottom": "blocks/stone_andesite_smooth",
+                "top": "blocks/stone_andesite_smooth",
+                "side": "blocks/stone_andesite_smooth"
+            }
+        },
+        "inventory_1": {
+            "model": "half_slab",
+            "textures": {
+                "bottom": "blocks/stone_diorite_smooth",
+                "top": "blocks/stone_diorite_smooth",
+                "side": "blocks/stone_diorite_smooth"
+            }
+        },
+        "inventory_2": {
+            "model": "half_slab",
+            "textures": {
+                "bottom": "blocks/stone_granite_smooth",
+                "top": "blocks/stone_granite_smooth",
+                "side": "blocks/stone_granite_smooth"
+            }
+        },
+        "inventory_3": {
+            "model": "half_slab",
+            "textures": {
+                "bottom": "tcm:blocks/stones/basalt_smooth",
+                "top": "tcm:blocks/stones/basalt_smooth",
+                "side": "tcm:blocks/stones/basalt_smooth"
+            }
+        },
+        "inventory_4": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/quartz_block_bottom",
+        "top": "blocks/quartz_block_top",
+        "side": "blocks/quartz_block_side"
+            }
+        },
+        "inventory_5": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/quartz_block_chiseled",
+        "top": "blocks/quartz_block_chiseled_top",
+        "side": "blocks/quartz_block_chiseled"
+            }
+        },
+        "inventory_6": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/quartz_block_lines_top",
+        "top": "blocks/quartz_block_lines_top",
+        "side": "blocks/quartz_block_lines"
+            }
+        },
+        "inventory_7": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/glowstone",
+        "top": "blocks/glowstone",
+        "side": "blocks/glowstone"
+            }
+        }
+    }
+}

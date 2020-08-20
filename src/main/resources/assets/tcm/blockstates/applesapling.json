@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "cross": "tcm:blocks/sapling_apple"
+        },
+        "model": "cross"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

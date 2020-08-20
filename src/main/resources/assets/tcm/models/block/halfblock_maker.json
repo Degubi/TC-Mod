@@ -1,0 +1,19 @@
+{
+    "parent": "block/cube",
+    "display": {
+        "firstperson_righthand": {
+            "rotation": [ 0, 135, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        }
+    },
+    "textures": {
+        "particle": "blocks/furnace_top",
+        "down": "blocks/furnace_top",
+        "up": "tcm:blocks/hbm_top",
+        "north": "blocks/furnace_side",
+        "east": "tcm:blocks/hbm_side",
+        "south": "blocks/furnace_side",
+        "west": "tcm:blocks/hbm_side"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:dirt",
+        "data": 0
+      }
+  },
+  "result": {
+    "item": "tcm:dirt_wall",
+    "count": 6
+  }
+}

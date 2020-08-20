@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "tcm:items/food/sheepmeat_cooked"
+    }
+}

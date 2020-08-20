@@ -1,0 +1,10 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "tcm:halfblock_maker"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "item/diamond_shovel",
+    "textures": {
+        "layer0": "tcm:items/tools/shovel_lasulit"
+    }
+}

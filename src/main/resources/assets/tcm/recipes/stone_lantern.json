@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:cobblestone"
+    },
+    "Y": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+      "item": "tcm:lantern"
+  }
+}

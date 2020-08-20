@@ -1,0 +1,38 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "texture": "blocks/log_acacia"
+        },
+        "model": "fence_post"
+    },
+    "variants": {
+        "east": {
+            "true": {
+                "submodel": "fence_side", "y": 90, "uvlock": true
+            },
+            "false": {}
+        },
+        "south": {
+            "true": {
+                "submodel": "fence_side", "y": 180, "uvlock": true
+            },
+            "false": {}
+        },
+        "west": {
+            "true": {
+                "submodel": "fence_side", "y": 270, "uvlock": true
+            },
+            "false": {}
+        },
+        "north": {
+            "true": {
+                "submodel": "fence_side", "uvlock": true
+            },
+            "false": {}
+        },
+        "inventory": {
+            "model": "fence_inventory"
+        }
+    }
+}

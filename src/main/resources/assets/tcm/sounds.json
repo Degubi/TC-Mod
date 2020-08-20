@@ -1,0 +1,120 @@
+{
+"soundblock.sound1": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/1",
+     "stream": true
+  }
+    ]
+},
+"soundblock.sound2": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/2",
+     "stream": true
+  }
+    ]
+},
+"soundblock.sound3": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/3",
+     "stream": true
+  }
+    ]
+},
+"soundblock.sound4": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/4",
+     "stream": true
+  }
+    ]
+},
+"soundblock.sound5": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/5",
+     "stream": true
+  }
+    ]
+},
+"soundblock.sound6": {
+  "category": "record",
+  "sounds": [
+  {
+     "name": "tcm:soundblocks/6",
+     "stream": true
+  }
+    ]
+},
+"mob.goat.say": {
+  "category": "neutral",
+  "sounds": [
+     "tcm:mob/goat/live1",
+     "tcm:mob/goat/live2"
+     ]
+},
+"mob.goat.death": {
+   "category": "neutral",
+   "sounds": [
+     "tcm:mob/goat/dead1",
+     "tcm:mob/goat/dead2"
+     ]
+},
+"mob.goat.hit": {
+   "category": "neutral",
+   "sounds": [
+      "tcm:mob/goat/hit1",
+      "tcm:mob/goat/hit2"
+     ]
+},
+"meatblock.eat": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:meateat"
+    ]
+  },
+"takeout.knife": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:weapons/takeout/knife"
+    ]
+},
+"game.day": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:game/game1",
+      "tcm:game/game2",
+      "tcm:game/game3",
+      "tcm:game/game4"
+    ]
+},
+"game.night": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:game/cricket1",
+      "tcm:game/cricket2",
+      "tcm:game/cricket3"
+    ]
+},
+"game.thunder": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:game/thunder1",
+      "tcm:game/thunder2",
+      "tcm:game/thunder3"
+    ]
+},
+"player.sleep": {
+    "category": "neutral",
+    "sounds": [
+      "tcm:player/sleep"
+    ]
+}
+}

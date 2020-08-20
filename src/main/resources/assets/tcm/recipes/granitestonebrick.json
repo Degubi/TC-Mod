@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:stone",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "tcm:granitestonebrick",
+    "count": 2
+  }
+}

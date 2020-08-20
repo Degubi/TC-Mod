@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+        "item": "minecraft:stick"
+    },
+    "Y": {
+        "item": "minecraft:log",
+        "data": 3
+    }
+  },
+  "result": {
+    "item": "tcm:junglelog_gate"
+  }
+}

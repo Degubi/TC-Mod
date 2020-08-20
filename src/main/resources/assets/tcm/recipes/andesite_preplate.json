@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:stone",
+      "data": 6
+    }
+  },
+  "result": {
+    "item": "tcm:andesite_preplate"
+  }
+}

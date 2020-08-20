@@ -1,0 +1,136 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "half_slab"
+    },
+    "variants": {
+        "half": {
+            "bottom": {},
+            "top": {
+                "model": "upper_slab"
+            }
+        },
+        "variant": {
+            "packedice":{
+                "textures": {
+                    "bottom": "blocks/ice_packed",
+                    "top": "blocks/ice_packed",
+                    "side": "blocks/ice_packed"
+                }
+            },
+            "ice": {
+                "textures": {
+                    "bottom": "blocks/ice",
+                    "top": "blocks/ice",
+                    "side": "blocks/ice"
+                }
+            },
+            "darkprismarine": {
+                "textures": {
+                    "bottom": "blocks/prismarine_dark",
+                    "top": "blocks/prismarine_dark",
+                    "side": "blocks/prismarine_dark"
+                }
+            },
+            "marblebrick": {
+                "textures": {
+                    "bottom": "tcm:blocks/stones/marble_brick",
+                    "top": "tcm:blocks/stones/marble_brick",
+                    "side": "tcm:blocks/stones/marble_brick"
+                }
+            },
+            "gravelstone": {
+                "textures": {
+                    "bottom": "tcm:blocks/stones/gravelstone",
+                    "top": "tcm:blocks/stones/gravelstone",
+                    "side": "tcm:blocks/stones/gravelstone"
+                }
+            },
+            "smoothsandstone": {
+                "textures": {
+                    "bottom": "blocks/sandstone_top",
+                    "top": "blocks/sandstone_top",
+                    "side": "blocks/sandstone_smooth"
+                }
+            },
+            "crackedstonebrick": {
+                "textures": {
+                    "bottom": "blocks/stonebrick_cracked",
+                    "top": "blocks/stonebrick_cracked",
+                    "side": "blocks/stonebrick_cracked"
+                }
+            },
+            "granitestonebrick": {
+                "textures": {
+                    "bottom": "tcm:blocks/stones/granitestonebrick",
+                    "top": "tcm:blocks/stones/granitestonebrick",
+                    "side": "tcm:blocks/stones/granitestonebrick"
+                }
+            }
+        },
+        "inventory_0": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/ice_packed",
+        "top": "blocks/ice_packed",
+        "side": "blocks/ice_packed"
+            }
+        },
+        "inventory_1": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/ice",
+        "top": "blocks/ice",
+        "side": "blocks/ice"
+            }
+        },
+        "inventory_2": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "tcm:blocks/stones/marble_brick",
+        "top": "tcm:blocks/stones/marble_brick",
+        "side": "tcm:blocks/stones/marble_brick"
+            }
+        },
+        "inventory_3": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "blocks/prismarine_dark",
+        "top": "blocks/prismarine_dark",
+        "side": "blocks/prismarine_dark"
+            }
+        },
+        "inventory_4": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "tcm:blocks/stones/gravelstone",
+        "top": "tcm:blocks/stones/gravelstone",
+        "side": "tcm:blocks/stones/gravelstone"
+            }
+        },
+        "inventory_5": {
+            "model": "half_slab",
+            "textures": {
+        "top": "blocks/sandstone_top",
+        "bottom": "blocks/sandstone_top",
+        "side": "blocks/sandstone_smooth"
+            }
+        },
+        "inventory_6": {
+            "model": "half_slab",
+            "textures": {
+        "top": "blocks/stonebrick_cracked",
+        "bottom": "blocks/stonebrick_cracked",
+        "side": "blocks/stonebrick_cracked"
+            }
+        },
+        "inventory_7": {
+            "model": "half_slab",
+            "textures": {
+        "bottom": "tcm:blocks/stones/granitestonebrick",
+        "top": "tcm:blocks/stones/granitestonebrick",
+        "side": "tcm:blocks/stones/granitestonebrick"
+            }
+        }
+    }
+}

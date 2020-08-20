@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "x"
+  ],
+  "key": {
+    "x": {
+        "item": "minecraft:ice"
+    }
+  },
+  "result": {
+    "item": "tcm:ice_button"
+  }
+}

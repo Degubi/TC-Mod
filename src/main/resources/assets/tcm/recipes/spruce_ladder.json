@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XYX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:stick"
+    },
+    "Y": {
+      "item": "minecraft:planks",
+      "data": 1
+    }
+  },
+  "result": {
+        "item": "tcm:spruce_ladder",
+        "count": 8
+  }
+}
