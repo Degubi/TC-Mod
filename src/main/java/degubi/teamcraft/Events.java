@@ -54,7 +54,6 @@ import net.minecraftforge.fml.common.eventhandler.Event.*;
 import net.minecraftforge.fml.common.gameevent.InputEvent.*;
 import net.minecraftforge.fml.common.gameevent.TickEvent.*;
 import net.minecraftforge.fml.relauncher.*;
-import org.lwjgl.input.*;
 
 public final class Events{
     private int soundTicks;
@@ -101,33 +100,37 @@ public final class Events{
     @SubscribeEvent
     public void playerDeath(PlayerDropsEvent event){
         World world = event.getEntityPlayer().world;
-        TileEntityChest chest = new TileEntityChest(); TileEntityChest chest2 = new TileEntityChest();
-        BlockPos pos = event.getEntityPlayer().getPosition();
-        BlockPos freePos = pos.west();
         
-        if(world.getBlockState(pos.east()) == Blocks.AIR.getDefaultState()){
-            freePos = pos.east();
-        }
-        
-        int k = 0;
-        for(EntityItem lope : event.getDrops()){
-            ItemStack items = lope.getItem();
+        if(!world.getGameRules().getBoolean("keepInventory")) {
+            TileEntityChest chest = new TileEntityChest();
+            TileEntityChest chest2 = new TileEntityChest();
+            BlockPos pos = event.getEntityPlayer().getPosition();
+            BlockPos freePos = pos.west();
             
-            if(k < 27) {
-                chest.setInventorySlotContents(k, items);
-            }else{
-                chest2.setInventorySlotContents(k - 27, items);
+            if(world.getBlockState(pos.east()) == Blocks.AIR.getDefaultState()){
+                freePos = pos.east();
             }
-            ++k;
-        }
-        
-        event.getDrops().clear();
-        world.setBlockState(pos, Blocks.CHEST.getDefaultState());
-        world.setTileEntity(pos, chest);
-        
-        if(k > 26) {
-            world.setBlockState(freePos, Blocks.CHEST.getDefaultState());
-            world.setTileEntity(freePos, chest2);
+            
+            int k = 0;
+            for(EntityItem lope : event.getDrops()){
+                ItemStack items = lope.getItem();
+                
+                if(k < 27) {
+                    chest.setInventorySlotContents(k, items);
+                }else{
+                    chest2.setInventorySlotContents(k - 27, items);
+                }
+                ++k;
+            }
+            
+            event.getDrops().clear();
+            world.setBlockState(pos, Blocks.CHEST.getDefaultState());
+            world.setTileEntity(pos, chest);
+            
+            if(k > 26) {
+                world.setBlockState(freePos, Blocks.CHEST.getDefaultState());
+                world.setTileEntity(freePos, chest2);
+            }
         }
     }
     
@@ -519,9 +522,6 @@ public final class Events{
             fireCommandKeybind(binds[2], ConfigMenu.customBind3);
             fireCommandKeybind(binds[3], ConfigMenu.customBind4);
             fireCommandKeybind(binds[4], ConfigMenu.customBind5);
-        }
-        if(mc.gameSettings.showDebugInfo && !Keyboard.isKeyDown(Keyboard.KEY_F3) && mc.world != null && !mc.player.isCreative()) {
-            mc.gameSettings.showDebugInfo = false;
         }
     }
     
