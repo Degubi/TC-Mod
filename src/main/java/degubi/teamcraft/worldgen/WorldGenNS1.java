@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 
-public final class WorldGenNS1 extends WorldGenAbstractTree{
+public final class WorldGenNS1 extends WorldGenAbstractTree {
     static final IBlockState TRUNK = Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.OAK);
     static final IBlockState LEAF = Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.OAK).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false));
     

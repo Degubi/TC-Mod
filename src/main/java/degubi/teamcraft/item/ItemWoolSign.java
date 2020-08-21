@@ -57,36 +57,4 @@ public final class ItemWoolSign extends ItemBlock {
         }
         return EnumActionResult.FAIL;
     }
-        /*IBlockState iblockstate = world.getBlockState(pos);
-        boolean flag = iblockstate.getBlock().isReplaceable(world, pos);
-        if (facing != EnumFacing.DOWN && (iblockstate.getMaterial().isSolid() || flag) && (!flag || facing == EnumFacing.UP)){
-            BlockPos thePos = pos.offset(facing);
-            ItemStack itemstack = player.getHeldItem(hand);
-
-            if (player.canPlayerEdit(thePos, facing, itemstack) && Main.WoolStandingSign.canPlaceBlockAt(world, thePos)){
-                if (world.isRemote){
-                    return EnumActionResult.SUCCESS;
-                }
-                thePos = flag ? thePos.down() : thePos;
-
-                if (facing == EnumFacing.UP){
-                    int i = MathHelper.floor((player.rotationYaw + 180.0F) * 16.0F / 360.0F + 0.5D) & 15;
-                    world.setBlockState(thePos, Main.WoolStandingSign.getDefaultState().withProperty(WoolSSign.ROTATION, Integer.valueOf(i)), 11);
-                }
-                else{
-                    world.setBlockState(pos, Main.WoolWallSign.getDefaultState().withProperty(BlockHorizontal.FACING, facing), 11);
-                }
-
-                TileEntity tileentity = world.getTileEntity(pos);
-
-                if (tileentity instanceof WoolSignTile && !ItemBlock.setTileEntityNBT(world, player, pos, itemstack)){
-                    player.openEditSign((WoolSignTile)tileentity);
-                }
-                itemstack.shrink(1);
-                return EnumActionResult.SUCCESS;
-            }
-            return EnumActionResult.FAIL;
-        }
-        return EnumActionResult.FAIL;
-        */
 }

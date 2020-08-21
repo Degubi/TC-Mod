@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public final class RenderWolfMan extends RenderLiving<EntityWolfMan>{
+public final class RenderWolfMan extends RenderLiving<EntityWolfMan> {
     private static final ResourceLocation texture = new ResourceLocation("tcm:textures/entity/wolfman.png");
 
     public RenderWolfMan(RenderManager rendermanagerIn){

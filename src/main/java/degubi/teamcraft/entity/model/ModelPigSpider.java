@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.opengl.*;
 
 @SideOnly(Side.CLIENT)
-public final class ModelPigSpider extends ModelSpider{
+public final class ModelPigSpider extends ModelSpider {
     public static final ModelPigSpider INSTANCE = new ModelPigSpider();
     public static final ResourceLocation texture = new ResourceLocation("tcm:textures/entity/pig_spider_day.png");
     
@@ -23,10 +23,12 @@ public final class ModelPigSpider extends ModelSpider{
         if(entity.getCustomNameTag().contains("Degubi")){
             GL11.glScalef(0.3F, 0.3F, 0.3F);
             GL11.glTranslatef(0, 3F, 0);
-        }if(entity.world.provider.getDimension() == -1){
+        }
+        if(entity.world.provider.getDimension() == -1){
             GL11.glScalef(1.5F, 1.5F, 1.5F);
             GL11.glTranslatef(0, -0.45F, 0);
         }
+        
         setRotationAngles(f, f1, f2, f3, f4, scale, entity);
         spiderHead.render(scale);
         spiderLeg1.render(scale);

@@ -9,7 +9,7 @@ import net.minecraft.potion.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public final class ItemKnife extends ItemSword{
+public final class ItemKnife extends ItemSword {
     private static final PotionEffect poti = new PotionEffect(MobEffects.SPEED, 1, 0);
 
     public ItemKnife(ToolMaterial material) {
@@ -24,22 +24,26 @@ public final class ItemKnife extends ItemSword{
             stack.getTagCompound().setInteger("soundcounter", 0);
         }
         
+        NBTTagCompound nbtTag = stack.getTagCompound();
+        
         if(isEquiped){
             ((EntityLivingBase)entity).addPotionEffect(poti);
             
             if(world.isRemote){
-                int cc = stack.getTagCompound().getInteger("soundcounter");
+                int cc = nbtTag.getInteger("soundcounter");
+                
                 if (cc < 5) {
                     cc++;
                 }
-                stack.getTagCompound().setInteger("soundcounter", cc);
-                if (stack.getTagCompound().getInteger("soundcounter") == 2) {
+                
+                nbtTag.setInteger("soundcounter", cc);
+                if (nbtTag.getInteger("soundcounter") == 2) {
                     entity.playSound(new SoundEvent(new ResourceLocation("tcm:takeout.knife")), 1.0F, 1.0F);
                 }
             }
         }else {
-            if(stack.getTagCompound().getInteger("soundcounter") != 0) {
-                stack.getTagCompound().setInteger("soundcounter", 0);
+            if(nbtTag.getInteger("soundcounter") != 0) {
+                nbtTag.setInteger("soundcounter", 0);
             }
         }
     }

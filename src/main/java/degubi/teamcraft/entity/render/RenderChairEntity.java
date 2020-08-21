@@ -5,7 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public final class RenderChairEntity extends RenderEntity{
+public final class RenderChairEntity extends RenderEntity {
     
     public RenderChairEntity(RenderManager ren) {
         super(ren);

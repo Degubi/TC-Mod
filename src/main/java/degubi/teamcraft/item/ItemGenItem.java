@@ -11,7 +11,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
 
-public final class ItemGenItem extends Item{
+public final class ItemGenItem extends Item {
     
     public ItemGenItem(){
         setCreativeTab(Main.tabAdmin);

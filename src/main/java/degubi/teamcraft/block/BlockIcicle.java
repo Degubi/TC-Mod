@@ -16,9 +16,9 @@ import net.minecraftforge.fml.relauncher.*;
 public final class BlockIcicle extends Block {
     
     public BlockIcicle(){
-        super(Material.ICE);
+        super(Material.PACKED_ICE);
         
-        Block modelBlock = Blocks.ICE;
+        Block modelBlock = Blocks.PACKED_ICE;
         setCreativeTab(Main.tabDecorations);
         setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
         setResistance(modelBlock.getExplosionResistance(null, null, null, null));
@@ -38,7 +38,7 @@ public final class BlockIcicle extends Block {
     
     @Override
     public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
     
     @Override

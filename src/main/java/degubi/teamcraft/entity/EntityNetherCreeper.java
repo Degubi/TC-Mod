@@ -25,18 +25,22 @@ public final class EntityNetherCreeper extends EntityCreeper{
         if(hasIgnited()){
             setCreeperState(1);
         }
+        
         int i = getCreeperState();
         if (i > 0 && timeSinceIgnited == 0){
             playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
         }
+        
         timeSinceIgnited += i;
         if (timeSinceIgnited < 0){
             timeSinceIgnited = 0;
         }
+        
         if (timeSinceIgnited >= time){
             timeSinceIgnited = time;
             makeExplosion();
         }
+        
         if(isInWater()){
             time = 0;
             radius = 20;

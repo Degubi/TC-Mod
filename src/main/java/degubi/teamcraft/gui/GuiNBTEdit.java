@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.input.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiNBTEdit extends GuiScreen{
+public class GuiNBTEdit extends GuiScreen {
     private GuiTextField commandTextField;
     private final ItemStack stack;
     

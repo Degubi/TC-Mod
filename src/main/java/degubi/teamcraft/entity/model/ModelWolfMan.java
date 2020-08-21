@@ -5,7 +5,7 @@ import net.minecraft.entity.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public final class ModelWolfMan extends ModelBiped{
+public final class ModelWolfMan extends ModelBiped {
     private final ModelRenderer farok = new ModelRenderer(this, 60, 7).addBox(-0.5F, -20F, 2F, 1, 11, 1);
 
     public ModelWolfMan() {
@@ -30,6 +30,7 @@ public final class ModelWolfMan extends ModelBiped{
         bipedHead.addChild(new ModelRenderer(this, 45, 16).addBox(-4F, -9F, 1F, 2, 2, 1));
         bipedHead.addChild(new ModelRenderer(this, 29, 16).addBox(2F, -9F, 1F, 2, 2, 1));
     }
+    
     @Override
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         bipedLeftArm.render(scale);

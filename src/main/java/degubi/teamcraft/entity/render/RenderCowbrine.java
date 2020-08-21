@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public final class RenderCowbrine extends RenderLiving<EntityCowBrine>{
+public final class RenderCowbrine extends RenderLiving<EntityCowBrine> {
     private static final ResourceLocation cowbrineTexture = new ResourceLocation("tcm:textures/entity/cowbrine.png");
 
     public RenderCowbrine(RenderManager ren) {

@@ -87,6 +87,7 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     @Override
     public void readEntityFromNBT(NBTTagCompound compound){
         super.readEntityFromNBT(compound);
+        
         this.dataManager.set(POWERED, Boolean.valueOf(compound.getBoolean("powered")));
         if(compound.hasKey("Fuse", 99)){
             this.fuseTime = compound.getShort("Fuse");
@@ -181,6 +182,7 @@ public final class EntityThreeHeadCreeper extends EntityMob{
         if(!stack.isEmpty() && stack.getItem() == Items.FLINT_AND_STEEL){
             this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
+            
             if(!this.world.isRemote){
                 this.dataManager.set(IGNITED, Boolean.valueOf(true));
                 stack.damageItem(1, player);

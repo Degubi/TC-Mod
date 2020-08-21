@@ -14,7 +14,7 @@ import net.minecraft.util.text.*;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
 
-public final class ItemPosItem extends Item{
+public final class ItemPosItem extends Item {
     
     public ItemPosItem() {
         setCreativeTab(Main.tabAdmin);
@@ -24,6 +24,7 @@ public final class ItemPosItem extends Item{
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
+        
         if(player.isSneaking()){
             Minecraft.getMinecraft().displayGuiScreen(new GuiNBTEdit(stack));
         }
@@ -50,16 +51,20 @@ public final class ItemPosItem extends Item{
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn){
-        if(stack.hasTagCompound()){
-            if(stack.getTagCompound().hasKey("pos1")){
-                int[] pos1 = stack.getTagCompound().getIntArray("pos1");
+    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+        NBTTagCompound tagCompound = stack.getTagCompound();
+        
+        if(tagCompound != null){
+            if(tagCompound.hasKey("pos1")){
+                int[] pos1 = tagCompound.getIntArray("pos1");
                 list.add("Pos1: " + pos1[0] + " " + pos1[1] + " " + pos1[2]);
-            }if(stack.getTagCompound().hasKey("pos2")){
-                int[] pos2 = stack.getTagCompound().getIntArray("pos2");
+            }
+            if(tagCompound.hasKey("pos2")){
+                int[] pos2 = tagCompound.getIntArray("pos2");
                 list.add("Pos2: " + pos2[0] + " " + pos2[1] + " " + pos2[2]);
-            }if(stack.getTagCompound().hasKey("Blocks")){
-                list.add("Blocks copied: " + stack.getTagCompound().getInteger("Blocks"));
+            }
+            if(tagCompound.hasKey("Blocks")){
+                list.add("Blocks copied: " + tagCompound.getInteger("Blocks"));
             }
         }
     }

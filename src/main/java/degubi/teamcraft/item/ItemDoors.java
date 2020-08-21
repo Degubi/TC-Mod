@@ -7,7 +7,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class ItemDoors extends ItemBlock{
+public final class ItemDoors extends ItemBlock {
     
     public ItemDoors(Block theBlock){
         super(theBlock);

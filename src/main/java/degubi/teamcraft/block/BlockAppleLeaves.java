@@ -37,6 +37,7 @@ public final class BlockAppleLeaves extends BlockLeaves {
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand){
         super.updateTick(world, pos, state, rand);
+        
         if(!world.isRemote && !state.getValue(hasApple).booleanValue()){
             if(rand.nextInt(50) == 3){
                 world.setBlockState(pos, state.cycleProperty(hasApple));
@@ -73,11 +74,9 @@ public final class BlockAppleLeaves extends BlockLeaves {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if(state.getValue(hasApple).booleanValue()){
-            if(state.getBlock() == Main.AppleLeaves) {
-                player.inventory.addItemStackToInventory(new ItemStack(Items.APPLE));
-            }else {
-                player.inventory.addItemStackToInventory(new ItemStack(Main.Banana));
-            }
+            Item toAdd = state.getBlock() == Main.AppleLeaves ? Items.APPLE : Main.Banana;
+            
+            player.inventory.addItemStackToInventory(new ItemStack(toAdd));
             world.setBlockState(pos, state.cycleProperty(hasApple));
             return true;
         }

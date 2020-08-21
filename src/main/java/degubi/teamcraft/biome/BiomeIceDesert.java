@@ -33,6 +33,7 @@ public final class BiomeIceDesert extends Biome{
                 for(int up = 0; up < 7; ++up) {
                     world.setBlockState(pos1.up(up), cactus, 2);
                 }
+                
                 if(rand.nextBoolean()){
                     world.setBlockState(pos1.up(3).north(), cactus.withProperty(BlockLog.LOG_AXIS, EnumAxis.Z), 2);
                     world.setBlockState(pos1.up(4).south(), cactus.withProperty(BlockLog.LOG_AXIS, EnumAxis.Z), 2);

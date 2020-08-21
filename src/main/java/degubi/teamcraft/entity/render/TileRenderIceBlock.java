@@ -78,7 +78,7 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
             bindTexture(Model3HeadCreeper.texture);
             Model3HeadCreeper.INSTANCE.render(null, 0, 0, 0, 0, 0, 0.0625F);
         }else{
-            bindTexture(ModelGoat.texture);
+            bindTexture(RenderGoat.textures[2]);
             ModelGoat.INSTANCE.renderIce();
         }
         GL11.glPopMatrix();

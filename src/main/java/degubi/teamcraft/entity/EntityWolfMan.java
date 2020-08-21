@@ -31,8 +31,11 @@ public final class EntityWolfMan extends EntityMob{
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
+        
+        World world = this.world;
         if(!world.isRemote && world.getCurrentMoonPhaseFactor() == 1 && world.getCelestialAngleRadians(1F) > 4.5F){
             EntityWolf wolf = new EntityWolf(world);
+            
             wolf.setLocationAndAngles(posX, posY, posZ, 0, 0);
             world.spawnEntity(wolf);
             setDead();

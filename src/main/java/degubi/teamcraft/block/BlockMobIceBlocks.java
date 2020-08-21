@@ -52,7 +52,7 @@ public final class BlockMobIceBlocks extends Block {
     
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        handleMobs(world, pos, state);
+        spawnMobOnBreak(world, pos, state);
         world.setBlockToAir(pos.up());
         super.breakBlock(world, pos, state);
     }
@@ -77,7 +77,7 @@ public final class BlockMobIceBlocks extends Block {
         return !acc.getBlockState(pos.offset(side)).isOpaqueCube() && (side != EnumFacing.UP || this == Main.IcePigSpiderBlock);
     }
     
-    private static void handleMobs(World world, BlockPos pos, IBlockState state){
+    private static void spawnMobOnBreak(World world, BlockPos pos, IBlockState state){
         if(!world.isRemote){
             Block block = state.getBlock();
             int x = pos.getX();

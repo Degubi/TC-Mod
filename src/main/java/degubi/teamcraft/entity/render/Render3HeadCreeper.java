@@ -9,7 +9,8 @@ import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.opengl.*;
 
 @SideOnly(Side.CLIENT)
-public final class Render3HeadCreeper extends RenderLiving<EntityThreeHeadCreeper>{
+public final class Render3HeadCreeper extends RenderLiving<EntityThreeHeadCreeper> {
+    
     public Render3HeadCreeper(RenderManager man) {
         super(man, Model3HeadCreeper.INSTANCE, 0.5F);
     }
@@ -34,6 +35,7 @@ public final class Render3HeadCreeper extends RenderLiving<EntityThreeHeadCreepe
     @Override
     protected int getColorMultiplier(EntityThreeHeadCreeper creeper, float lightBrightness, float partialTickTime){
         float f = creeper.getCreeperFlashIntensity(partialTickTime);
+        
         if((int)(f * 10.0F) % 2 == 0){
             return 0;
         }

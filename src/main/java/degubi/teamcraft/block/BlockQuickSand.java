@@ -33,6 +33,7 @@ public final class BlockQuickSand extends BlockFalling{
         if(world.getBlockState(pos.down()).getBlock() != Main.QuickSand && world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
             world.setBlockState(pos.down(), Main.QuickSand.getDefaultState(), 2);
         }
+        
         if(entity instanceof EntityFallingBlock){
             entity.setDead();
         }else{

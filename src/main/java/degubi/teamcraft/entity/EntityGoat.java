@@ -6,6 +6,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.init.*;
+import net.minecraft.item.*;
 import net.minecraft.nbt.*;
 import net.minecraft.network.datasync.*;
 import net.minecraft.util.*;
@@ -33,6 +34,7 @@ public final class EntityGoat extends EntityCow {
     @Override
     public void onLivingUpdate(){
         super.onLivingUpdate();
+        
         if(this.world.isRemote){
             this.sheepTimer = Math.max(0, this.sheepTimer - 1);
         }
@@ -55,18 +57,22 @@ public final class EntityGoat extends EntityCow {
     }
     
     @SideOnly(Side.CLIENT)
-    public float getHeadRotationPointY(float p_70894_1_){
-        return this.sheepTimer <= 0 ? 0.0F : (this.sheepTimer >= 4 && this.sheepTimer <= 36 ? 1.0F : (this.sheepTimer < 4 ? (this.sheepTimer - p_70894_1_) / 4.0F : -(this.sheepTimer - 40 - p_70894_1_) / 4.0F));
+    public float getHeadRotationPointY(float p_70894_1_) {
+        int sheepTimer = this.sheepTimer;
+
+        return sheepTimer <= 0 ? 0.0F : (sheepTimer >= 4 && sheepTimer <= 36 ? 1.0F : (sheepTimer < 4 ? (sheepTimer - p_70894_1_) / 4.0F : -(sheepTimer - 40 - p_70894_1_) / 4.0F));
     }
     
     @SideOnly(Side.CLIENT)
-    public float getHeadRotationAngleX(float p_70890_1_){
-        if(this.sheepTimer > 4 && this.sheepTimer <= 36){
-            float f = (this.sheepTimer - 4 - p_70890_1_) / 32.0F;
+    public float getHeadRotationAngleX(float p_70890_1_) {
+        int sheepTimer = this.sheepTimer;
+        
+        if(sheepTimer > 4 && sheepTimer <= 36){
+            float f = (sheepTimer - 4 - p_70890_1_) / 32.0F;
             
             return ((float)Math.PI / 5F) + ((float)Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
         }
-        return this.sheepTimer > 0 ? ((float)Math.PI / 5F) : this.rotationPitch * 0.017453292F;
+        return sheepTimer > 0 ? ((float)Math.PI / 5F) : this.rotationPitch * 0.017453292F;
     }
     
     @Override
@@ -125,12 +131,9 @@ public final class EntityGoat extends EntityCow {
             dropItem(Items.LEATHER, 1);
         }
         
+        Item toDrop = isBurning() ? Main.CookedGoatMeat : Main.RawGoatMeat;
         for(int j = 0; j < i; ++j) {
-            if(isBurning()){
-                dropItem(Main.CookedGoatMeat, j);
-            }else{
-                dropItem(Main.RawGoatMeat, j);
-            }
+            dropItem(toDrop, j);
         }
     }
     
@@ -138,6 +141,7 @@ public final class EntityGoat extends EntityCow {
         return dataManager.get(GoatType).intValue();
     }
     
+    // 0: Regular, 1: Mountain, 2: Snowy
     public EntityGoat setGoatType(int type){
         dataManager.set(GoatType, Integer.valueOf(type));
         return this;
@@ -161,12 +165,9 @@ public final class EntityGoat extends EntityCow {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data){
         super.onInitialSpawn(difficulty, data);
         
-        if(world.getBiome(getPosition()).getDefaultTemperature() < 0.3F){
-            setGoatType(2);
-        }else{
-            setGoatType(rand.nextInt(2));
-        }
+        int typeToSet = world.getBiome(getPosition()).getDefaultTemperature() < 0.3F ? 2 : rand.nextInt(2);
         
+        setGoatType(typeToSet);
         dataManager.set(HornColor, Integer.valueOf(rand.nextInt(2)));
         return data;
     }

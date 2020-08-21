@@ -36,6 +36,7 @@ public final class BlockButtons extends BlockButtonWood {
             if (!world.provider.isSurfaceWorld()){
                 world.setBlockToAir(pos);
             }
+            
             dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
             world.setBlockState(pos, Blocks.WATER.getDefaultState(), 2);
         }

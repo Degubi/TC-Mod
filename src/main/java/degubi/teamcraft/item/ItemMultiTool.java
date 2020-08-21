@@ -14,7 +14,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class ItemMultiTool extends ItemTool{
+public final class ItemMultiTool extends ItemTool {
+    
     public ItemMultiTool(ToolMaterial material) {
         super(material, ImmutableSet.of(Blocks.GRASS, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.SNOW_LAYER, Blocks.SNOW, Blocks.CLAY, Blocks.FARMLAND, Blocks.SOUL_SAND, Blocks.MYCELIUM, Blocks.WEB, Blocks.PUMPKIN, Blocks.MELON_BLOCK));
         setCreativeTab(Main.ToolsWeapons);
@@ -27,7 +28,7 @@ public final class ItemMultiTool extends ItemTool{
     
     @Override
     public boolean canHarvestBlock(IBlockState block){
-        return block.getBlock() == Blocks.WEB || block.getBlock()  == Blocks.SNOW_LAYER || block.getBlock()  == Blocks.OBSIDIAN ? toolMaterial.getHarvestLevel() == 3 : (block.getBlock() != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ? (block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ? (block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ? (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ? (block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ? (block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ? (block.getMaterial() == Material.ROCK ? true : (block.getMaterial() == Material.IRON ? true : block.getMaterial() == Material.ANVIL)) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2);
+        return block.getBlock() == Blocks.WEB || block.getBlock() == Blocks.SNOW_LAYER || block.getBlock() == Blocks.OBSIDIAN ? toolMaterial.getHarvestLevel() == 3 : (block.getBlock() != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ? (block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ? (block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ? (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ? (block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ? (block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ? (block.getMaterial() == Material.ROCK ? true : (block.getMaterial() == Material.IRON ? true : block.getMaterial() == Material.ANVIL)) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2);
     }
     
     @Override
@@ -43,15 +44,17 @@ public final class ItemMultiTool extends ItemTool{
         }
         IBlockState iblockstate = world.getBlockState(pos);
 
-        if(facing != EnumFacing.DOWN && world.isAirBlock(pos.up())){
-            if(iblockstate.getBlock() == Blocks.DIRT){
+        if(facing != EnumFacing.DOWN && world.isAirBlock(pos.up())) {
+            Block block = iblockstate.getBlock();
+            
+            if(block == Blocks.DIRT){
                 if(iblockstate.getValue(BlockDirt.VARIANT) == DirtType.DIRT) {
                     setBlock(itemstack, player, world, pos, Blocks.FARMLAND.getDefaultState());
                 }else if(iblockstate.getValue(BlockDirt.VARIANT) == DirtType.COARSE_DIRT) {
                     setBlock(itemstack, player, world, pos, Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, BlockDirt.DirtType.DIRT));
                 }
                 return EnumActionResult.SUCCESS;
-            }else if(iblockstate.getBlock() == Blocks.GRASS){
+            }else if(block == Blocks.GRASS){
                 setBlock(itemstack, player, world, pos, Blocks.GRASS_PATH.getDefaultState());
                 return EnumActionResult.SUCCESS;
             }

@@ -9,7 +9,7 @@ import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT) 
-public final class RenderSpiders extends RenderLiving<EntityLiving>{
+public final class RenderSpiders extends RenderLiving<EntityLiving> {
     private static final ResourceLocation night = new ResourceLocation("tcm:textures/entity/pig_spider_night.png");
     private static final ResourceLocation nether = new ResourceLocation("tcm:textures/entity/pig_spider_nether.png");
     private static final ResourceLocation ender = new ResourceLocation("tcm:textures/entity/spider_ender.png");

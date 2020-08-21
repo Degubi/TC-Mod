@@ -11,7 +11,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
 
-public final class BlockDoors extends BlockDoor{
+public final class BlockDoors extends BlockDoor {
     private final boolean isAlpha;
     
     public BlockDoors(Block infBlock) {

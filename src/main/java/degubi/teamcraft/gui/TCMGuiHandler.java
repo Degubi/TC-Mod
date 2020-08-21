@@ -25,7 +25,8 @@ public final class TCMGuiHandler implements IGuiHandler {
     }
     
     @SideOnly(Side.CLIENT) 
-    private static final class GuiTable extends GuiCrafting{
+    private static final class GuiTable extends GuiCrafting {
+        
         GuiTable(InventoryPlayer inventory, World world) {
             super(inventory, world);
         }

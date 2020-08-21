@@ -45,6 +45,7 @@ public final class BiomeTundra extends Biome{
                 primer.setBlockState(j1, k1, i1, Blocks.BEDROCK.getDefaultState());
             }else{
                 IBlockState iblockstate2 = primer.getBlockState(j1, k1, i1);
+                
                 if (iblockstate2.getMaterial() == Material.AIR){
                     k = -1;
                 }else if (iblockstate2.getBlock() == Blocks.STONE){
@@ -54,6 +55,7 @@ public final class BiomeTundra extends Biome{
                         }else if (k1 >= 59 && k1 <= 64){
                             iblockstate = topBlock;
                         }
+                        
                         if(k1 < 63 && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)){
                             if (getTemperature(new BlockPos(x, k1, z)) < 0.15F){
                                 iblockstate = Blocks.ICE.getDefaultState();
@@ -61,11 +63,13 @@ public final class BiomeTundra extends Biome{
                                 iblockstate = Blocks.WATER.getDefaultState();
                             }
                         }
+                        
                         k = l;
                         if(k1 >= 70){
                             primer.setBlockState(j1, k1, i1, Blocks.SNOW.getDefaultState());
                         }else if (k1 >= 62){
                             primer.setBlockState(j1, k1, i1, iblockstate);
+                            
                             if(rand.nextInt(15) == 2 && primer.getBlockState(j1, k1, i1).getBlock() != Blocks.AIR){
                                 primer.setBlockState(j1, k1 + 1, i1, Blocks.SNOW_LAYER.getDefaultState());
                             }

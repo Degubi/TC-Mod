@@ -3,8 +3,11 @@ package degubi.teamcraft.network;
 import io.netty.buffer.*;
 import net.minecraftforge.fml.common.network.simpleimpl.*;
 
-public final class MessageCoordInt implements IMessage{
-    public int x, y, z, messageType;
+public final class MessageCoordInt implements IMessage {
+    public int x;
+    public int y;
+    public int z;
+    public int messageType;
 
     public MessageCoordInt(){}
     public MessageCoordInt(int posX, int posY, int posZ, int type){

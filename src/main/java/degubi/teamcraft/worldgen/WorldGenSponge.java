@@ -5,10 +5,11 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.state.*;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 
-public final class WorldGenSponge extends WorldGenerator{
+public final class WorldGenSponge extends WorldGenerator {
     private final Block getBlock;
     private final IBlockState setBlock;
     private final Material material;
@@ -28,17 +29,19 @@ public final class WorldGenSponge extends WorldGenerator{
         int posX = pos.getX();
         int posY = pos.getY();
         int posZ = pos.getZ();
+        MutableBlockPos blockPos = new MutableBlockPos();
         
         for(int j = posX - i; j <= posX + i; ++j){
             for(int k = posZ - i; k <= posZ + i; ++k){
                 int l = j - posX;
                 int i1 = k - posZ;
+                
                 if(l * l + i1 * i1 <= i * i){
                     for(int j1 = posY - 1; j1 <= posY + 1; ++j1){
-                        BlockPos blockpos1 = new BlockPos(j, j1, k);
+                        blockPos.setPos(j, j1, k);
                         
-                        if(world.getBlockState(blockpos1).getBlock() == getBlock){
-                            world.setBlockState(blockpos1, setBlock, 2);
+                        if(world.getBlockState(blockPos).getBlock() == getBlock){
+                            world.setBlockState(blockPos, setBlock, 2);
                         }
                     }
                 }

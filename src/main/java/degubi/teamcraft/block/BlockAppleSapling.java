@@ -41,6 +41,7 @@ public final class BlockAppleSapling extends BlockBush implements IGrowable{
         if(!world.isRemote && world.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0){
             this.grow(world, rand, pos, state);
         }
+        
         super.updateTick(world, pos, state, rand);
     }
     

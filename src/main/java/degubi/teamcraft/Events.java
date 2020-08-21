@@ -6,6 +6,7 @@ import degubi.teamcraft.block.vanilla.*;
 import degubi.teamcraft.entity.*;
 import degubi.teamcraft.gui.*;
 import degubi.teamcraft.item.*;
+import java.util.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.properties.*;
@@ -13,6 +14,7 @@ import net.minecraft.block.state.*;
 import net.minecraft.client.*;
 import net.minecraft.client.audio.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.multiplayer.*;
 import net.minecraft.client.network.*;
 import net.minecraft.client.renderer.block.statemap.*;
 import net.minecraft.client.settings.*;
@@ -435,19 +437,20 @@ public final class Events{
     public void clientTick(ClientTickEvent event){
         if(event.phase == Phase.START){
             Minecraft mc = Minecraft.getMinecraft();
+            WorldClient world = mc.world;
             
-            if(mc.world != null && !mc.isGamePaused() && mc.world.provider.getDimension() == 0 && !mc.player.isCreative()){
+            if(world != null && !mc.isGamePaused() && world.provider.getDimension() == 0 && !mc.player.isCreative()){
                 ++soundTicks;
                 
                 if(soundTicks > 400){
-                    float pitchRand = 0.9F + mc.world.rand.nextFloat() / 2;
+                    float pitchRand = 0.9F + world.rand.nextFloat() / 2;
                     
-                    if(mc.world.isThundering()){
+                    if(world.isThundering()){
                         mc.getSoundHandler().playSound(new PositionedSoundRecord(Main.THUNDER.getSoundName(), SoundCategory.AMBIENT, 0.4F, pitchRand, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
                         soundTicks = 300;
-                    }else if(mc.world.getSunBrightness(0.0F) > 0.2F && mc.world.canBlockSeeSky(mc.player.getPosition())){
+                    }else if(world.getSunBrightness(0.0F) > 0.2F && world.canBlockSeeSky(mc.player.getPosition())){
                         mc.getSoundHandler().playSound(new PositionedSoundRecord(Main.DAY.getSoundName(), SoundCategory.AMBIENT, 1.0F, pitchRand, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
-                        soundTicks = 0 - mc.world.rand.nextInt(350);
+                        soundTicks = 0 - world.rand.nextInt(350);
                     }else{
                         mc.getSoundHandler().playSound(new PositionedSoundRecord(Main.NIGHT.getSoundName(), SoundCategory.AMBIENT, 0.4F, pitchRand, false, 0, ISound.AttenuationType.NONE, 0.0F, 0.0F, 0.0F));
                         soundTicks = 300;
@@ -460,23 +463,22 @@ public final class Events{
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void guiInit(InitGuiEvent.Post event){
-        if(event.getGui() instanceof GuiOptions && Minecraft.getMinecraft().world != null){
-            if(Minecraft.getMinecraft().isSingleplayer()){
-                event.getButtonList().remove(3);
-            }else{
-                event.getButtonList().remove(2);
-            }
-            event.getButtonList().add(new GuiButton(3, event.getGui().width / 2 - 155, event.getGui().height / 6 + 42, 150, 20, "Chunk Gui"));
+        GuiScreen gui = event.getGui();
+        
+        if(gui instanceof GuiOptions && Minecraft.getMinecraft().world != null){
+            int buttonToRemove = Minecraft.getMinecraft().isSingleplayer() ? 3 : 2;
+            List<GuiButton> buttonList = event.getButtonList();
+            
+            buttonList.remove(buttonToRemove);
+            buttonList.add(new GuiButton(3, gui.width / 2 - 155, gui.height / 6 + 42, 150, 20, "Chunk Gui"));
         }
     }
     
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void buttonPressed(ActionPerformedEvent event){
-        Minecraft mc = Minecraft.getMinecraft();
-
-        if(event.getGui() instanceof GuiOptions && mc.world != null && event.getButton().id == 3) {
-            mc.displayGuiScreen(new GuiChunkHandler(event.getGui()));
+        if(event.getGui() instanceof GuiOptions && event.getButton().id == 3) {
+            Minecraft.getMinecraft().displayGuiScreen(new GuiChunkHandler(event.getGui()));
         }
     }
     

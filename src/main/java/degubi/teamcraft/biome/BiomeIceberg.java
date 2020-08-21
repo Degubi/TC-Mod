@@ -20,6 +20,7 @@ public final class BiomeIceberg extends Biome{
     @Override
     public void decorate(World world, Random rand, BlockPos pos) {
         super.decorate(world, rand, pos);
+        
         if(topBlock.getBlock() == Blocks.PACKED_ICE){
             iceMobs(Main.IceCreeperBlock.getDefaultState(), world, rand, pos.getX(), pos.getZ());
             iceMobs(Main.IcePigmanBlock.getDefaultState(), world, rand, pos.getX(), pos.getZ());
@@ -34,8 +35,10 @@ public final class BiomeIceberg extends Biome{
     private static void iceMobs(IBlockState toGen, World world, Random rand, int blockXPos, int blockZPos){
         for(int x = 0; x < 10; x++){
             BlockPos pos = new BlockPos(blockXPos + rand.nextInt(16) + 8, 40 + rand.nextInt(200), blockZPos + rand.nextInt(16) + 8);
+            
             if(world.getBlockState(pos).getBlock() == Blocks.PACKED_ICE){
                 world.setBlockState(pos, toGen.withProperty(BlockHorizontal.FACING, EnumFacing.Plane.HORIZONTAL.random(rand)), 2);
+                
                 if(toGen.getBlock() != Main.IcePigSpiderBlock){
                     world.setBlockState(pos.up(), Main.FakeBlock.getDefaultState(), 2);
                 }

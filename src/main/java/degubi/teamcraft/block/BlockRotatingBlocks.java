@@ -41,11 +41,11 @@ public final class BlockRotatingBlocks extends BlockLog{
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity){
         if(state.getBlock() == Main.Cactus){
-            if(entity instanceof EntityLivingBase){
-                EntityLivingBase living = (EntityLivingBase) entity;
-                living.addPotionEffect(eff);
-            }
             entity.attackEntityFrom(DamageSource.CACTUS, 2.0F);
+
+            if(entity instanceof EntityLivingBase){
+                ((EntityLivingBase) entity).addPotionEffect(eff);
+            }
         }
     }
 }

@@ -10,10 +10,12 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class ItemRope extends ItemBlock{
+public final class ItemRope extends ItemBlock {
+    
     public ItemRope() {
         super(new BlockRope());
     }
+    
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!world.isRemote) {
@@ -31,6 +33,7 @@ public final class ItemRope extends ItemBlock{
                     break;
                 }
             }
+            
             heldItem.shrink(useCounter);
             return EnumActionResult.SUCCESS;
         }

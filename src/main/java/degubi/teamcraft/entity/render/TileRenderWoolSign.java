@@ -41,6 +41,7 @@ public final class TileRenderWoolSign extends TileEntitySpecialRenderer<TileEnti
             GL11.glTranslatef(0.0F, -0.3125F, -0.4375F);
             model.signStick.showModel = false;
         }
+        
         bindTexture(res);
         GL11.glPushMatrix();
         GL11.glScalef(0.6666667F, -0.6666667F, -0.6666667F);
@@ -71,76 +72,4 @@ public final class TileRenderWoolSign extends TileEntitySpecialRenderer<TileEnti
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glPopMatrix();
     }
-    
-    /*@Override
-    public void render(WoolSignTile woolTile, double x, double y, double z, float partialTicks, int destroyStage, float alpha){
-        Block block = woolTile.getBlockType();
-        GL11.glPushMatrix();
-        float f3;
-
-        if (block == Main.WoolStandingSign)
-        {
-            GL11.glTranslatef((float)x + 0.5F, (float)y + 0.75F * 0.6666667F, (float)z + 0.5F);
-            float f2 = woolTile.getBlockMetadata() * 360 / 16.0F;
-            GL11.glRotatef(-f2, 0.0F, 1.0F, 0.0F);
-            model.signStick.showModel = true;
-        }
-        else
-        {
-            final int j = woolTile.getBlockMetadata();
-            f3 = 0.0F;
-
-            if (j == 2)
-            {
-                f3 = 180.0F;
-            }
-
-            if (j == 4)
-            {
-                f3 = 90.0F;
-            }
-
-            if (j == 5)
-            {
-                f3 = -90.0F;
-            }
-
-            GL11.glTranslatef((float)x + 0.5F, (float)y + 0.75F * 0.6666667F, (float)z + 0.5F);
-            GL11.glRotatef(-f3, 0.0F, 1.0F, 0.0F);
-            GL11.glTranslatef(0.0F, -0.3125F, -0.4375F);
-            model.signStick.showModel = false;
-        }
-        bindTexture(res);
-        GL11.glPushMatrix();
-        GL11.glScalef(0.6666667F, -0.6666667F, -0.6666667F);
-        model.renderSign();
-        GL11.glPopMatrix();
-        
-        f3 = 0.016666668F * 0.6666667F;
-        GL11.glTranslatef(0.0F, 0.5F * 0.6666667F, 0.07F * 0.6666667F);
-        GL11.glScalef(f3, -f3, f3);
-        GL11.glNormal3f(0.0F, 0.0F, -1.0F * f3);
-        GL11.glDepthMask(false);
-
-        if (destroyStage < 0){
-            for (int j = 0; j < woolTile.signText.length; ++j){
-                if (woolTile.signText[j] != null){
-                    final FontRenderer fontrenderer = getFontRenderer();
-                    ITextComponent ichatcomponent = woolTile.signText[j];
-                    List<ITextComponent> list = GuiUtilRenderComponents.splitText(ichatcomponent, 90, fontrenderer, false, true);
-                    String s = list != null && list.size() > 0 ? list.get(0).getFormattedText() : "";
-                    if (j == woolTile.lineBeingEdited){
-                        s = "> " + s + " <";
-                        fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, j * 10 - woolTile.signText.length * 5, 0);
-                    }else{
-                        fontrenderer.drawString(s, -fontrenderer.getStringWidth(s) / 2, j * 10 - woolTile.signText.length * 5, 0);
-                    }
-                }
-            }
-        }
-        GL11.glDepthMask(true);
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        GL11.glPopMatrix();
-    }
-    */
 }

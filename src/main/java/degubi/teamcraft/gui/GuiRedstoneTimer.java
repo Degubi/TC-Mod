@@ -7,7 +7,7 @@ import net.minecraft.util.math.*;
 import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
-public class GuiRedstoneTimer extends GuiScreen{
+public class GuiRedstoneTimer extends GuiScreen {
     private final BlockPos blockPos;
 
     public GuiRedstoneTimer(BlockPos pos) {

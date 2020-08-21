@@ -1,6 +1,7 @@
 package degubi.teamcraft.entity;
 
 import degubi.teamcraft.*;
+import java.util.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.*;
@@ -34,12 +35,23 @@ public final class EntityEnderSpider extends EntitySpider{
         super.entityInit();
         dataManager.register(SCREAMING, Boolean.FALSE);
     }
+    
     @Override
     public void onLivingUpdate(){
+        World world = this.world;
+        
         if(world.isRemote){
-            this.world.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);        
-            this.world.spawnParticle(EnumParticleTypes.PORTAL, this.posX + (this.rand.nextDouble() - 0.5D) * this.width, this.posY + this.rand.nextDouble() * this.height - 0.25D, this.posZ + (this.rand.nextDouble() - 0.5D) * this.width, (this.rand.nextDouble() - 0.5D) * 2.0D, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5D) * 2.0D);
+            Random rand = this.rand;
+            double posX = this.posX;
+            double posY = this.posY;
+            double posZ = this.posZ;
+            float height = this.height;
+            float width = this.width;
+            
+            world.spawnParticle(EnumParticleTypes.PORTAL, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height - 0.25D, posZ + (rand.nextDouble() - 0.5D) * width, (rand.nextDouble() - 0.5D) * 2.0D, -rand.nextDouble(), (rand.nextDouble() - 0.5D) * 2.0D);        
+            world.spawnParticle(EnumParticleTypes.PORTAL, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height - 0.25D, posZ + (rand.nextDouble() - 0.5D) * width, (rand.nextDouble() - 0.5D) * 2.0D, -rand.nextDouble(), (rand.nextDouble() - 0.5D) * 2.0D);
         }
+        
         isJumping = false;
         super.onLivingUpdate();
     }
@@ -49,11 +61,14 @@ public final class EntityEnderSpider extends EntitySpider{
         if(isWet()){
             attackEntityFrom(DamageSource.DROWN, 1.0F);
         }
+        
         if(isScreaming() && !isAggressive && rand.nextInt(100) == 0){
             setScreaming(false);
         }
+        
         if(world.isDaytime()){
             float f = getBrightness();
+            
             if(f > 0.5F && world.canSeeSky(new BlockPos(this)) && rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F){
                 setAttackTarget((EntityLivingBase)null);
                 setScreaming(false);
@@ -77,13 +92,13 @@ public final class EntityEnderSpider extends EntitySpider{
         boolean flag = this.attemptTeleport(event.getTargetX(), event.getTargetY(), event.getTargetZ());
 
         if(flag){
-            BlockPos blockpos = new BlockPos(this.posX, this.posY, this.posZ);
             this.world.playSound((EntityPlayer)null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
             this.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
             int num = rand.nextInt(25);
+            
             if(world.getGameRules().getBoolean("mobGriefing")){
                 if(num < 4){
-                    world.setBlockState(blockpos, Blocks.WEB.getDefaultState());
+                    world.setBlockState(new BlockPos(this.posX, this.posY, this.posZ), Blocks.WEB.getDefaultState());
                     playSound(SoundEvents.BLOCK_CLOTH_STEP, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
                 }
                 if(num == 6){

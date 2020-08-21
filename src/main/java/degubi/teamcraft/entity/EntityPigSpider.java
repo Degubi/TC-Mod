@@ -60,6 +60,7 @@ public final class EntityPigSpider extends EntitySpider{
     @Override
     public void readEntityFromNBT(NBTTagCompound tag) {
         super.readEntityFromNBT(tag);
+        
         webCounter = tag.getInteger("webCounter");
         if(tag.hasKey("isNether")){
             setIsNetherSpider(tag.getBoolean("isNether"));

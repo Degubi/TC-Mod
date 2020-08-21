@@ -3,28 +3,28 @@ package degubi.teamcraft.entity.model;
 import degubi.teamcraft.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.entity.*;
-import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.opengl.*;
 
 @SideOnly(Side.CLIENT)
-public final class ModelGoat extends ModelCow{
+public final class ModelGoat extends ModelCow {
     private final ModelRenderer beard = new ModelRenderer(this, 0, 0).addBox(-1.0F, 3.0F, -5.0F, 2, 3, 1);
     private final ModelRenderer udders = new ModelRenderer(this, 14, 25).addBox(-2.0F, -3.0F, 0.0F, 2, 5, 2);
     private final ModelRenderer hornbrown = new ModelRenderer(this, 13, 16).addBox(-2.0F, -8.0F, -5.0F, 1, 7, 1).addBox(1.0F, -8.0F, -5.0F, 1, 7, 1);
     private final ModelRenderer hornyellow = new ModelRenderer(this, 18, 16).addBox(-2.0F, -8.0F, -5.0F, 1, 7, 1).addBox(1.0F, -8.0F, -5.0F, 1, 7, 1);
     private float headRotationAngleX;
     public static final ModelGoat INSTANCE = new ModelGoat();
-    public static final ResourceLocation texture = new ResourceLocation("tcm:textures/entity/goat2.png");
     
     private ModelGoat(){
         beard.setRotationPoint(0.0F, 4.0F, -6.0F);
         head = new ModelRenderer(this, 0, 0);
+        
         if(isChild) {
             head.addBox(-3.0F, -4.0F, -7.0F, 6, 6, 7);
         }else{
             head.addBox(-3.0F, -5.0F, -7.0F, 6, 6, 7);
         }
+        
         head.setRotationPoint(0.0F, 4.0F, -6.0F);
         body = new ModelRenderer(this, 24, 5);
         body.addBox(-6.0F, -10.0F, -7.0F, 10, 16, 10);
@@ -49,10 +49,12 @@ public final class ModelGoat extends ModelCow{
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
         EntityGoat goat = (EntityGoat) entity;
+        
         if(goat.getCustomNameTag().equals("N0RRIS56")){
             GL11.glTranslatef(0, -3.1F, 0);
             GL11.glScalef(3F, 3F, 3F);
         }
+        
         if(!isChild){
             udders.render(scale);
             beard.render(scale);
@@ -64,6 +66,7 @@ public final class ModelGoat extends ModelCow{
         }
         super.render(goat, f, f1, f2, f3, f4, scale);
     }
+    
     public void renderIce(){
         setRotationAngles(0, 0, 0, 0, 0, 0, null);
         GL11.glPushMatrix();

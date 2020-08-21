@@ -95,6 +95,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     @Override
     protected void dropFewItems(boolean idk, int weight){
         int i = rand.nextInt(3) + 1 + rand.nextInt(1 + weight);
+        
         for(int j = 0; j < i; ++j)
             if(isBurning()){
                 dropItem(Items.COOKED_PORKCHOP, 1);
@@ -131,7 +132,8 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     @Override
     public void onDeath(DamageSource cause) {
         super.onDeath(cause);
-        if(!world.isRemote){
+        
+        if(!world.isRemote) {
             this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, EntityXPOrb.getXPSplit(50)));
         }
     }

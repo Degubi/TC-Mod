@@ -2,14 +2,17 @@ package degubi.teamcraft.worldgen;
 
 import degubi.teamcraft.*;
 import java.util.*;
+import net.minecraft.block.*;
 import net.minecraft.block.material.*;
 import net.minecraft.block.state.*;
 import net.minecraft.init.*;
+import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 
-public final class WorldGenAppleTree extends WorldGenAbstractTree{
+public final class WorldGenAppleTree extends WorldGenAbstractTree {
+    
     public WorldGenAppleTree() {
         super(false);
     }
@@ -20,8 +23,9 @@ public final class WorldGenAppleTree extends WorldGenAbstractTree{
         int posY = position.getY();
         int posX = position.getX();
         int posZ = position.getZ();
+        int worldHeight = world.getHeight();
         
-        if (posY >= 1 && posY + i + 1 <= world.getHeight()){
+        if (posY >= 1 && posY + i + 1 <= worldHeight){
             boolean flag = true;
             for (int j = posY; j <= posY + 1 + i; ++j){
                 int k = 1;
@@ -34,7 +38,7 @@ public final class WorldGenAppleTree extends WorldGenAbstractTree{
                 }
                 for (int l = posX - k; l <= posX + k && flag; ++l){
                     for (int i1 = posZ - k; i1 <= posZ + k && flag; ++i1){
-                        if (j >= 0 && j < world.getHeight()){
+                        if (j >= 0 && j < worldHeight){
                             if (!this.isReplaceable(world, new BlockPos(l, j, i1))){
                                 flag = false;
                             }
@@ -50,7 +54,7 @@ public final class WorldGenAppleTree extends WorldGenAbstractTree{
             }
             IBlockState state = world.getBlockState(position.down());
 
-            if (state.getBlock().canSustainPlant(state, world, position.down(), net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING) && position.getY() < world.getHeight() - i - 1){
+            if (state.getBlock().canSustainPlant(state, world, position.down(), EnumFacing.UP, (BlockSapling)Blocks.SAPLING) && position.getY() < world.getHeight() - i - 1){
                 this.setDirtAt(world, position.down());
                 int k2 = 3;
                 int l2 = 0;
