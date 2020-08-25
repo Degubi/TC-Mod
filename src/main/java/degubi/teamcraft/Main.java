@@ -46,7 +46,7 @@ import net.minecraftforge.fml.common.registry.*;
 public final class Main{
     public static final SimpleNetworkWrapper redstoneTimerChannel = createNewServerChannel("RedstoneTimerChannel", HandlerRedstoneTimer.class, MessageCoordInt.class);
     public static final SimpleNetworkWrapper nbtChannel = createNewServerChannel("NBTChannel", HandlerNBTMessage.class, MessageString.class);
-    
+
     private static final ArmorMaterial lasulitArmor = EnumHelper.addArmorMaterial("lasulit", "tcm:lasulit", 10, new int[]{1, 4, 5, 2}, 12, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F).setRepairItem(new ItemStack(Items.DYE, 1, 4));
     private static final ArmorMaterial emeraldArmor = EnumHelper.addArmorMaterial("emerald", "tcm:emerald", 21, new int[]{2, 5, 6, 2}, 18, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0.0F).setRepairItem(new ItemStack(Items.EMERALD));
     private static final ToolMaterial emeraldTool = EnumHelper.addToolMaterial("emeraldTool", 2, 600, 7.0F, 2.0F, 10).setRepairItem(new ItemStack(Items.EMERALD));
@@ -60,7 +60,7 @@ public final class Main{
     public static final CreaTab ToolsWeapons = new CreaTab("tcmTabToolsWeapons", Items.ARMOR_STAND);
     public static final CreaTab tabMaterials = new CreaTab("tcmTabMaterials", Items.BOWL);
     public static final CreaTab tabAdmin = new CreaTab("tcmTabAdmin", Blocks.BEDROCK);
-    
+
     private static final SoundEvent SOUNDBLOCK_1 = registerSound("tcm:soundblock.sound1");
     private static final SoundEvent SOUNDBLOCK_2 = registerSound("tcm:soundblock.sound2");
     private static final SoundEvent SOUNDBLOCK_3 = registerSound("tcm:soundblock.sound3");
@@ -76,15 +76,15 @@ public final class Main{
     public static final SoundEvent THUNDER = registerSound("tcm:game.thunder");
     public static final SoundEvent SLEEPING = registerSound("tcm:player.sleep");
     public static final SoundType deepSlime = new SoundType(1.0F, 0.75F, SoundEvents.BLOCK_SLIME_BREAK, SoundEvents.BLOCK_SLIME_STEP, SoundEvents.BLOCK_SLIME_PLACE, SoundEvents.BLOCK_SLIME_HIT, SoundEvents.BLOCK_SLIME_FALL);
-    
+
     public static Block SingleSlabs3, DoubleSlabs2, DoubleSlabs3, SingleSlabs1, DoubleSlabs1, SingleSlabs2, DarkOakTrapDoor, SpruceTrapDoor, BirchTrapDoor, JungleTrapDoor, AcaciaTrapDoor;
-    
+
     public static final Block AppleLeaves = registerBlock(new BlockAppleLeaves(), "appleleaves");
     public static final Block AppleSapling = registerBlock(new BlockAppleSapling(), "applesapling");
     public static final Block bananaSapling = registerBlock(new BlockAppleSapling(), "bananasapling");
     public static final Block bananaLeaves = registerBlock(new BlockAppleLeaves(), "bananaleaves");
     public static final Block cocoaLeaves = registerBlock(new BlockAppleLeaves(), "cocoaleaves");
-    
+
     public static final Block QuickSand = registerBlock(new BlockQuickSand(), "quicksand");
     public static final Block WoolStandingSign = registerBlockWItem(new ItemWoolSign(), "woolstandingsign");
     public static final Block WoolWallSign = registerBlockNoItem(new WoolWSign(), "woolwallsign");
@@ -93,14 +93,14 @@ public final class Main{
     public static final Block Lantern = registerBlock(new BlockLantern(), "lantern");
     public static final Block WoodenChair = registerBlock(new BlockChair(), "chair");
     public static final Block IcIcle = registerBlock(new BlockIcicle(), "icicle");
-    
+
     public static final Block SoundBlock1 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_1), "soundblock1");
     public static final Block SoundBlock2 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_2), "soundblock2");
     public static final Block SoundBlock3 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_3), "soundblock3");
     public static final Block SoundBlock4 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_4), "soundblock4");
     public static final Block SoundBlock5 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_5), "soundblock5");
     public static final Block SoundBlock6 = registerBlock(new BlockSoundBlocks(SOUNDBLOCK_6), "soundblock6");
-    
+
     public static final Block GlassDoor = registerDoor(new BlockDoors(Blocks.GLASS), "glass_door");
     public static final Block GoldDoor = registerDoor(new BlockDoors(Blocks.GOLD_BLOCK), "gold_door");
     public static final Block DiamondDoor = registerDoor(new BlockDoors(Blocks.DIAMOND_BLOCK), "diamond_door");
@@ -118,14 +118,14 @@ public final class Main{
     public static final Block DarkOakLogDoor = registerDoor(new BlockDoors(Blocks.LOG), "darkoaklog_door");
     public static final Block IceDoor = registerDoor(new BlockDoors(Blocks.ICE), "ice_door");
     public static final Block PackedIceDoor = registerDoor(new BlockDoors(Blocks.PACKED_ICE), "packedice_door");
-    
+
     public static final Block NetherCoalOre = registerBlock(new BlockOres(Blocks.COAL_ORE), "nethercoal_ore");
     public static final Block NetherIronOre = registerBlock(new BlockOres(Blocks.IRON_ORE), "netheriron_ore");
     public static final Block NetherGoldOre = registerBlock(new BlockOres(Blocks.GOLD_ORE), "nethergold_ore");
     public static final Block NetherLapisOre = registerBlock(new BlockOres(Blocks.LAPIS_ORE), "netherlapis_ore");
     public static final Block NetherEmeraldOre = registerBlock(new BlockOres(Blocks.EMERALD_ORE), "netheremerald_ore");
     public static final Block NetherDiamondOre = registerBlock(new BlockOres(Blocks.DIAMOND_ORE), "netherdiamond_ore");
-    
+
     public static final Block Basalt = registerBlock(new BlockBase(Blocks.OBSIDIAN, tabBlocks), "basalt");
     public static final Block SmoothBasalt = registerBlock(new BlockBase(Blocks.OBSIDIAN, tabBlocks), "smoothbasalt");
     public static final Block NetherCoalBlock = registerBlock(new BlockBase(Blocks.COAL_BLOCK, tabBlocks), "nethercoalblock");
@@ -133,12 +133,12 @@ public final class Main{
     public static final Block MarbleBrick = registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "marblebrick");
     public static final Block MarbleCobble = registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "marblecobble");
     public static final Block GravelStone = registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "gravelstone");
-    
+
     public static final Block OakLeafBush = registerBlock(new BlockWalls(Blocks.LEAVES), "oak_bush");
     public static final Block SpruceLeafBush = registerBlock(new BlockWalls(Blocks.LEAVES), "spruce_bush");
     public static final Block BirchLeafBush = registerBlock(new BlockWalls(Blocks.LEAVES), "birch_bush");
     public static final Block JungleLeafBush = registerBlock(new BlockWalls(Blocks.LEAVES), "jungle_bush");
-    
+
     public static final Block OakLogFence = registerBlock(new BlockFence(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setCreativeTab(tabDecorations), "oaklog_fence");
     public static final Block SpruceLogFence = registerBlock(new BlockFence(Material.WOOD, BlockPlanks.EnumType.SPRUCE.getMapColor()).setCreativeTab(tabDecorations), "sprucelog_fence");
     public static final Block BirchLogFence = registerBlock(new BlockFence(Material.WOOD, BlockPlanks.EnumType.BIRCH.getMapColor()).setCreativeTab(tabDecorations), "birchlog_fence");
@@ -153,7 +153,7 @@ public final class Main{
     public static final Block AcaciaLogGate = registerBlock(new BlockFenceGate(EnumType.ACACIA).setHardness(2.0F).setCreativeTab(tabRedstone), "acacialog_gate");
     public static final Block DarkOakLogGate = registerBlock(new BlockFenceGate(EnumType.DARK_OAK).setHardness(2.0F).setCreativeTab(tabRedstone), "darkoaklog_gate");
     public static final Block RetardGate = registerBlock(new BlockFenceGate(EnumType.OAK).setHardness(2.0F).setCreativeTab(tabRedstone), "retard_gate");
-    
+
     public static final Block IceCreeperBlock = registerBlockNoItem(new BlockMobIceBlocks(), "icecreeper_block");
     public static final Block IcePigmanBlock = registerBlockNoItem(new BlockMobIceBlocks(), "icepigman_block");
     public static final Block IcePigSpiderBlock = registerBlockNoItem(new BlockMobIceBlocks(), "icepigspider_block");
@@ -162,7 +162,7 @@ public final class Main{
     public static final Block IceThreeHeadCreeperBlock = registerBlockNoItem(new BlockMobIceBlocks(), "icethreeheadcreeper_block");
     public static final Block IceGoatBlock = registerBlockNoItem(new BlockMobIceBlocks(), "icegoat_block");
     public static final Block FakeBlock = registerBlockNoItem(new BlockFakeBlock(), "fakeblock");
-    
+
     public static final Block HalfGlowstone = registerBlock(new BlockHalfBlocks(Blocks.GLOWSTONE).setLightLevel(1.0F), "halfglowstone");
     public static final Block HalfCobble = registerBlock(new BlockHalfBlocks(Blocks.COBBLESTONE), "halfcobble");
     public static final Block HalfBrick = registerBlock(new BlockHalfBlocks(Blocks.BRICK_BLOCK), "halfbrick");
@@ -213,7 +213,7 @@ public final class Main{
     public static final Block HalfGraniteBrick = registerBlock(new BlockHalfBlocks(Blocks.STONE), "halfgranitebrick");
     public static final Block HalfAndesiteBrick = registerBlock(new BlockHalfBlocks(Blocks.STONE), "halfandesitebrick");
     public static final Block HalfBasaltBrick = registerBlock(new BlockHalfBlocks(Blocks.STONE), "halfbasaltbrick");
-    
+
     public static final Item PositionItem = registerItem(new ItemPosItem(), "positem");
     public static final Item GenerationItem = registerItem(new ItemGenItem(), "genitem");
     public static final Item MultiTool = registerItem(new ItemMultiTool(multitool), "multitool");
@@ -237,7 +237,7 @@ public final class Main{
     public static final Item LasulitSword = registerItem(new ItemSword(lasulittool).setCreativeTab(ToolsWeapons), "lasulit_sword");
     public static final Item BrownMushroomItem = registerItem(new ItemMushrooms(5), "brown_mushroom");
     public static final Item RedMushroomItem = registerItem(new ItemMushrooms(4).setAlwaysEdible().setPotionEffect(new PotionEffect(MobEffects.NAUSEA, 20, 2), 3.0F), "red_mushroom");
-    
+
     public static final Biome snowHills = registerBiome(new BiomeHighBlocked("SnowyHills", Blocks.SNOW, 0.5F, 2.0F), "SnowyHills", 4, BiomeType.COOL);
     public static final Biome iceHills = registerBiome(new BiomeHighBlocked("IceHills", Blocks.PACKED_ICE, 0.1F, 0.7F), "IceHills", 4, BiomeType.COOL);
     public static final Biome darkForest = registerBiome(new BiomeDarkForest(), "darkforest", 3, BiomeType.WARM);
@@ -249,13 +249,13 @@ public final class Main{
     public static final Biome tundra = registerBiome(new BiomeTundra(), "Tundra", 5, BiomeType.COOL);
     public static final Biome nsForest = registerBiome(new BiomeNiceShotForest(), "nsforest", 3, BiomeType.WARM);
     public static final Biome iceberg = registerBiome(new BiomeIceberg(), "iceberg", 4, BiomeType.COOL);
-    
+
     public Main() {
         registerItem(new ItemKnife(lasulittool), "knife");
         registerItem(new Item().setCreativeTab(tabMaterials).setFull3D(), "stonerod");
         registerBlock(new Block(Material.ROCK).setCreativeTab(tabDecorations).setLightLevel(1.0f).setTickRandomly(true), "stonelantern");
         registerBlock(new BlockBase(Blocks.OBSIDIAN, tabBlocks), "hardenedstonebrick");
-        
+
         registerBlock(new BlockRedstoneTimer(), "redstonetimer");
         registerBlock(new BlockRotatingBlocks(), "quartz_pillar");
         registerBlock(new BlockMeatBlock(), "meatblock");
@@ -265,15 +265,15 @@ public final class Main{
         registerBlock(new BlockHalfBlockMaker(), "halfblockmaker");
         registerBlock(new BlockRedslimeBlock(), "redslimeblock");
         registerBlock(new BlockRotatingBlocks().setHardness(2.0f), "stone_pillar");
-        
+
         Constructor<BlockLever> leverConstructor = getConstructor(BlockLever.class);
         registerBlock("stonebrick_lever", tabRedstone, Blocks.LEVER, leverConstructor);
         registerBlock("quartz_lever", tabRedstone, Blocks.LEVER, leverConstructor);
-        
+
         registerBlock(new BlockInvBedrock(0), "invbedrock");
         registerBlock(new BlockInvBedrock(1), "fix_block");
         registerBlock(new BlockInvBedrock(2), "air_block");
-        
+
         registerBlock(new BlockPressurePlates(Blocks.PLANKS), "spruce_preplate");
         registerBlock(new BlockPressurePlates(Blocks.PLANKS), "birch_preplate");
         registerBlock(new BlockPressurePlates(Blocks.PLANKS), "jungle_preplate");
@@ -289,13 +289,13 @@ public final class Main{
         registerBlock(new BlockPressurePlates(Blocks.STONE), "granite_preplate");
         registerBlock(new BlockPressurePlates(Blocks.STONE), "diorite_preplate");
         registerBlock(new BlockPressurePlates(Blocks.QUARTZ_BLOCK), "quartz_preplate");
-        
+
         registerBlock(new BlockBase(Blocks.QUARTZ_BLOCK, tabBlocks), "cleanquartz");
         registerBlock(new BlockBase(Blocks.QUARTZ_BLOCK, tabBlocks), "quartzbrick1");
         registerBlock(new BlockBase(Blocks.QUARTZ_BLOCK, tabBlocks), "quartzbrick2");
         registerBlock(new BlockBase(Blocks.QUARTZ_BLOCK, tabBlocks), "carvedquartz");
         registerBlock(new BlockBase(Blocks.QUARTZ_BLOCK, tabBlocks), "crackedquartz");
-        
+
         registerBlock(new BlockTables(), "oakplanks_crafttable");
         registerBlock(new BlockTables(), "spruceplanks_crafttable");
         registerBlock(new BlockTables(), "birchplanks_crafttable");
@@ -309,7 +309,7 @@ public final class Main{
         registerBlock(new BlockTables(), "junglelog_crafttable");
         registerBlock(new BlockTables(), "acacialog_crafttable");
         registerBlock(new BlockTables(), "darkoaklog_crafttable");
-        
+
         registerBlock(new BlockPillars(), "oakplanks_pillar");
         registerBlock(new BlockPillars(), "spruceplanks_pillar");
         registerBlock(new BlockPillars(), "birchplanks_pillar");
@@ -323,10 +323,10 @@ public final class Main{
         registerBlock(new BlockPillars(), "junglelog_pillar");
         registerBlock(new BlockPillars(), "acacialog_pillar");
         registerBlock(new BlockPillars(), "darkoaklog_pillar");
-        
+
         registerBlock(new BlockBase(Blocks.OBSIDIAN, tabAdmin), "illustone1");
         registerBlock(new BlockBase(Blocks.OBSIDIAN, tabAdmin), "illustone2");
-        
+
         registerBlock(new BlockBase(Blocks.OBSIDIAN, tabBlocks), "basaltbrick");
         registerBlock(new BlockBase(Blocks.SANDSTONE, tabBlocks), "cleansandstone");
         registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "cleanstone");
@@ -335,7 +335,7 @@ public final class Main{
         registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "andesitestonebrick");
         registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "carvedgranitebrick");
         registerBlock(new BlockBase(Blocks.STONE, tabBlocks), "carvedandesitebrick");
-        
+
         registerBlock(new BlockStairBlocks(Blocks.LOG), "oaklog_stairs");
         registerBlock(new BlockStairBlocks(Blocks.LOG), "sprucelog_stairs");
         registerBlock(new BlockStairBlocks(Blocks.LOG), "birchlog_stairs");
@@ -369,7 +369,7 @@ public final class Main{
         registerBlock(new BlockStairBlocks(Blocks.STONE), "basalt_stairs");
         registerBlock(new BlockStairBlocks(Blocks.STONE), "granitestonebrick_stairs");
         registerBlock(new BlockStairBlocks(Blocks.STONE), "andesitestonebrick_stairs");
-        
+
         registerBlock(new BlockWalls(Blocks.STONEBRICK), "stonebrick_wall");
         registerBlock(new BlockWalls(Blocks.SANDSTONE), "sandstone_wall");
         registerBlock(new BlockWalls(Blocks.STONEBRICK), "mossybrick_wall");
@@ -396,7 +396,7 @@ public final class Main{
         registerBlock(new BlockWalls(Blocks.STONE), "chiseledstone_wall");
         registerBlock(new BlockWalls(Blocks.STONE), "andesitestonebrick_wall");
         registerBlock(new BlockWalls(Blocks.STONE), "granitestonebrick_wall");
-        
+
         registerBlock(new BlockButtons(Blocks.PLANKS), "spruce_button");
         registerBlock(new BlockButtons(Blocks.PLANKS), "birch_button");
         registerBlock(new BlockButtons(Blocks.PLANKS), "jungle_button");
@@ -409,16 +409,16 @@ public final class Main{
         registerBlock(new BlockButtons(Blocks.OBSIDIAN), "obsidian_button");
         registerBlock(new BlockButtons(Blocks.ICE), "ice_button");
         registerBlock(new BlockButtons(Blocks.PACKED_ICE), "packedice_button");
-        
+
         registerItem(new ItemHoe(emeraldTool).setCreativeTab(ToolsWeapons), "emerald_hoe");
         registerItem(new ItemHoe(lasulittool).setCreativeTab(ToolsWeapons), "lasulit_hoe");
         registerItem(new ItemSpade(emeraldTool).setCreativeTab(ToolsWeapons), "emerald_shovel");
         registerItem(new ItemSpade(lasulittool).setCreativeTab(ToolsWeapons), "lasulit_shovel");
-        
+
         registerVanillaSlab(SingleSlabs1 = new Slabs1(false), DoubleSlabs1 = new Slabs1(true), 1);
         registerVanillaSlab(SingleSlabs2 = new Slabs2(false), DoubleSlabs2 = new Slabs2(true), 2);
         registerVanillaSlab(SingleSlabs3 = new Slabs3(false), DoubleSlabs3 = new Slabs3(true), 3);
-        
+
         Constructor<BlockLadder> ladderConstructor = getConstructor(BlockLadder.class);
         registerBlock("spruce_ladder", tabDecorations, Blocks.LADDER, ladderConstructor);
         registerBlock("birch_ladder", tabDecorations, Blocks.LADDER, ladderConstructor);
@@ -426,16 +426,16 @@ public final class Main{
         registerBlock("acacia_ladder", tabDecorations, Blocks.LADDER, ladderConstructor);
         registerBlock("darkoak_ladder", tabDecorations, Blocks.LADDER, ladderConstructor);
         registerBlock("stone_ladder", tabDecorations, Blocks.LADDER, ladderConstructor);
-        
+
         Constructor<ItemAxe> axeConstructor = getConstructor(ItemAxe.class, ToolMaterial.class, float.class, float.class);
         registerItem("emerald_axe", ToolsWeapons, axeConstructor, emeraldTool, Float.valueOf(6.0F), Float.valueOf(-3.0F));
         registerItem("lasulit_axe", ToolsWeapons, axeConstructor, lasulittool, Float.valueOf(4.0F), Float.valueOf(-3.0F));
-        
+
         Constructor<ItemPickaxe> pickaxeConstructor = getConstructor(ItemPickaxe.class, ToolMaterial.class);
         registerItem("emerald_pickaxe", ToolsWeapons, pickaxeConstructor, emeraldTool);
         registerItem("lasulit_pickaxe", ToolsWeapons, pickaxeConstructor, lasulittool);
     }
-    
+
     @EventHandler
     public void pre(FMLPreInitializationEvent event) {
         if(event.getSide().isClient()){
@@ -447,7 +447,7 @@ public final class Main{
                 System.out.println("Gui resources loaded!");
             }, "DataLoader Thread").start();
         }
-        
+
         Constructor<BlockTrapDoor> trapdoorConstructor = getConstructor(BlockTrapDoor.class, Material.class);
         SpruceTrapDoor = registerBlock("spruce_trapdoor", tabRedstone, Blocks.PLANKS, trapdoorConstructor, Material.WOOD);
         BirchTrapDoor = registerBlock("birch_trapdoor", tabRedstone, Blocks.PLANKS, trapdoorConstructor, Material.WOOD);
@@ -455,7 +455,7 @@ public final class Main{
         AcaciaTrapDoor = registerBlock("acacia_trapdoor", tabRedstone, Blocks.PLANKS, trapdoorConstructor, Material.WOOD);
         DarkOakTrapDoor = registerBlock("darkoak_trapdoor", tabRedstone, Blocks.PLANKS, trapdoorConstructor, Material.WOOD);
         registerBlock("retard_trapdoor", tabRedstone, Blocks.PLANKS, trapdoorConstructor, Material.WOOD);
-        
+
         registerTileEntities(TileEntityWoolSign.class, TileEntityIceBlock.class, TileEntityTimer.class);
         registerEntityWithSpawn(EntityPigSpider.class, 0, 0x00eaff, EnumCreatureType.MONSTER, 50, 1, 2, forbiddenForest, Biomes.PLAINS, Biomes.EXTREME_HILLS, Biomes.FOREST, Biomes.ROOFED_FOREST, Biomes.COLD_TAIGA, Biomes.DESERT, Biomes.JUNGLE, Biomes.SWAMPLAND, Biomes.SAVANNA, Biomes.HELL, Biomes.MESA);
         registerEntityWithSpawn(EntityNetherCreeper.class, 0x004d16, 0xaa2400, EnumCreatureType.MONSTER, 30, 2, 3, Biomes.HELL);
@@ -475,7 +475,7 @@ public final class Main{
         addMobSpawn(EntityCaveSpider.class, EnumCreatureType.MONSTER, 50, 2, 4, forbiddenForest, darkForest);
         addMobSpawn(EntitySlime.class, EnumCreatureType.MONSTER, 30, 1, 3, darkForest);
         addMobSpawn(EntityWitch.class, EnumCreatureType.MONSTER, 25, 1, 2, darkForest);
-        
+
         ArrayList<Biome> biomes = new ArrayList<>(MapGenVillage.VILLAGE_SPAWN_BIOMES);
         biomes.add(nsForest);
         biomes.add(iceDesert);
@@ -487,19 +487,19 @@ public final class Main{
         biomes.add(Biomes.BIRCH_FOREST);
         biomes.add(Biomes.HELL);
         MapGenVillage.VILLAGE_SPAWN_BIOMES = biomes;
-        
+
         Events events = new Events();
         MinecraftForge.EVENT_BUS.register(events);
         MinecraftForge.TERRAIN_GEN_BUS.register(events);
         NetworkRegistry.INSTANCE.registerGuiHandler("tcm", new TCMGuiHandler());
         GameRegistry.registerWorldGenerator(new WorldGens(), 0);
     }
-    
+
     @EventHandler
     public void load(@SuppressWarnings("unused") FMLInitializationEvent event){
-        setStepSound(SoundType.WOOD, OakLogFence, SpruceLogFence, BirchLogFence, JungleLogFence, AcaciaLogFence, DarkOakLogFence, 
+        setStepSound(SoundType.WOOD, OakLogFence, SpruceLogFence, BirchLogFence, JungleLogFence, AcaciaLogFence, DarkOakLogFence,
                 RetardFence, OakLogGate, SpruceLogGate, BirchLogGate, JungleLogGate, AcaciaLogGate, DarkOakLogGate, RetardGate);
-        
+
         GameRegistry.addSmelting(RawGoatMeat, new ItemStack(CookedGoatMeat), 0.35F);
         GameRegistry.addSmelting(RawSheepMeat, new ItemStack(CookedSheepMeat), 0.35F);
         GameRegistry.addSmelting(MarbleCobble, new ItemStack(MarbleStone), 0.35F);
@@ -508,7 +508,7 @@ public final class Main{
         GameRegistry.addSmelting(Basalt, new ItemStack(SmoothBasalt), 0.35F);
         GameRegistry.addSmelting(Cactus, new ItemStack(Items.DYE, 1, 2), 0.3F);
         BrewingRecipeRegistry.addRecipe(new ItemStack(Items.GLASS_BOTTLE), new ItemStack(Items.MILK_BUCKET), new ItemStack(CureItem));
-        
+
         BiomeDictionary.addTypes(snowHills, BiomeDictionary.Type.COLD, BiomeDictionary.Type.MOUNTAIN);
         BiomeDictionary.addTypes(iceHills, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.COLD);
         BiomeDictionary.addTypes(darkForest, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.DENSE);
@@ -520,7 +520,7 @@ public final class Main{
         BiomeDictionary.addTypes(tundra, BiomeDictionary.Type.COLD, BiomeDictionary.Type.HILLS, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(nsForest, BiomeDictionary.Type.FOREST);
         BiomeDictionary.addTypes(iceberg, BiomeDictionary.Type.COLD, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.SNOWY);
-        
+
         setStepSound(SoundType.CLOTH, Blocks.WEB);
         Blocks.LADDER.setUnlocalizedName("oak_ladder");
         Blocks.WOODEN_BUTTON.setUnlocalizedName("oak_button");
@@ -534,7 +534,7 @@ public final class Main{
         Items.MINECART.setMaxStackSize(16);
         Items.IRON_PICKAXE.setHarvestLevel("pickaxe", 1);
     }
-    
+
     @EventHandler
     public void server(FMLServerStartingEvent event){
         event.registerServerCommand(new CommandExport());
@@ -543,26 +543,26 @@ public final class Main{
         event.registerServerCommand(new CommandHalfSphere());
         event.registerServerCommand(new CommandExpand());
     }
-    
-    
-    
+
+
+
     private static void addMobSpawn(Class<? extends EntityLiving> entityClass, EnumCreatureType type, int spawnChance, int minSpawn, int maxSpawn, Biome... biome){
         EntityRegistry.addSpawn(entityClass, spawnChance, minSpawn, maxSpawn, type, biome);
     }
-    
+
     private static void removeMobSpawn(Class<? extends EntityLiving> entityClass, Biome... biome){
         EntityRegistry.removeSpawn(entityClass, EnumCreatureType.CREATURE, biome);
         EntityRegistry.removeSpawn(entityClass, EnumCreatureType.AMBIENT, biome);
         EntityRegistry.removeSpawn(entityClass, EnumCreatureType.MONSTER, biome);
     }
-    
+
     @SafeVarargs
     private static void registerTileEntities(Class<? extends TileEntity>... tileEntityClass){
         for(Class<? extends TileEntity> tile : tileEntityClass) {
             GameRegistry.registerTileEntity(tile, new ResourceLocation("tcm:" + tile.getSimpleName()));
         }
     }
-    
+
     @SafeVarargs
     private static<T> Constructor<T> getConstructor(Class<T> theClass, Class<?>... types) {
         try{

@@ -12,22 +12,22 @@ import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
 
 public final class ItemGenItem extends Item {
-    
+
     public ItemGenItem(){
         setCreativeTab(Main.tabAdmin);
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
-        
+
         if(player.isSneaking()){
             Minecraft.getMinecraft().displayGuiScreen(new GuiNBTEdit(stack));
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
-    
+
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if(!world.isRemote){

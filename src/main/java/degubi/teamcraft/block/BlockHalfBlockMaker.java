@@ -12,10 +12,10 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class BlockHalfBlockMaker extends Block {
-    
+
     public BlockHalfBlockMaker() {
         super(Material.ROCK);
-        
+
         Block modelBlock = Blocks.STONE;
         setCreativeTab(Main.tabRedstone);
         setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
@@ -23,7 +23,7 @@ public final class BlockHalfBlockMaker extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack item = player.getHeldItem(hand);
@@ -31,12 +31,12 @@ public final class BlockHalfBlockMaker extends Block {
         item.shrink(1);
         return true;
     }
-    
+
     private static Block handleBlocks(ItemStack xItem) {
         Block base = Block.getBlockFromItem(xItem.getItem());
         Block returnBlock = BlockHalfBlocks.returnBlock.get(base);
         int meta = xItem.getMetadata();
-        
+
         if(base == Blocks.STONE) {
             if(meta == 0) {
                 returnBlock = Main.HalfStone;

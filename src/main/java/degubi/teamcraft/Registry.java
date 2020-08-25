@@ -38,9 +38,9 @@ public final class Registry {
     private static final Block[] doorArray = new Block[17];
     private static final Item[] slabArray = new Item[3];
     private static final Method setStepSound = Registry.getMethod(Block.class, "func_149672_a", "setSoundType", SoundType.class);
-    
+
     private Registry(){}
-    
+
     public static<T extends Block> Block registerBlock(String name , CreativeTabs tab, Block modelBlock, Constructor<T> constructor, Object... pars){
         try{
             Block block = constructor.newInstance(pars).setCreativeTab(tab).setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
@@ -52,7 +52,7 @@ public final class Registry {
         }
         return null;
     }
-    
+
     public static<T extends Item> void registerItem(String name, CreativeTabs tab, Constructor<T> constructor, Object... pars){
         try{
             registerItem(constructor.newInstance(pars).setCreativeTab(tab), name);
@@ -60,39 +60,39 @@ public final class Registry {
             e.printStackTrace();
         }
     }
-    
+
     public static Block registerBlock(Block block, String name){
         return registerBlockWItem(new ItemBlock(block), name);
     }
-    
+
     public static void registerVanillaSlab(Block singleSlab, Block doubleSlab, int counter){
         blockArray[blockCounter++] = singleSlab.setRegistryName("single_slabs" + counter);
         blockArray[blockCounter++] = doubleSlab.setRegistryName("double_slabs" + counter);
         slabArray[slabCounter++] = new ItemSlab(singleSlab, (BlockSlab) singleSlab, (BlockSlab) doubleSlab).setRegistryName(singleSlab.getRegistryName());
     }
-    
+
     public static Block registerBlockNoItem(Block block, String name){
         return blockArray[blockCounter++] = block.setRegistryName(name).setUnlocalizedName(name);
     }
-    
+
     public static Block registerDoor(Block door, String name){
         return doorArray[doorCounter++] = registerBlockWItem(new ItemDoors(door), name);
     }
-    
+
     public static Block registerBlockWItem(ItemBlock itemBlock, String name){
         registerBlockNoItem(itemBlock.getBlock(), name);
         itemArray[itemCounter++] = itemBlock.setRegistryName(name);
         return itemBlock.getBlock();
     }
-    
+
     public static Item registerItem(Item item, String name){
         return itemArray[itemCounter++] = item.setRegistryName(name).setUnlocalizedName(name);
     }
-    
+
     public static SoundEvent registerSound(String soundName) {
         return soundArray[soundCounter++] = new SoundEvent(new ResourceLocation(soundName)).setRegistryName(soundName);
     }
-    
+
     public static void setStepSound(SoundType sound, Block... instance){
         try{
             for(Block blocks : instance) {
@@ -102,55 +102,55 @@ public final class Registry {
             e.printStackTrace();
         }
     }
-    
+
     public static Biome registerBiome(Biome biome, String name, int weight, BiomeType type){
         biomeArray[biomeCounter++] = biome.setRegistryName(name);
         BiomeManager.addBiome(type, new BiomeEntry(biome, weight));
         BiomeProvider.allowedBiomes.add(biome);
         return biome;
     }
-    
+
     public static void registerEntity(Class<? extends Entity> entityclass, int updateFrequency, boolean sendVelUpdates) {
         entityArray[entityID] = EntityEntryBuilder.create().entity(entityclass).id(entityclass.getSimpleName(), entityID++).name("tcm." + entityclass.getSimpleName().substring(6)).tracker(64, updateFrequency, sendVelUpdates).build();
     }
-    
+
     public static void registerEntityWithSpawn(Class<? extends Entity> entityclass, int backColor, int frontColor, EnumCreatureType type, int spawnChance, int minSpawnWeight, int maxSpawnWeight, Biome... biomes) {
         entityArray[entityID] = EntityEntryBuilder.create().entity(entityclass).id(entityclass.getSimpleName(), entityID++).name("tcm." + entityclass.getSimpleName().substring(6)).tracker(64, 3, true).egg(backColor, frontColor).spawn(type, spawnChance, minSpawnWeight, maxSpawnWeight, biomes).build();
     }
-    
+
     @SuppressWarnings("unchecked")
     public static SimpleNetworkWrapper createNewServerChannel(String channelName, Class handlerClass, Class<? extends IMessage> messageClass){
         SimpleNetworkWrapper channelObject = NetworkRegistry.INSTANCE.newSimpleChannel(channelName);
         channelObject.registerMessage(handlerClass, messageClass, networkID++, Side.SERVER);
         return channelObject;
     }
-    
+
     @SubscribeEvent
     public static void registerEntities(Register<EntityEntry> event){
         event.getRegistry().registerAll(entityArray);
     }
-    
+
     @SubscribeEvent
     public static void registerBlocks(Register<Block> event){
         event.getRegistry().registerAll(blockArray);
     }
-    
+
     @SubscribeEvent
     public static void registerItems(Register<Item> event){
         event.getRegistry().registerAll(itemArray);
         event.getRegistry().registerAll(slabArray);
     }
-    
+
     @SubscribeEvent
     public static void registerSounds(Register<SoundEvent> event) {
         event.getRegistry().registerAll(soundArray);
     }
-    
+
     @SubscribeEvent
     public static void registerBiomes(final Register<Biome> event) {
         event.getRegistry().registerAll(biomeArray);
     }
-    
+
     @SubscribeEvent
     public static void registerRecipes(Register<IRecipe> event){
         IForgeRegistryModifiable<IRecipe> modRegistry = (IForgeRegistryModifiable<IRecipe>) event.getRegistry();
@@ -159,27 +159,27 @@ public final class Registry {
         modRegistry.remove(new ResourceLocation("minecraft:ladder"));
         modRegistry.remove(new ResourceLocation("minecraft:trapdoor"));
     }
-    
+
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(@SuppressWarnings("unused") ModelRegistryEvent event){
         StateMap ignorePoweredDoorMap = new StateMap.Builder().ignore(BlockDoor.POWERED).build();
-        
+
         for(Block block : doorArray) {
             ModelLoader.setCustomStateMapper(block, ignorePoweredDoorMap);
         }
-        
+
         for(Item items : itemArray) {
             ModelLoader.setCustomModelResourceLocation(items, 0, new ModelResourceLocation(items.getRegistryName(), "inventory"));
         }
-        
+
         for(Item item : slabArray) {
             for(int asd = 0; asd < 8; ++ asd) {
                 ModelLoader.setCustomModelResourceLocation(item, asd, new ModelResourceLocation(item.getRegistryName(), "inventory_" + asd));
             }
         }
     }
-    
+
     private static final int BIRCHPLANKS = 0xd7cc8e;
     private static final int SPRUCEPLANKS = 7426864;
     private static final int JUNGLEPLANKS = 9590071;
@@ -201,7 +201,7 @@ public final class Registry {
     private static final int ACACIALOG = 0x605a51;
     private static final int DARKOAKLOG = 0x1b150c;
     private static final int LASULIT = 0x2338b1;
-    
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void registerColorItems(ColorHandlerEvent.Item event) {
@@ -221,7 +221,7 @@ public final class Registry {
         event.getItemColors().registerItemColorHandler((stack, index) -> DARKOAKLOG, Main.DarkOakLogDoor);
         event.getItemColors().registerItemColorHandler((stack, index) -> ICE, Main.IceDoor);
         event.getItemColors().registerItemColorHandler((stack, index) -> PACKEDICE, Main.PackedIceDoor);
-        
+
         registerBlockColor(Main.BirchTrapDoor, BIRCHPLANKS, event);
         registerBlockColor(Main.JungleTrapDoor, JUNGLEPLANKS, event);
         registerBlockColor(Main.SpruceTrapDoor, SPRUCEPLANKS, event);
@@ -229,18 +229,18 @@ public final class Registry {
         registerBlockColor(Main.AcaciaTrapDoor, ACACIAPLANKS, event);
         registerBlockColor(Main.BirchLeafBush, BIRCHLEAF, event);
         registerBlockColor(Main.SpruceLeafBush, SPRUCELEAF, event);
-        
+
         Block[] blocks = { Main.AppleLeaves, Main.OakLeafBush, Main.JungleLeafBush };
         event.getBlockColors().registerBlockColorHandler((state, world, pos, index1) -> world != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(world, pos) : ColorizerFoliage.getFoliageColorBasic(), blocks);
         event.getItemColors().registerItemColorHandler((stack1, index2) -> OTHERLEAF, blocks);
     }
-    
+
     @SideOnly(Side.CLIENT)
     private static void registerBlockColor(Block block, int colorCode, ColorHandlerEvent.Item event) {
         event.getBlockColors().registerBlockColorHandler((stack, tintIndex, pos, pass) -> colorCode, block);
         event.getItemColors().registerItemColorHandler((stack, tintIndex) -> colorCode, block);
     }
-    
+
     private static Method getMethod(Class<?> getClass, String realName, String eclipseName, Class<?>... parameters) {
         try{
             Method method = getClass.getDeclaredMethod(((Boolean)Launch.blackboard.get("fml.deobfuscatedEnvironment")).booleanValue() ? eclipseName : realName, parameters);

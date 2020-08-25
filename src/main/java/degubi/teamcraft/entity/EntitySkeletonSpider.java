@@ -11,11 +11,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class EntitySkeletonSpider extends EntitySpider{
-    
+
     public EntitySkeletonSpider(World theWorld) {
         super(theWorld);
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity){
         if(super.attackEntityAsMob(entity)){
@@ -26,12 +26,12 @@ public final class EntitySkeletonSpider extends EntitySpider{
         }
         return false;
     }
-    
+
     @Override
     public EnumCreatureAttribute getCreatureAttribute(){
         return EnumCreatureAttribute.UNDEAD;
     }
-    
+
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int weight){
         if(wasRecentlyHit && (rand.nextInt(3) == 0 || rand.nextInt(1 + weight) > 0)){
@@ -41,22 +41,22 @@ public final class EntitySkeletonSpider extends EntitySpider{
             entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0.0F);
         }
     }
-    
+
     @Override
     protected SoundEvent getAmbientSound(){
         return SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
-    
+
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource){
         return SoundEvents.ENTITY_SKELETON_HURT;
     }
-    
+
     @Override
     protected SoundEvent getDeathSound(){
         return SoundEvents.ENTITY_SKELETON_DEATH;
     }
-    
+
     @Override
     protected void playStepSound(BlockPos pos, Block block){
         this.playSound(SoundEvents.ENTITY_SKELETON_STEP, 0.15F, 1.0F);

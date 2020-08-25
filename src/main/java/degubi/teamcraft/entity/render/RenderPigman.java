@@ -8,11 +8,11 @@ import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public final class RenderPigman extends RenderBiped<EntityPigman> {
-    
+
     public RenderPigman(RenderManager ren){
         super(ren, ModelPigman.INSTANCE, 0.5F);
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(EntityPigman entity) {
         return ModelPigman.text;

@@ -23,14 +23,14 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     public EntityPigman(World theWorld){
         super(theWorld);
         setSize(0.7F, 1.95F);
-        
+
         if(!this.world.isRemote){
             this.tasks.removeTask(this.aiAttackOnCollide);
             this.tasks.removeTask(this.aiArrowAttack);
-            
+
             if(getHeldItemMainhand().getItem() == Items.BOW){
                 int i = 40;
-                
+
                 if (this.world.getDifficulty() == EnumDifficulty.HARD){
                     i = 20;
                 }
@@ -41,7 +41,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
             }
         }
     }
-    
+
     @Override
     protected void initEntityAI() {
         tasks.addTask(2, new EntityAIBreakDoor(this));
@@ -52,51 +52,51 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
         targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
-    
+
     @Override
     protected void applyEntityAttributes(){
         super.applyEntityAttributes();
-        
+
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(80.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(40.0D);
     }
-    
+
     @Override
     protected SoundEvent getAmbientSound(){
         return SoundEvents.ENTITY_ZOMBIE_PIG_AMBIENT;
     }
-    
+
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource){
         return SoundEvents.ENTITY_PIG_HURT;
     }
-    
+
     @Override
     protected SoundEvent getDeathSound(){
         return SoundEvents.ENTITY_PIG_DEATH;
     }
-    
+
     @Override
     protected void playStepSound(BlockPos pos, Block block){
         this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
     }
-    
+
     @Override
     public double getYOffset(){
         return super.getYOffset() - 0.4D;
     }
-    
+
     @Override
     protected Item getDropItem(){
         return Items.ROTTEN_FLESH;
     }
-    
+
     @Override
     protected void dropFewItems(boolean idk, int weight){
         int i = rand.nextInt(3) + 1 + rand.nextInt(1 + weight);
-        
+
         for(int j = 0; j < i; ++j)
             if(isBurning()){
                 dropItem(Items.COOKED_PORKCHOP, 1);
@@ -105,11 +105,11 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
                 dropItem(Items.LEATHER, 1);
             }
     }
-    
+
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data){
         int i = rand.nextInt(10);
-        
+
         if(i < 4){
             this.tasks.addTask(1, this.aiArrowAttack);
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
@@ -120,7 +120,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
             this.tasks.addTask(1, this.aiAttackOnCollide);
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         }
-        
+
         int k = rand.nextInt(25);
         if(k < 5) {
             setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(Main.EmeraldChestPlate));
@@ -129,16 +129,16 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         }
         return data;
     }
-    
+
     @Override
     public void onDeath(DamageSource cause) {
         super.onDeath(cause);
-        
+
         if(!world.isRemote) {
             this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, EntityXPOrb.getXPSplit(50)));
         }
     }
-    
+
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase target, float dmg) {
         EntityArrow entityarrow = new EntityTippedArrow(this.world, this);
@@ -160,7 +160,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.spawnEntity(entityarrow);
     }
-    
+
     @Override
     public void setSwingingArms(boolean swingingArms) {}
 }

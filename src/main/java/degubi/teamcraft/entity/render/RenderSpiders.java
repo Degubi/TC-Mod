@@ -8,7 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.*;
 
-@SideOnly(Side.CLIENT) 
+@SideOnly(Side.CLIENT)
 public final class RenderSpiders extends RenderLiving<EntityLiving> {
     private static final ResourceLocation night = new ResourceLocation("tcm:textures/entity/pig_spider_night.png");
     private static final ResourceLocation nether = new ResourceLocation("tcm:textures/entity/pig_spider_nether.png");
@@ -18,7 +18,7 @@ public final class RenderSpiders extends RenderLiving<EntityLiving> {
     public RenderSpiders(RenderManager man, ModelBase model){
         super(man, model, 0.5F);
     }
-    
+
     @Override
     public ResourceLocation getEntityTexture(EntityLiving entity){
         if(entity instanceof EntityPigSpider){

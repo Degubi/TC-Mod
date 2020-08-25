@@ -16,17 +16,17 @@ public final class StructureHelper {
     public static final String BLOCKCOUNT = "blockCount";
     public static final String BLOCKCOORDS = "blockCoords";
     public static final String BLOCKPROPERTIES = "blockCoords";
-    
+
     public static void setBlocksfromFile(World world, BlockPos startPos, String name, @SuppressWarnings("unused") NBTTagCompound itemTag, EntityPlayer player){
         NBTTagCompound tag = readCompressedTag(name);
         if(tag != null){
             int blockCount = tag.getInteger(BLOCKCOUNT);
             NBTTagCompound backupTag = new NBTTagCompound();
-            
+
             for(int ID = 1; ID <= blockCount; ++ID){
                 BlockPos setPos = getPosFromTag(tag, BLOCKCOORDS, ID);
                 IBlockState setBlock = getBlockFromID(tag, ID).getDefaultState();
-                
+
                 //createBackup(itemTag, setPos, world, backupTag, ID);
                 if(hasMetadata(tag, ID)){
                     //setBlockState(world, startPos, setPos, setBlock.getBlock().getDefaultState().withProperty(property, value)getMetaFromTag(tag, ID)));
@@ -43,27 +43,27 @@ public final class StructureHelper {
             }
         }
     }
-    
+
     /*******HELPERS*********/
     /*******HELPERS*********/
     /*******HELPERS*********/
-    
+
     /*private static int getMetaFromTag(NBTTagCompound tag, int ID){
         return tag.getIntArray(BLOCKDATA + ID)[4];
     }*/
     public static BlockPos getPosFromTag(NBTTagCompound tag, String name, int ID){
         return new BlockPos(tag.getIntArray(name + ID)[0], tag.getIntArray(name + ID)[1], tag.getIntArray(name + ID)[2]);
     }
-    
+
     private static Block getBlockFromID(NBTTagCompound tag, int ID){
         System.out.println(tag.getString(BLOCKNAME + ID));
         return Block.getBlockFromName(tag.getString(BLOCKNAME + ID));
     }
-    
+
     private static boolean hasMetadata(NBTTagCompound tag, int ID){
         return tag.hasKey(BLOCKPROPERTIES + ID);
     }
-    
+
     public static void clearExportFolder(int deleteMode, EntityPlayer player){
         try{
             Files.walk(Paths.get("./structures/")).filter(Files::isRegularFile).forEach(filePath -> {
@@ -86,11 +86,11 @@ public final class StructureHelper {
             e.printStackTrace();
         }
     }
-    
+
     private static NBTTagCompound readCompressedTag(String name){
         return readCompressedTag(name, "./structures");
     }
-    
+
     private static NBTTagCompound readCompressedTag(String name, String path){
         try(final DataInputStream stream = new DataInputStream(new FileInputStream(path + "/" + name + ".deg"))) {
             return CompressedStreamTools.read(stream);
@@ -100,7 +100,7 @@ public final class StructureHelper {
         }
         return null;
     }
-    
+
     public static void writeCompressedTag(NBTTagCompound setTag, String name){
         /*new Thread(() -> {
             try(final FileOutputStream stream = new FileOutputStream("./structures/" + name + ".deg")){
@@ -124,7 +124,7 @@ public final class StructureHelper {
     BlockPos backupPos = getPosFromTag(itemTag, "clickPos", 0);
     BlockPos lolPos = backupPos.add(setPos.getX(), setPos.getY(), setPos.getZ());
     IBlockState originalBlock = world.getBlockState(lolPos);
-    
+
     if(originalBlock.getBlock().getMetaFromState(originalBlock) != 0){
         backupTag.setIntArray(StructureHelper.BLOCKDATA + ID, new int[]{lolPos.getX(), lolPos.getY(), lolPos.getZ(), Block.getIdFromBlock(originalBlock.getBlock()), originalBlock.getBlock().getMetaFromState(originalBlock)});
     }else{

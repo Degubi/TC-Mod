@@ -24,7 +24,7 @@ public final class WoolSSign extends BlockSign{
         setResistance(Blocks.PLANKS.getExplosionResistance(null, null, null, null));
         setSoundType(Blocks.PLANKS.getSoundType(null, null, null, null));
     }
-    
+
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos){
         if (!world.getBlockState(pos.down()).getMaterial().isSolid()){
@@ -32,32 +32,32 @@ public final class WoolSSign extends BlockSign{
             world.setBlockToAir(pos);
         }
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(WoolSSign.ROTATION, Integer.valueOf(meta));
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         return state.getValue(WoolSSign.ROTATION).intValue();
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, WoolSSign.ROTATION);
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world, int metadata){
         return new TileEntityWoolSign();
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
         return Item.getItemFromBlock(Main.WoolStandingSign);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player){

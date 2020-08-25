@@ -11,12 +11,12 @@ public class MessageString implements IMessage {
     public MessageString(String ss){
         name = ss;
     }
-    
+
     @Override
     public void fromBytes(ByteBuf buf){
         name = ByteBufUtils.readUTF8String(buf);
     }
-    
+
     @Override
     public void toBytes(ByteBuf buf){
         ByteBufUtils.writeUTF8String(buf, name);

@@ -20,10 +20,10 @@ import net.minecraft.world.*;
 
 public final class BlockMobIceBlocks extends Block {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    
+
     public BlockMobIceBlocks() {
         super(Material.ICE);
-        
+
         Block modelBlock = Blocks.ICE;
         setDefaultState(getBlockState().getBaseState().withProperty(FACING, EnumFacing.NORTH));
         blockParticleGravity = 0;
@@ -34,56 +34,56 @@ public final class BlockMobIceBlocks extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
-    
+
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         spawnMobOnBreak(world, pos, state);
         world.setBlockToAir(pos.up());
         super.breakBlock(world, pos, state);
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return EnumFacing.getFront(meta).getAxis() == EnumFacing.Axis.Y ? getDefaultState().withProperty(FACING, EnumFacing.NORTH) : getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         return state.getValue(FACING).getIndex();
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, FACING);
     }
-    
+
     @Override
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess acc, BlockPos pos, EnumFacing side){
         return !acc.getBlockState(pos.offset(side)).isOpaqueCube() && (side != EnumFacing.UP || this == Main.IcePigSpiderBlock);
     }
-    
+
     private static void spawnMobOnBreak(World world, BlockPos pos, IBlockState state){
         if(!world.isRemote){
             Block block = state.getBlock();
             int x = pos.getX();
             int y = pos.getY();
             int z = pos.getZ();
-            
+
             if(block == Main.IceCreeperBlock){
                 EntityCreeper creeper = new EntityCreeper(world);
                 creeper.setLocationAndAngles(x + 0.5F, y, z + 0.5F, 0, 0);
@@ -127,27 +127,27 @@ public final class BlockMobIceBlocks extends Block {
             }
         }
     }
-    
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
-    
+
     @Override
     public TileEntity createTileEntity(World world, IBlockState state){
         return new TileEntityIceBlock();
     }
-    
+
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(Block.getBlockById(0));
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return Item.getItemById(0);
     }
-    
+
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
         return false;

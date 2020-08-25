@@ -12,12 +12,12 @@ public final class TableContainer extends ContainerWorkbench{
 
     public TableContainer(InventoryPlayer inventory, World world, int x, int y, int z){
         super(inventory, world, new BlockPos(x, y, z));
-        
+
         posX = x;
         posY = y;
         posZ = z;
     }
-    
+
     @Override
     public boolean canInteractWith(EntityPlayer player){
         return player.getDistanceSq(posX + 0.5D, posY + 0.5D, posZ + 0.5D) > 64.0D;

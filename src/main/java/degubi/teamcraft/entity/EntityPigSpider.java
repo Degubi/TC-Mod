@@ -13,7 +13,7 @@ import net.minecraft.world.*;
 public final class EntityPigSpider extends EntitySpider{
     private static final DataParameter<Boolean> isNetherSpider = EntityDataManager.<Boolean>createKey(EntityPigSpider.class, DataSerializers.BOOLEAN);
     private int webCounter;
-    
+
     public EntityPigSpider(World theWorld){
         super(theWorld);
         if(theWorld.provider.isNether()){
@@ -36,41 +36,41 @@ public final class EntityPigSpider extends EntitySpider{
         }
         super.onLivingUpdate();
     }
-    
+
     @Override
     protected void entityInit() {
         super.entityInit();
         dataManager.register(isNetherSpider, Boolean.FALSE);
     }
-    
+
     @Override
     protected void applyEntityAttributes(){
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
     }
-    
+
     @Override
     public void writeEntityToNBT(NBTTagCompound tag) {
         super.writeEntityToNBT(tag);
         tag.setInteger("webCounter", webCounter);
         tag.setBoolean("isNether", isNetherSpider());
     }
-    
+
     @Override
     public void readEntityFromNBT(NBTTagCompound tag) {
         super.readEntityFromNBT(tag);
-        
+
         webCounter = tag.getInteger("webCounter");
         if(tag.hasKey("isNether")){
             setIsNetherSpider(tag.getBoolean("isNether"));
         }
     }
-    
+
     public boolean isNetherSpider(){
         return dataManager.get(isNetherSpider).booleanValue();
     }
-    
+
     private void setIsNetherSpider(boolean is){
         if(is){
             dataManager.set(isNetherSpider, Boolean.TRUE);
@@ -81,7 +81,7 @@ public final class EntityPigSpider extends EntitySpider{
             setSize(1F, 0.7F);
         }
     }
-    
+
     @Override
     public void setDead(){
         if(world.provider.getDimension() == -1 && !world.isRemote){
@@ -93,17 +93,17 @@ public final class EntityPigSpider extends EntitySpider{
         }
         super.setDead();
     }
-    
+
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource){
         return SoundEvents.ENTITY_PIG_HURT;
     }
-    
+
     @Override
     protected Item getDropItem(){
         return isBurning() ? Items.COOKED_PORKCHOP : Items.PORKCHOP;
     }
-    
+
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int weight){
         super.dropFewItems(wasRecentlyHit, weight);
@@ -111,7 +111,7 @@ public final class EntityPigSpider extends EntitySpider{
             dropItem(Items.STRING, 2);
         }
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity target)    {
         if(super.attackEntityAsMob(target)){

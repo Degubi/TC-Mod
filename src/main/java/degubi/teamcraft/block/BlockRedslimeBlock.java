@@ -10,7 +10,7 @@ import net.minecraft.world.*;
 
 public final class BlockRedslimeBlock extends BlockSlime{
     private static final AxisAlignedBB BOX = new AxisAlignedBB(0.01F, 0.01f, 0.01, 0.99f, 0.99f, 0.99f);
-    
+
     public BlockRedslimeBlock(){
         setCreativeTab(Main.tabDecorations);
         setHardness(Blocks.SLIME_BLOCK.getDefaultState().getBlockHardness(null, null));
@@ -18,12 +18,12 @@ public final class BlockRedslimeBlock extends BlockSlime{
         setSoundType(Main.deepSlime);
         setHarvestLevel(Blocks.SLIME_BLOCK.getHarvestTool(Blocks.SLIME_BLOCK.getDefaultState()), Blocks.SLIME_BLOCK.getHarvestLevel(Blocks.SLIME_BLOCK.getDefaultState()));
     }
-    
+
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
         return BOX;
     }
-    
+
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity){
         if(entity instanceof EntityLivingBase){

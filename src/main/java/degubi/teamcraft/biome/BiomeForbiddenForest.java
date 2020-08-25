@@ -24,29 +24,29 @@ public final class BiomeForbiddenForest extends Biome{
         spawnableWaterCreatureList.clear();
         spawnableMonsterList.clear();
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public int getGrassColorAtPos(BlockPos pos){
         return 0x2f2f2f;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos){
         return 6975545;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public int getSkyColorByTemp(float temp){
         return 0;
     }
-    
+
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand){
         int i = rand.nextInt(20);
-        
+
         if(i > 18){
             return jungleTree;
         }else if(i > 13){

@@ -18,13 +18,13 @@ public final class ClientThings {
     public static final KeyBinding[] binds = new KeyBinding[5];
     public static KeyBinding zoomBind;
     private ClientThings() {}
-    
+
     public static void registerClientThings(){
         ClientRegistry.registerKeyBinding(zoomBind = new KeyBinding("Zoom", Keyboard.KEY_C, "TeamCraft"));
         for(int k = 0; k < 5; ++k) {
             ClientRegistry.registerKeyBinding(binds[k] = new KeyBinding("CustomBind_" + (k + 1), Keyboard.KEY_NUMPAD1, "TeamCraft"));
         }
-        
+
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIceBlock.class, new TileRenderIceBlock());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWoolSign.class, new TileRenderWoolSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityGoat.class, RenderGoat::new);
@@ -33,7 +33,7 @@ public final class ClientThings {
         RenderingRegistry.registerEntityRenderingHandler(EntityCowBrine.class, RenderCowbrine::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNetherCreeper.class, RenderNetherCreeper::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityThreeHeadCreeper.class, Render3HeadCreeper::new);
-        
+
         IRenderFactory<EntitySpider> spiderRender = render -> new RenderSpiders(render, new ModelSpider());
         RenderingRegistry.registerEntityRenderingHandler(EntityPigSpider.class, render -> new RenderSpiders(render, ModelPigSpider.INSTANCE));
         RenderingRegistry.registerEntityRenderingHandler(EntitySkeletonSpider.class, spiderRender);

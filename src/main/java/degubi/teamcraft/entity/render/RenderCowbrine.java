@@ -13,7 +13,7 @@ public final class RenderCowbrine extends RenderLiving<EntityCowBrine> {
     public RenderCowbrine(RenderManager ren) {
         super(ren, new ModelCow(), 0.5F);
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(EntityCowBrine entity) {
         return cowbrineTexture;

@@ -16,18 +16,18 @@ public final class BiomeNiceShotForest extends Biome{
         decorator.treesPerChunk = 25;
         decorator.grassPerChunk = 30;
     }
-    
+
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand){
         return rand.nextInt(20) > 15 ? tree1 : tree2;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public int getGrassColorAtPos(BlockPos pos) {
         return 0x91ff0f;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos) {

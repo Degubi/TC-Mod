@@ -10,11 +10,11 @@ import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 
 public final class WorldGenNS2 extends WorldGenAbstractTree {
-    
+
     public WorldGenNS2(){
         super(false);
     }
-    
+
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position){
         int i = rand.nextInt(4) + 6;

@@ -14,10 +14,10 @@ import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.*;
 
 public final class BlockIcicle extends Block {
-    
+
     public BlockIcicle(){
         super(Material.PACKED_ICE);
-        
+
         Block modelBlock = Blocks.PACKED_ICE;
         setCreativeTab(Main.tabDecorations);
         setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
@@ -25,38 +25,38 @@ public final class BlockIcicle extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public EnumOffsetType getOffsetType(){
         return EnumOffsetType.XZ;
     }
-    
+
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos){
         return NULL_AABB;
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
         return Items.AIR;
     }
-    
+
     @Override
     public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player){
         return false;

@@ -9,17 +9,17 @@ import net.minecraft.server.*;
 import net.minecraft.util.math.*;
 
 public class CommandClear extends CommandBase {
-    
+
     @Override
     public String getName() {
         return "pclear";
     }
-    
+
     @Override
     public String getUsage(ICommandSender sender) {
         return "/pclear <tag>";
     }
-    
+
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException{
         if(args.length > 0){
@@ -34,7 +34,7 @@ public class CommandClear extends CommandBase {
             throw new WrongUsageException("pclear <tags>");
         }
     }
-    
+
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
         return args.length == 1 ? Lists.newArrayList("-all", "-normal", "-backup") : Lists.newArrayList();

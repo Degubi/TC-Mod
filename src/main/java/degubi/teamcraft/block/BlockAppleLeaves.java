@@ -23,81 +23,81 @@ public final class BlockAppleLeaves extends BlockLeaves {
         setCreativeTab(Main.tabDecorations);
         setDefaultState(blockState.getBaseState().withProperty(hasApple, Boolean.FALSE).withProperty(BlockLeaves.CHECK_DECAY, Boolean.TRUE).withProperty(BlockLeaves.DECAYABLE, Boolean.FALSE));
     }
-    
+
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune){
         return Lists.newArrayList(new ItemStack(this));
     }
-    
+
     @Override
     public int quantityDropped(Random random) {
         return random.nextInt(5) == 3 ? 1 : 0;
     }
-    
+
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand){
         super.updateTick(world, pos, state, rand);
-        
+
         if(!world.isRemote && !state.getValue(hasApple).booleanValue()){
             if(rand.nextInt(50) == 3){
                 world.setBlockState(pos, state.cycleProperty(hasApple));
             }
         }
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
         return state.getBlock() == Main.AppleLeaves ? Item.getItemFromBlock(Main.AppleSapling) : Item.getItemFromBlock(Main.bananaSapling);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer(){
         return Minecraft.isFancyGraphicsEnabled() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
     }
-    
+
     @Override
     public EnumType getWoodType(int meta){
         return EnumType.OAK;
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(hasApple, Boolean.valueOf((meta & 2) == 0)).withProperty(BlockLeaves.DECAYABLE, Boolean.valueOf((meta & 4) == 0)).withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf((meta & 8) > 0));
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, hasApple, BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE);
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if(state.getValue(hasApple).booleanValue()){
             Item toAdd = state.getBlock() == Main.AppleLeaves ? Items.APPLE : Main.Banana;
-            
+
             player.inventory.addItemStackToInventory(new ItemStack(toAdd));
             world.setBlockState(pos, state.cycleProperty(hasApple));
             return true;
         }
         return false;
     }
-    
+
     @Override
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
         return !Minecraft.isFancyGraphicsEnabled();
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess blockAccess, BlockPos pos, EnumFacing side){
         return !Minecraft.isFancyGraphicsEnabled() && blockAccess.getBlockState(pos.offset(side)) == blockState ? false : true;
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         int i = 0;
-        
+
         if (!state.getValue(hasApple).booleanValue()){
             i |= 2;
         }

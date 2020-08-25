@@ -20,7 +20,7 @@ public final class TileEntityTimer extends TileEntity implements ITickable{
         maxCounter = tag.getInteger("maxCounter");
         isActive = tag.getBoolean("isActive");
     }
-    
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
@@ -29,14 +29,14 @@ public final class TileEntityTimer extends TileEntity implements ITickable{
         tag.setBoolean("isActive", isActive);
         return tag;
     }
-    
+
     @Override
     public void update() {
         World world = this.world;
-        
+
         if(!world.isRemote && isActive){
             counter++;
-            
+
             if(counter >= maxCounter){
                 counter = 0;
             }
@@ -46,12 +46,12 @@ public final class TileEntityTimer extends TileEntity implements ITickable{
             }
         }
     }
-    
+
     @Override
     public boolean shouldRefresh(World theWorld, BlockPos blockPos, IBlockState oldState, IBlockState newSate) {
         return newSate.getBlock() == Blocks.AIR;
     }
-    
+
     public void switchActiveState(){
         if(isActive){
             world.setBlockState(getPos(), world.getBlockState(getPos()).withProperty(BlockRedstoneTimer.isPowered, Boolean.FALSE));
@@ -60,18 +60,18 @@ public final class TileEntityTimer extends TileEntity implements ITickable{
             isActive = true;
         }
     }
-    
+
     public void incMaxCounter() {
         maxCounter++;
-        
+
         if(maxCounter >= 20) {
             maxCounter = 20;
         }
     }
-    
+
     public void decMaxCounter() {
         maxCounter--;
-        
+
         if(maxCounter <= 0) {
             maxCounter = 0;
         }

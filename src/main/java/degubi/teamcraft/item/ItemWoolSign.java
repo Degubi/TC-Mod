@@ -14,17 +14,17 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class ItemWoolSign extends ItemBlock {
-    
+
     public ItemWoolSign() {
         super(new WoolSSign());
         setMaxStackSize(16);
     }
-    
+
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
         IBlockState iblockstate = world.getBlockState(pos);
         boolean flag = iblockstate.getBlock().isReplaceable(world, pos);
-        
+
         if (facing != EnumFacing.DOWN && (iblockstate.getMaterial().isSolid() || flag) && (!flag || facing == EnumFacing.UP)){
             BlockPos noPos = pos;
             noPos = pos.offset(facing);
@@ -41,7 +41,7 @@ public final class ItemWoolSign extends ItemBlock {
                 }else{
                     world.setBlockState(noPos, Main.WoolWallSign.getDefaultState().withProperty(BlockWallSign.FACING, facing), 11);
                 }
-                
+
                 TileEntity tileentity = world.getTileEntity(noPos);
                 if (tileentity instanceof TileEntityWoolSign && !ItemBlock.setTileEntityNBT(world, player, noPos, itemstack)){
                     player.openEditSign((TileEntityWoolSign)tileentity);
@@ -49,7 +49,7 @@ public final class ItemWoolSign extends ItemBlock {
                 if (player instanceof EntityPlayerMP){
                     CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, noPos, itemstack);
                 }
-                
+
                 itemstack.shrink(1);
                 return EnumActionResult.SUCCESS;
             }

@@ -15,7 +15,7 @@ public final class RenderLadderZombie extends RenderBiped<EntityClimberZombie> {
         super(renderManagerIn, new ModelZombie(), 0.5F);
         addLayer(new LayerBackpackZombie(this));
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(EntityClimberZombie entity) {
         return texture;

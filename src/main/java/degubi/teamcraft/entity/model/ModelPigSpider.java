@@ -10,14 +10,14 @@ import org.lwjgl.opengl.*;
 public final class ModelPigSpider extends ModelSpider {
     public static final ModelPigSpider INSTANCE = new ModelPigSpider();
     public static final ResourceLocation texture = new ResourceLocation("tcm:textures/entity/pig_spider_day.png");
-    
+
     private ModelPigSpider(){
         spiderHead.setTextureOffset(0, 0).addBox(-2F, 0F, -9F, 4, 3, 1);
         spiderNeck = new ModelRenderer(this, 0, 12);
         spiderNeck.addBox(-5F, -4F, -6F, 10, 8, 12);
         spiderNeck.setRotationPoint(0F, 16F, 3F);
     }
-    
+
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
         if(entity.getCustomNameTag().contains("Degubi")){
@@ -28,7 +28,7 @@ public final class ModelPigSpider extends ModelSpider {
             GL11.glScalef(1.5F, 1.5F, 1.5F);
             GL11.glTranslatef(0, -0.45F, 0);
         }
-        
+
         setRotationAngles(f, f1, f2, f3, f4, scale, entity);
         spiderHead.render(scale);
         spiderLeg1.render(scale);
@@ -41,7 +41,7 @@ public final class ModelPigSpider extends ModelSpider {
         spiderLeg8.render(scale);
         spiderNeck.render(scale);
     }
-    
+
     public void renderIce(){
         setRotationAngles(0, 0, 0, 0, 0, 0.0625F, null);
         spiderHead.render(0.0625F);

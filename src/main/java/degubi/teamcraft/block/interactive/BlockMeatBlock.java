@@ -19,7 +19,7 @@ public final class BlockMeatBlock extends Block {
 
     public BlockMeatBlock() {
         super(Material.CAKE);
-        
+
         Block modelBlock = Blocks.CAKE;
         setDefaultState(blockState.getBaseState().withProperty(BITES, Integer.valueOf(0)));
         setCreativeTab(Main.tabFood);
@@ -28,38 +28,38 @@ public final class BlockMeatBlock extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess acc, BlockPos pos){
         return MEAT_AAB[state.getValue(BITES).intValue()];
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ){
         PlussHeal(world, pos, state, player);
         return true;
     }
-    
+
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer player){
         PlussHeal(world, pos, world.getBlockState(pos), player);
     }
-    
+
     private static void PlussHeal(World world, BlockPos pos, IBlockState state, EntityPlayer player){
         if (player.canEat(false)){
             player.getFoodStats().addStats(8, 0.6F);
             int l = state.getValue(BITES).intValue();
-            
+
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), Main.MEATBLOCK_EAT, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
             if (l >= 7){
                 world.setBlockToAir(pos);
@@ -68,27 +68,27 @@ public final class BlockMeatBlock extends Block {
             }
         }
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(BITES, Integer.valueOf(meta));
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         return state.getValue(BITES).intValue();
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, BITES);
     }
-    
+
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player){
         return new ItemStack(Item.getItemFromBlock(this));
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
         return Item.getItemById(0);

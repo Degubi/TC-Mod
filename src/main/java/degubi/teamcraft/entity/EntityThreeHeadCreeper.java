@@ -87,7 +87,7 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     @Override
     public void readEntityFromNBT(NBTTagCompound compound){
         super.readEntityFromNBT(compound);
-        
+
         this.dataManager.set(POWERED, Boolean.valueOf(compound.getBoolean("powered")));
         if(compound.hasKey("Fuse", 99)){
             this.fuseTime = compound.getShort("Fuse");
@@ -140,49 +140,49 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     protected SoundEvent getHurtSound(DamageSource damageSource){
         return SoundEvents.ENTITY_CREEPER_HURT;
     }
-    
+
     @Override
     protected SoundEvent getDeathSound(){
         return SoundEvents.ENTITY_CREEPER_DEATH;
     }
-    
+
     @Override
     public boolean attackEntityAsMob(Entity entity){
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public float getCreeperFlashIntensity(float p_70831_1_){
         return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (this.fuseTime - 2);
     }
-    
+
     @Override
     protected ResourceLocation getLootTable(){
         return LootTableList.ENTITIES_CREEPER;
     }
-    
+
     public int getCreeperState(){
         return this.dataManager.get(STATE).intValue();
     }
-    
+
     public void setCreeperState(int state){
         this.dataManager.set(STATE, Integer.valueOf(state));
     }
-    
+
     @Override
     public void onStruckByLightning(EntityLightningBolt lightningBolt){
         super.onStruckByLightning(lightningBolt);
         this.dataManager.set(POWERED, Boolean.valueOf(true));
     }
-    
+
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand){
         ItemStack stack = player.getHeldItem(hand);
-        
+
         if(!stack.isEmpty() && stack.getItem() == Items.FLINT_AND_STEEL){
             this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
-            
+
             if(!this.world.isRemote){
                 this.dataManager.set(IGNITED, Boolean.valueOf(true));
                 stack.damageItem(1, player);

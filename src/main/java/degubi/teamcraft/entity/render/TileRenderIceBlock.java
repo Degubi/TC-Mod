@@ -16,20 +16,20 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
     private static final ModelCreeper creeperModel = new ModelCreeper();
     private static final ModelZombie zombieModel = new ModelZombie();
     private static final ModelSkeleton skeletonModel = new ModelSkeleton();
-    
+
     private static final ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation("textures/entity/creeper/creeper.png"),
             new ResourceLocation("textures/entity/skeleton/skeleton.png"), new ResourceLocation("textures/entity/zombie/zombie.png"),
     };
 
     private static EntitySkeleton skeleton;
     private static EntityZombie zombie;
-    
+
     public TileRenderIceBlock() {
         skeletonModel.isChild = false;
         skeletonModel.isSneak = true;
         zombieModel.isChild = false;
     }
-    
+
     private void loadLazy() {
         if(skeleton == null) {
             skeleton = new EntitySkeleton(getWorld());
@@ -37,7 +37,7 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
             zombie = new EntityZombie(getWorld());
         }
     }
-    
+
     @Override
     public void render(TileEntityIceBlock tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         Block block = tile.getBlockType();
@@ -45,7 +45,7 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
         GL11.glPushMatrix();
         GL11.glTranslatef((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F);
         GL11.glRotatef(180, 0F, 0F, 1F);
-        
+
         if(direction == EnumFacing.NORTH){
             GL11.glRotatef(180, 0, 1, 0);
         }else if(direction == EnumFacing.WEST){
@@ -53,7 +53,7 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
         }else if(direction == EnumFacing.EAST){
             GL11.glRotatef(-90F, 0, 1, 0);
         }
-        
+
         if(block == Main.IceCreeperBlock){
             bindTexture(textures[0]);
             creeperModel.render(null, 0, 0, 0, 0, 0, 0.0625F);

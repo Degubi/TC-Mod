@@ -10,12 +10,12 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class BlockOres extends Block {
-    
+
     private final Block modelBlock;
-    
+
     public BlockOres(Block modelBlock) {
         super(modelBlock.getDefaultState().getMaterial());
-        
+
         this.modelBlock = modelBlock;
         setCreativeTab(Main.tabBlocks);
         setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
@@ -23,7 +23,7 @@ public final class BlockOres extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune){
         if(modelBlock == Blocks.COAL_ORE) {
@@ -39,12 +39,12 @@ public final class BlockOres extends Block {
         }
         return Item.getItemFromBlock(this);
     }
-    
+
     @Override
     public int damageDropped(IBlockState state){
         return modelBlock == Blocks.LAPIS_ORE ? 4 : 0;
     }
-    
+
     @Override
     public int getExpDrop(IBlockState state, IBlockAccess world, BlockPos pos, int fortune){
         if(modelBlock == Blocks.COAL_ORE){
@@ -57,7 +57,7 @@ public final class BlockOres extends Block {
             return 0;
         }
     }
-    
+
     @Override
     public int quantityDropped(IBlockState state, int fortune, Random rand){
         return modelBlock == Blocks.LAPIS_ORE ? 3 + rand.nextInt(4) : 1;

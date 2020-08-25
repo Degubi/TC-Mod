@@ -16,12 +16,12 @@ public class CommandExpand extends CommandBase{
     public String getName() {
         return "pexpand";
     }
-    
+
     @Override
     public String getUsage(ICommandSender sender) {
         return "/pexpand <tag>";
     }
-    
+
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException{
         if(args.length > 0){
@@ -52,7 +52,7 @@ public class CommandExpand extends CommandBase{
             throw new WrongUsageException("pexpand <tags>");
         }
     }
-    
+
     @Override
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, BlockPos pos) {
         return args.length == 1 ? Lists.newArrayList("-up", "-down") : Lists.newArrayList();

@@ -11,26 +11,26 @@ import net.minecraft.world.*;
 
 public final class BlockStairBlocks extends BlockStairs {
     private final Block modelBlock;
-    
+
     public BlockStairBlocks(Block infBlock) {
         super(infBlock.getDefaultState());
-        
+
         setCreativeTab(Main.tabBlocks);
         setLightOpacity(0);
         useNeighborBrightness = true;
         modelBlock = infBlock;
-        
+
         if(infBlock == Blocks.ICE || infBlock == Blocks.PACKED_ICE) {
             setDefaultSlipperiness(0.98F);
             setTickRandomly(true);
         }
     }
-    
+
     @Override
     public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face){
         return modelBlock == Blocks.ICE || modelBlock == Blocks.GLASS ? false : super.doesSideBlockRendering(state, world, pos, face);
     }
-    
+
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand){
         if(modelBlock == Blocks.ICE){

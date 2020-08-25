@@ -12,11 +12,11 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class EntityWolfMan extends EntityMob{
-    
+
     public EntityWolfMan(World theWorld) {
         super(theWorld);
     }
-    
+
     @Override
     protected void initEntityAI(){
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -27,21 +27,21 @@ public final class EntityWolfMan extends EntityMob{
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
-    
+
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        
+
         World world = this.world;
         if(!world.isRemote && world.getCurrentMoonPhaseFactor() == 1 && world.getCelestialAngleRadians(1F) > 4.5F){
             EntityWolf wolf = new EntityWolf(world);
-            
+
             wolf.setLocationAndAngles(posX, posY, posZ, 0, 0);
             world.spawnEntity(wolf);
             setDead();
         }
     }
-    
+
     @Override
     protected void applyEntityAttributes(){
         super.applyEntityAttributes();
@@ -50,22 +50,22 @@ public final class EntityWolfMan extends EntityMob{
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
     }
-    
+
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn){
         this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
     }
-    
+
     @Override
     protected SoundEvent getAmbientSound(){
         return SoundEvents.ENTITY_WOLF_GROWL;
     }
-    
+
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSource){
         return SoundEvents.ENTITY_WOLF_HURT;
     }
-    
+
     @Override
     protected SoundEvent getDeathSound(){
         return SoundEvents.ENTITY_WOLF_DEATH;

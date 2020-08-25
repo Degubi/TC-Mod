@@ -21,13 +21,13 @@ public final class WorldGens implements IWorldGenerator {
     private static final IBlockState cocoa = Main.cocoaLeaves.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.FALSE);
     private static final IBlockState log = Blocks.LOG.getDefaultState();
     private static final IBlockState leaf = Blocks.LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.FALSE);
-    
+
     private static final WorldGenSponge sponge = new WorldGenSponge(Blocks.SPONGE.getDefaultState().withProperty(BlockSponge.WET, Boolean.TRUE), Blocks.DIRT, Material.WATER);
     private static final WorldGenSponge basalt = new WorldGenSponge(Main.Basalt.getDefaultState(), Blocks.NETHERRACK, Material.LAVA);
     private static final WorldGenAppleTree tree = new WorldGenAppleTree();
     private static final WorldGenLakes quicksand = new WorldGenLakes(Main.QuickSand);
     private static final WorldGenTrees banana = new WorldGenTrees(true, 10, Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE), Main.bananaLeaves.getDefaultState(), true);
-    
+
     private static final Predicate<IBlockState> isNether = k -> k.getBlock() == Blocks.NETHERRACK;
     private static final Predicate<IBlockState> isStone = k -> k.getBlock() == Blocks.STONE;
     private static final WorldGenMinable netherObsidian = new WorldGenMinable(Blocks.OBSIDIAN.getDefaultState(), 10, isNether);
@@ -37,16 +37,16 @@ public final class WorldGens implements IWorldGenerator {
     private static final WorldGenMinable netherLapis = new WorldGenMinable(Main.NetherLapisOre.getDefaultState(), 12, isNether);
     private static final WorldGenMinable netherEmerald = new WorldGenMinable(Main.NetherEmeraldOre.getDefaultState(), 3, isNether);
     private static final WorldGenMinable netherDiamond = new WorldGenMinable(Main.NetherDiamondOre.getDefaultState(), 3, isNether);
-    
+
     private static final WorldGenMinable marbleStone = new WorldGenMinable(Main.MarbleStone.getDefaultState(), 3, isStone);
     private static final WorldGenMinable gravelStone = new WorldGenMinable(Main.GravelStone.getDefaultState(), 5, isStone);
-    
+
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         if(world.provider.getDimension() == -1) {
             int x = chunkX * 16;
             int z = chunkZ * 16;
-            
+
             addBaseGenNew(netherObsidian, world, random, x, z, 80, 20, 125);
             addBaseGenNew(netherCoal, world, random, x, z, 50, 20, 125);
             addBaseGenNew(netherIron, world, random, x, z, 50, 20, 125);
@@ -54,7 +54,7 @@ public final class WorldGens implements IWorldGenerator {
             addBaseGenNew(netherLapis, world, random, x, z, 10, 20, 125);
             addBaseGenNew(netherEmerald, world, random, x, z, 10, 20, 125);
             addBaseGenNew(netherDiamond, world, random, x, z, 5, 20, 125);
-            
+
             MutableBlockPos poss = new MutableBlockPos();
             for(int x1 = 0; x1 < 30; ++x1) {
                 basalt.generate(world, random, poss.setPos(x + random.nextInt(16) + 8, 5 + random.nextInt(100), z + random.nextInt(16) + 8));
@@ -63,14 +63,14 @@ public final class WorldGens implements IWorldGenerator {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             Biome b = world.getBiome(new BlockPos(x, 20, z));
-            
+
             if(b.fillerBlock.getBlock() == Blocks.STONE){
                 addBaseGenNew(marbleStone, world, random, x, z, 30, 40, 100);
                 addBaseGenNew(gravelStone, world, random, x, z, 70, 20, 150);
             }
             if(b == Biomes.OCEAN){
                 MutableBlockPos poss = new MutableBlockPos();
-                
+
                 for(int x1 = 0; x1 < 10; ++x1) {
                     sponge.generate(world, random, poss.setPos(x + random.nextInt(16) + 8, 40 + random.nextInt(60), z + random.nextInt(16) + 8));
                 }
@@ -78,7 +78,7 @@ public final class WorldGens implements IWorldGenerator {
                 quicksand.generate(world, random, new BlockPos(x + random.nextInt(16) + 8, 40 + random.nextInt(60), z + random.nextInt(16) + 8));
             }else if(b == Biomes.FOREST){
                 MutableBlockPos poss = new MutableBlockPos();
-                
+
                 for(int x1 = 0; x1 < 20; ++x1) {
                     tree.generate(world, random, poss.setPos(x + random.nextInt(16) + 8, 50 + random.nextInt(50), z + random.nextInt(16) + 8));
                 }
@@ -86,7 +86,7 @@ public final class WorldGens implements IWorldGenerator {
                 addOldTree(world, random, x, z);
             }else if(b == Biomes.JUNGLE) {
                 MutableBlockPos poss = new MutableBlockPos();
-                
+
                 for(int x1 = 0; x1 < 10; x1++) {
                     banana.generate(world, random, poss.setPos(x + random.nextInt(16) + 8, 40 + random.nextInt(60), z + random.nextInt(16) + 8));
                     addCocoaGen(world, random, x, z);
@@ -94,26 +94,26 @@ public final class WorldGens implements IWorldGenerator {
             }
         }
     }
-    
+
     public static void addBaseGenNew(WorldGenMinable worldGen, World world, Random random, int blockXPos, int blockZPos, int chancesToSpawn, int minY, int maxY){
         int diffBtwnMinMaxY = maxY - minY;
         MutableBlockPos muPos = new MutableBlockPos();
-        
+
         for(int x = 0; x < chancesToSpawn; ++x){
              worldGen.generate(world, random, muPos.setPos(blockXPos + random.nextInt(16), minY + random.nextInt(diffBtwnMinMaxY), blockZPos + random.nextInt(16)));
         }
     }
-    
+
     public static void addCocoaGen(World world, Random random, int blockXPos, int blockZPos){
         for(int mul = 0; mul < 7; ++mul){
              BlockPos pos = new BlockPos(blockXPos + random.nextInt(16) + 8, 40 + random.nextInt(60), blockZPos + random.nextInt(16) + 8);
-             
+
              if(world.getBlockState(pos.down()).getBlock() == Blocks.GRASS) {
                 int x = -1;
-                
+
                 do {
                     x++;
-                    
+
                     for(int z = 0; z < 7; ++z) {
                         world.setBlockState(pos.south(3).west(3).north(x).east(z), cocoa, 2);
                     }
@@ -130,7 +130,7 @@ public final class WorldGens implements IWorldGenerator {
                         }
                     }
                 }while(x < 6);
-                
+
                 for(x = 0; x < 5; ++x) {
                     world.setBlockState(pos.up(x), Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE), 2);
                 }
@@ -138,15 +138,15 @@ public final class WorldGens implements IWorldGenerator {
             }
         }
     }
-    
+
     public static void addOldTree(World world, Random rand, int blockXPos, int blockZPos){
         for(int mul = 0; mul < 2; ++mul){
             BlockPos pos = new BlockPos(blockXPos + rand.nextInt(16) + 8, 50 + rand.nextInt(30), blockZPos + rand.nextInt(16) + 8);
-            
+
             if(world.getBlockState(pos.down()).getBlock() == Blocks.GRASS){
                 int height = 9+rand.nextInt(4), x = -1;
                 int nheight = height - 3;
-                
+
                 do {
                     x++;
                     for(int z = 0; z < 11; ++z) {
@@ -168,14 +168,14 @@ public final class WorldGens implements IWorldGenerator {
                         }
                     }
                 }while(x < 10);
-                
+
                 for(x = 0; x < nheight; ++x) {
                     world.setBlockState(pos.up(x), log, 2);
                     world.setBlockState(pos.north().up(x), log, 2);
                     world.setBlockState(pos.south().up(x), log, 2);
                     world.setBlockState(pos.east().up(x), log, 2);
                     world.setBlockState(pos.west().up(x), log, 2);
-                    
+
                     if(x < 2) {
                         world.setBlockState(pos.north().east().up(x), log, 2);
                         world.setBlockState(pos.north().west().up(x), log, 2);
@@ -183,7 +183,7 @@ public final class WorldGens implements IWorldGenerator {
                         world.setBlockState(pos.south().west().up(x), log, 2);
                     }
                 }
-                
+
                 world.setBlockState(pos.north(2).up(height - 4), log.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Z), 2);
                 world.setBlockState(pos.south(2).up(height - 4), log.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Z), 2);
                 world.setBlockState(pos.east(2).up(height - 4), log.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.X), 2);

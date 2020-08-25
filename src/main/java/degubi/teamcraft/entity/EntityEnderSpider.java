@@ -35,11 +35,11 @@ public final class EntityEnderSpider extends EntitySpider{
         super.entityInit();
         dataManager.register(SCREAMING, Boolean.FALSE);
     }
-    
+
     @Override
     public void onLivingUpdate(){
         World world = this.world;
-        
+
         if(world.isRemote){
             Random rand = this.rand;
             double posX = this.posX;
@@ -47,11 +47,11 @@ public final class EntityEnderSpider extends EntitySpider{
             double posZ = this.posZ;
             float height = this.height;
             float width = this.width;
-            
-            world.spawnParticle(EnumParticleTypes.PORTAL, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height - 0.25D, posZ + (rand.nextDouble() - 0.5D) * width, (rand.nextDouble() - 0.5D) * 2.0D, -rand.nextDouble(), (rand.nextDouble() - 0.5D) * 2.0D);        
+
+            world.spawnParticle(EnumParticleTypes.PORTAL, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height - 0.25D, posZ + (rand.nextDouble() - 0.5D) * width, (rand.nextDouble() - 0.5D) * 2.0D, -rand.nextDouble(), (rand.nextDouble() - 0.5D) * 2.0D);
             world.spawnParticle(EnumParticleTypes.PORTAL, posX + (rand.nextDouble() - 0.5D) * width, posY + rand.nextDouble() * height - 0.25D, posZ + (rand.nextDouble() - 0.5D) * width, (rand.nextDouble() - 0.5D) * 2.0D, -rand.nextDouble(), (rand.nextDouble() - 0.5D) * 2.0D);
         }
-        
+
         isJumping = false;
         super.onLivingUpdate();
     }
@@ -61,14 +61,14 @@ public final class EntityEnderSpider extends EntitySpider{
         if(isWet()){
             attackEntityFrom(DamageSource.DROWN, 1.0F);
         }
-        
+
         if(isScreaming() && !isAggressive && rand.nextInt(100) == 0){
             setScreaming(false);
         }
-        
+
         if(world.isDaytime()){
             float f = getBrightness();
-            
+
             if(f > 0.5F && world.canSeeSky(new BlockPos(this)) && rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F){
                 setAttackTarget((EntityLivingBase)null);
                 setScreaming(false);
@@ -78,14 +78,14 @@ public final class EntityEnderSpider extends EntitySpider{
         }
         super.updateAITasks();
     }
-    
+
     private boolean teleportRandomly(){
         double d0 = this.posX + (this.rand.nextDouble() - 0.5D) * 64.0D;
         double d1 = this.posY + (this.rand.nextInt(64) - 32);
         double d2 = this.posZ + (this.rand.nextDouble() - 0.5D) * 64.0D;
         return this.teleportTo(d0, d1, d2);
     }
-    
+
     private boolean teleportTo(double x, double y, double z){
         EnderTeleportEvent event = new EnderTeleportEvent(this, x, y, z, 0);
         if(net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event)) return false;
@@ -95,7 +95,7 @@ public final class EntityEnderSpider extends EntitySpider{
             this.world.playSound((EntityPlayer)null, this.prevPosX, this.prevPosY, this.prevPosZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, this.getSoundCategory(), 1.0F, 1.0F);
             this.playSound(SoundEvents.ENTITY_ENDERMEN_TELEPORT, 1.0F, 1.0F);
             int num = rand.nextInt(25);
-            
+
             if(world.getGameRules().getBoolean("mobGriefing")){
                 if(num < 4){
                     world.setBlockState(new BlockPos(this.posX, this.posY, this.posZ), Blocks.WEB.getDefaultState());
@@ -108,27 +108,27 @@ public final class EntityEnderSpider extends EntitySpider{
         }
         return flag;
     }
-    
+
     @Override
     protected SoundEvent getAmbientSound(){
         return isScreaming() ? SoundEvents.ENTITY_ENDERMEN_SCREAM : SoundEvents.ENTITY_ENDERMEN_AMBIENT;
     }
-    
+
     @Override
     protected Item getDropItem(){
         return Items.ENDER_PEARL;
     }
-    
+
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int weight){
         Item item = getDropItem();
         int j = rand.nextInt(2 + weight);
-        
+
         for(int k = 0; k < j; ++k){
             dropItem(item, 1);
         }
     }
-    
+
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount){
         if (isEntityInvulnerable(source)){
@@ -152,11 +152,11 @@ public final class EntityEnderSpider extends EntitySpider{
         }
         return super.attackEntityFrom(source, amount);
     }
-    
+
     private boolean isScreaming(){
         return this.dataManager.get(SCREAMING).booleanValue();
     }
-    
+
     private void setScreaming(boolean isScreaming){
         dataManager.set(SCREAMING, Boolean.valueOf(isScreaming));
     }

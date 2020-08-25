@@ -15,27 +15,27 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class ItemMultiTool extends ItemTool {
-    
+
     public ItemMultiTool(ToolMaterial material) {
         super(material, ImmutableSet.of(Blocks.GRASS, Blocks.DIRT, Blocks.SAND, Blocks.GRAVEL, Blocks.SNOW_LAYER, Blocks.SNOW, Blocks.CLAY, Blocks.FARMLAND, Blocks.SOUL_SAND, Blocks.MYCELIUM, Blocks.WEB, Blocks.PUMPKIN, Blocks.MELON_BLOCK));
         setCreativeTab(Main.ToolsWeapons);
     }
-    
+
     @Override
     public Set<String> getToolClasses(ItemStack stack) {
         return ImmutableSet.of("sword");
     }
-    
+
     @Override
     public boolean canHarvestBlock(IBlockState block){
         return block.getBlock() == Blocks.WEB || block.getBlock() == Blocks.SNOW_LAYER || block.getBlock() == Blocks.OBSIDIAN ? toolMaterial.getHarvestLevel() == 3 : (block.getBlock() != Blocks.DIAMOND_BLOCK && block != Blocks.DIAMOND_ORE ? (block != Blocks.EMERALD_ORE && block != Blocks.EMERALD_BLOCK ? (block != Blocks.GOLD_BLOCK && block != Blocks.GOLD_ORE ? (block != Blocks.IRON_BLOCK && block != Blocks.IRON_ORE ? (block != Blocks.LAPIS_BLOCK && block != Blocks.LAPIS_ORE ? (block != Blocks.REDSTONE_ORE && block != Blocks.LIT_REDSTONE_ORE ? (block.getMaterial() == Material.ROCK ? true : (block.getMaterial() == Material.IRON ? true : block.getMaterial() == Material.ANVIL)) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 1) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2) : toolMaterial.getHarvestLevel() >= 2);
     }
-    
+
     @Override
     public float getDestroySpeed(ItemStack stack, IBlockState block){
         return block == Blocks.WEB.getDefaultState() ? 10.0F : (block.getMaterial() != Material.WOOD && block.getMaterial() != Material.PLANTS && block.getMaterial() != Material.VINE && block.getMaterial() != Material.IRON && block.getMaterial() != Material.ANVIL && block.getMaterial() != Material.ROCK ? super.getDestroySpeed(stack, block) : efficiency);
     }
-    
+
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
         ItemStack itemstack = player.getHeldItem(hand);
@@ -46,7 +46,7 @@ public final class ItemMultiTool extends ItemTool {
 
         if(facing != EnumFacing.DOWN && world.isAirBlock(pos.up())) {
             Block block = iblockstate.getBlock();
-            
+
             if(block == Blocks.DIRT){
                 if(iblockstate.getValue(BlockDirt.VARIANT) == DirtType.DIRT) {
                     setBlock(itemstack, player, world, pos, Blocks.FARMLAND.getDefaultState());
@@ -61,10 +61,10 @@ public final class ItemMultiTool extends ItemTool {
         }
         return EnumActionResult.FAIL;
     }
-    
+
     private static void setBlock(ItemStack stack, EntityPlayer player, World world, BlockPos pos, IBlockState state){
         world.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
-        
+
         if(!world.isRemote){
             world.setBlockState(pos, state, 11);
             stack.damageItem(1, player);

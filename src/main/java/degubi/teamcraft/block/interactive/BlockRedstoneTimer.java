@@ -23,7 +23,7 @@ public final class BlockRedstoneTimer extends Block {
 
     public BlockRedstoneTimer() {
         super(Material.CIRCUITS);
-        
+
         Block modelBlock = Blocks.UNPOWERED_REPEATER;
         setDefaultState(getBlockState().getBaseState().withProperty(isPowered, Boolean.FALSE));
         setCreativeTab(Main.tabRedstone);
@@ -32,64 +32,64 @@ public final class BlockRedstoneTimer extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean canProvidePower(IBlockState state){
         return true;
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
         return BOUNDING_BOX;
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(isPowered, Boolean.valueOf(meta == 1));
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         return state.getValue(isPowered).booleanValue() ? 1 : 0;
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, isPowered);
     }
-    
+
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         world.notifyNeighborsRespectDebug(pos, this, true);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         Minecraft.getMinecraft().displayGuiScreen(new GuiRedstoneTimer(pos));
         return true;
     }
-    
+
     @Override
     public int getWeakPower(IBlockState state, IBlockAccess acc, BlockPos pos, EnumFacing side){
         return state.getValue(isPowered).booleanValue() ? 15 : 0;
     }
-    
+
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;
     }
-    
+
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
         return new TileEntityTimer();

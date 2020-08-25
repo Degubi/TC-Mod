@@ -20,7 +20,7 @@ public final class GuiTCMSettings extends GuiScreen {
         lastScreen = parent;
         settings = sett;
     }
-    
+
     @Override
     public void initGui(){
         buttonList.add(new GuiOptionSlider(GameSettings.Options.FOV.getOrdinal(), width / 2 - 155, 30, GameSettings.Options.FOV));
@@ -35,12 +35,12 @@ public final class GuiTCMSettings extends GuiScreen {
         buttonList.add(new GuiButton(108, width / 2 - 155, height / 6 + 48 - 6, 150, 20, I18n.format("options.skinCustomisation")));
         buttonList.add(new GuiButton(109, width / 2 - 100, height / 6 + 168, I18n.format("gui.done")));
     }
-    
+
     @Override
     public void confirmClicked(boolean result, int id){
         mc.displayGuiScreen(this);
     }
-    
+
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException{
         if(keyCode == 1){
@@ -48,7 +48,7 @@ public final class GuiTCMSettings extends GuiScreen {
             mc.displayGuiScreen(lastScreen);
         }
     }
-    
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException{
         switch(button.id) {
@@ -78,13 +78,13 @@ public final class GuiTCMSettings extends GuiScreen {
             }
         }
     }
-    
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
         drawDefaultBackground();
         drawCenteredString(fontRenderer, title, width / 2, 15, 16777215);
         drawCenteredString(fontRenderer, "Mod version: " + MOD_VERSION, width - 50, height - 12, 16777215);
-        
+
         for(GuiButton buttons : buttonList) {
             buttons.drawButton(mc, mouseX, mouseY, partialTicks);
         }

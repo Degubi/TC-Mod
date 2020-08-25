@@ -12,23 +12,23 @@ public final class EntityAICreeperSwellExt extends EntityAIBase{
         swellingCreeper = creepy;
         setMutexBits(1);
     }
-    
+
     @Override
     public boolean shouldExecute(){
         return swellingCreeper.getCreeperState() > 0 || swellingCreeper.getAttackTarget() != null && swellingCreeper.getDistance(swellingCreeper.getAttackTarget()) < 9.0D;
     }
-    
+
     @Override
     public void startExecuting(){
         swellingCreeper.getNavigator().clearPath();
         creeperAttackTarget = swellingCreeper.getAttackTarget();
     }
-    
+
     @Override
     public void resetTask(){
         creeperAttackTarget = null;
     }
-    
+
     @Override
     public void updateTask(){
         if(creeperAttackTarget == null){

@@ -16,7 +16,7 @@ public final class MessageCoordInt implements IMessage {
         z = posZ;
         messageType = type;
     }
-    
+
     @Override
     public void fromBytes(ByteBuf buf){
         x = buf.readInt();
@@ -24,7 +24,7 @@ public final class MessageCoordInt implements IMessage {
         z = buf.readInt();
         messageType = buf.readInt();
     }
-    
+
     @Override
     public void toBytes(ByteBuf buf){
         buf.writeInt(x);

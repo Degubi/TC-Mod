@@ -15,7 +15,7 @@ import org.lwjgl.opengl.*;
 public final class TileRenderWoolSign extends TileEntitySpecialRenderer<TileEntityWoolSign>{
     private static final ModelSign model = new ModelSign();
     private static final ResourceLocation res = new ResourceLocation("tcm:textures/blocks/woolsign.png");
-    
+
     @Override
     public void render(TileEntityWoolSign woolTile, double x, double y, double z, float partialTicks, int destroyStage, float alpha){
         GL11.glPushMatrix();
@@ -41,7 +41,7 @@ public final class TileRenderWoolSign extends TileEntitySpecialRenderer<TileEnti
             GL11.glTranslatef(0.0F, -0.3125F, -0.4375F);
             model.signStick.showModel = false;
         }
-        
+
         bindTexture(res);
         GL11.glPushMatrix();
         GL11.glScalef(0.6666667F, -0.6666667F, -0.6666667F);
@@ -52,7 +52,7 @@ public final class TileRenderWoolSign extends TileEntitySpecialRenderer<TileEnti
         GL11.glScalef(rotation, -rotation, rotation);
         GL11.glNormal3f(0.0F, 0.0F, -1.0F * rotation);
         GL11.glDepthMask(false);
-        
+
         if(destroyStage < 0){
             FontRenderer fontRender = getFontRenderer();
             for(int j = 0; j < woolTile.signText.length; ++j){

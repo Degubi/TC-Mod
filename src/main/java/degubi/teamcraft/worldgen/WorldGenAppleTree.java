@@ -12,7 +12,7 @@ import net.minecraft.world.*;
 import net.minecraft.world.gen.feature.*;
 
 public final class WorldGenAppleTree extends WorldGenAbstractTree {
-    
+
     public WorldGenAppleTree() {
         super(false);
     }
@@ -24,7 +24,7 @@ public final class WorldGenAppleTree extends WorldGenAbstractTree {
         int posX = position.getX();
         int posZ = position.getZ();
         int worldHeight = world.getHeight();
-        
+
         if (posY >= 1 && posY + i + 1 <= worldHeight){
             boolean flag = true;
             for (int j = posY; j <= posY + 1 + i; ++j){

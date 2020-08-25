@@ -14,17 +14,17 @@ public final class ModelGoat extends ModelCow {
     private final ModelRenderer hornyellow = new ModelRenderer(this, 18, 16).addBox(-2.0F, -8.0F, -5.0F, 1, 7, 1).addBox(1.0F, -8.0F, -5.0F, 1, 7, 1);
     private float headRotationAngleX;
     public static final ModelGoat INSTANCE = new ModelGoat();
-    
+
     private ModelGoat(){
         beard.setRotationPoint(0.0F, 4.0F, -6.0F);
         head = new ModelRenderer(this, 0, 0);
-        
+
         if(isChild) {
             head.addBox(-3.0F, -4.0F, -7.0F, 6, 6, 7);
         }else{
             head.addBox(-3.0F, -5.0F, -7.0F, 6, 6, 7);
         }
-        
+
         head.setRotationPoint(0.0F, 4.0F, -6.0F);
         body = new ModelRenderer(this, 24, 5);
         body.addBox(-6.0F, -10.0F, -7.0F, 10, 16, 10);
@@ -49,12 +49,12 @@ public final class ModelGoat extends ModelCow {
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
         EntityGoat goat = (EntityGoat) entity;
-        
+
         if(goat.getCustomNameTag().equals("N0RRIS56")){
             GL11.glTranslatef(0, -3.1F, 0);
             GL11.glScalef(3F, 3F, 3F);
         }
-        
+
         if(!isChild){
             udders.render(scale);
             beard.render(scale);
@@ -66,7 +66,7 @@ public final class ModelGoat extends ModelCow {
         }
         super.render(goat, f, f1, f2, f3, f4, scale);
     }
-    
+
     public void renderIce(){
         setRotationAngles(0, 0, 0, 0, 0, 0, null);
         GL11.glPushMatrix();
@@ -79,14 +79,14 @@ public final class ModelGoat extends ModelCow {
         leg4.render(0.0625F);
         GL11.glPopMatrix();
     }
-    
+
     @Override
     public void setLivingAnimations(EntityLivingBase entity, float limbSwing, float limbSwingAmount, float partialTickTime) {
         super.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTickTime);
         head.rotationPointY = 6.0F + ((EntityGoat)entity).getHeadRotationPointY(partialTickTime) * 9.0F;
         headRotationAngleX = ((EntityGoat)entity).getHeadRotationAngleX(partialTickTime);
     }
-    
+
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity){
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);

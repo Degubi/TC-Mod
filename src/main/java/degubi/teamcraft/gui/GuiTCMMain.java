@@ -43,11 +43,11 @@ public final class GuiTCMMain extends GuiScreen {
     @Override
     public void initGui(){
         super.initGui();
-        
+
         if(backgroundTexture == null) {
             backgroundTexture = mc.getTextureManager().getDynamicTextureLocation("background", new DynamicTexture(512, 512));
         }
-        
+
         buttonList.add(new GuiButton(0, width / 2 - 110, height / 4 + 20, 100, 20, I18n.format("menu.singleplayer")));
         buttonList.add(new GuiButton(1, width / 2 - 110, height / 4 + 50, 100, 20, I18n.format("menu.multiplayer")));
         buttonList.add(new GuiButton(2, width - 20, height - 20, 20, 20, ""));
@@ -55,7 +55,7 @@ public final class GuiTCMMain extends GuiScreen {
         buttonList.add(new GuiButton(5, width / 2 - 100, height - 30, 200, 20, I18n.format("menu.quit")));
         buttonList.add(new GuiButton(20, 0, height - 15, 80, 15, ""));
     }
-    
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException{
         switch(button.id) {
@@ -69,14 +69,14 @@ public final class GuiTCMMain extends GuiScreen {
             default: openTeamCraftWeb();
         }
     }
-    
+
     protected static void openTeamCraftWeb(){
         if(Minecraft.getSystemTime() - lastClicked < 250L) { //isDoubleClick
             openWebpage("https://team-craft.eu/");
         }
         lastClicked = Minecraft.getSystemTime();
     }
-    
+
     public static void openWebpage(String topass){
         try{
             Desktop.getDesktop().browse(new URI(topass));
@@ -84,12 +84,12 @@ public final class GuiTCMMain extends GuiScreen {
             System.out.println("Couldn't open " + topass);
         }
     }
-    
+
     @Override
     public void updateScreen(){
         ++panoTimer;
     }
-    
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
         // Background
@@ -153,7 +153,7 @@ public final class GuiTCMMain extends GuiScreen {
         GlStateManager.depthMask(true);
         GlStateManager.enableCull();
         GlStateManager.enableDepth();
-        
+
         mc.getTextureManager().bindTexture(backgroundTexture);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
@@ -189,7 +189,7 @@ public final class GuiTCMMain extends GuiScreen {
         worldRenderer.pos(0.0D, 0.0D, zLevel).tex(0.5F + f1, 0.5F + f2).color(1.0F, 1.0F, 1.0F, 1.0F).endVertex();
         Tessellator.getInstance().draw();
         drawGradientRect(0, 0, width, height, 0, Integer.MIN_VALUE);
-        
+
         //Főlogó
         mc.getTextureManager().bindTexture(mainMenuLogo);
         GL11.glPushMatrix();
@@ -200,21 +200,21 @@ public final class GuiTCMMain extends GuiScreen {
         drawTexturedModalRect(width / 2 - 90, 10, 0, 0, 256, 44);
         GlStateManager.disableBlend();
         GL11.glPopMatrix();
-        
+
         //Gombok
         for(GuiButton button : buttonList){
             if(button.id != 2 && button.id != 20) {
                 button.drawButton(mc, mouseX, mouseY, partialTicks);
             }
         }
-        
+
         //TeamCraft Link
         if(mouseX < 80 && mouseY > height - 15) {
             drawString(fontRenderer, "team-craft.eu" + ChatFormatting.UNDERLINE, 7, height - 12, 0x0645AD);
         }else{
             drawString(fontRenderer, "team-craft.eu" + ChatFormatting.UNDERLINE, 7, height - 12, 0x3366BB);
         }
-        
+
         //Splashek
         GlStateManager.pushMatrix();
         GlStateManager.translate(width / 2 + 80, 37F, 0F);
@@ -224,7 +224,7 @@ public final class GuiTCMMain extends GuiScreen {
         GlStateManager.scale(timer, timer, timer);
         drawCenteredString(fontRenderer, splashText + ChatFormatting.UNDERLINE, 0, 0, -254);
         GlStateManager.popMatrix();
-        
+
         //Settings
         mc.renderEngine.bindTexture(gear);
         GL11.glPushMatrix();
@@ -233,22 +233,22 @@ public final class GuiTCMMain extends GuiScreen {
         drawTexturedModalRect(width * 16 - 300, height * 16 - 300, 0, 0, 256, 256);
         GL11.glPopMatrix();
     }
-    
+
     private static final java.util.List<String> readFromURL(String url) {
         try(CloseableHttpClient httpclient = HttpClients.createDefault();
             CloseableHttpResponse response = httpclient.execute(new HttpGet(url));
             InputStream content = response.getEntity().getContent()) {
-            
+
             return IOUtils.readLines(content, StandardCharsets.UTF_8);
         } catch (IOException e) {
             System.out.println("Couldn't load " + url);
             return new ArrayList<>();
         }
     }
-    
+
     public static void loadGuiResources(){
         LocalDate date = LocalDate.now();
-        
+
         if(date.getMonth() == Month.JUNE && date.getDayOfMonth() == 1){
             splashText = I18n.format("string.notch");
         }else if((date.getMonth() == Month.DECEMBER) && (date.getDayOfMonth() == 24 || date.getDayOfMonth() == 25)){
@@ -261,7 +261,7 @@ public final class GuiTCMMain extends GuiScreen {
             splashText = "RIP";
         }else{
             java.util.List<String> splashes = readFromURL("http://pastebin.com/raw/97FAqQva");
-            
+
             splashes.add(Minecraft.getMinecraft().getVersion() + "!");
             splashes.add(date.getYear() + "!");
             splashText = splashes.get(new Random().nextInt(splashes.size()));

@@ -14,7 +14,7 @@ public final class RenderGoat extends RenderLiving<EntityGoat> {
     public RenderGoat(RenderManager ren) {
         super(ren, ModelGoat.INSTANCE, 0.5F);
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(EntityGoat entity) {
         return textures[entity.getGoatType()];

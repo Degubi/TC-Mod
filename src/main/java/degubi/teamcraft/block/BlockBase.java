@@ -7,7 +7,7 @@ public final class BlockBase extends Block {
 
     public BlockBase(Block modelBlock, CreativeTabs tab) {
         super(modelBlock.getDefaultState().getMaterial());
-        
+
         setCreativeTab(tab);
         setHardness(modelBlock.getDefaultState().getBlockHardness(null, null));
         setResistance(modelBlock.getExplosionResistance(null, null, null, null));

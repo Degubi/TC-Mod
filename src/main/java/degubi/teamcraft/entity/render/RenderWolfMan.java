@@ -13,7 +13,7 @@ public final class RenderWolfMan extends RenderLiving<EntityWolfMan> {
     public RenderWolfMan(RenderManager rendermanagerIn){
         super(rendermanagerIn, new ModelWolfMan(), 0.5F);
     }
-    
+
     @Override
     protected ResourceLocation getEntityTexture(EntityWolfMan entity) {
         return texture;

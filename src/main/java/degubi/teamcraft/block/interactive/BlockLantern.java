@@ -20,7 +20,7 @@ public final class BlockLantern extends Block {
 
     public BlockLantern(){
         super(Material.ROCK);
-        
+
         Block modelBlock = Blocks.STONE;
         setDefaultState(getBlockState().getBaseState().withProperty(BlockLantern.ACTIVE, Boolean.FALSE));
         setCreativeTab(Main.tabDecorations);
@@ -29,58 +29,58 @@ public final class BlockLantern extends Block {
         setSoundType(modelBlock.getSoundType(null, null, null, null));
         setHarvestLevel(modelBlock.getHarvestTool(modelBlock.getDefaultState()), modelBlock.getHarvestLevel(modelBlock.getDefaultState()));
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state){
         return false;
     }
-    
+
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
         return BOUNDING_BOX;
     }
-    
+
     @Override
     public int getLightValue(IBlockState state, IBlockAccess acc, BlockPos pos) {
         return state.getValue(ACTIVE).booleanValue() ? 15 : 0;
     }
-    
+
     @Override
     public IBlockState getStateFromMeta(int meta){
         return getDefaultState().withProperty(BlockLantern.ACTIVE, Boolean.valueOf(meta == 1));
     }
-    
+
     @Override
     public int getMetaFromState(IBlockState state){
         return state.getValue(BlockLantern.ACTIVE).booleanValue() ? 1 : 0;
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState(){
         return new BlockStateContainer(this, BlockLantern.ACTIVE);
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         world.setBlockState(pos, state.cycleProperty(BlockLantern.ACTIVE));
         return true;
     }
-    
+
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(Item.getItemFromBlock(Main.Lantern));
     }
-    
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         return Item.getItemFromBlock(Main.Lantern);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand){
