@@ -30,9 +30,11 @@ public final class BlockHalfBlocks extends Block {
         setHarvestLevel(infBlock.getHarvestTool(infBlock.getDefaultState()), infBlock.getHarvestLevel(infBlock.getDefaultState()));
         setDefaultState(getBlockState().getBaseState().withProperty(BlockHorizontal.FACING, EnumFacing.NORTH));
         setLightOpacity(255);
+
         if(infBlock == Blocks.ICE || infBlock == Blocks.PACKED_ICE){
             setDefaultSlipperiness(0.98F);
         }
+
         returnBlock.put(infBlock, this);
     }
 

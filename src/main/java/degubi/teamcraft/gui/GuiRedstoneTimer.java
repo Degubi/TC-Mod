@@ -3,6 +3,7 @@ package degubi.teamcraft.gui;
 import degubi.teamcraft.*;
 import degubi.teamcraft.network.*;
 import net.minecraft.client.gui.*;
+import net.minecraft.client.resources.*;
 import net.minecraft.util.math.*;
 import net.minecraftforge.fml.relauncher.*;
 
@@ -17,8 +18,8 @@ public class GuiRedstoneTimer extends GuiScreen {
     @Override
     public void initGui() {
         addButton(new GuiButton(0, width / 2 - 50, 60, 100, 20, "Enable/Disable"));
-        addButton(new GuiButton(1, width / 2 - 50, 120, 100, 20, "string.increase"));
-        addButton(new GuiButton(2, width / 2 - 50, 160, 100, 20, "string.decrease"));
+        addButton(new GuiButton(1, width / 2 - 50, 120, 100, 20, I18n.format("string.increase")));
+        addButton(new GuiButton(2, width / 2 - 50, 160, 100, 20, I18n.format("string.decrease")));
     }
 
     @Override

@@ -1,4 +1,5 @@
-{    "parent": "block/thin_block",
+{   
+    "parent": "block/thin_block",
     "textures": {
         "particle": "blocks/brewing_stand",
         "base": "blocks/brewing_stand_base",

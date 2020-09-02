@@ -27,9 +27,13 @@ public final class BlockHalfBlockMaker extends Block {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack item = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(handleBlocks(item), 2));
-        item.shrink(1);
-        return true;
+        boolean inventoryModified = player.addItemStackToInventory(new ItemStack(handleBlocks(item), 2));
+
+        if(inventoryModified) {
+            item.shrink(1);
+        }
+
+        return inventoryModified;
     }
 
     private static Block handleBlocks(ItemStack xItem) {

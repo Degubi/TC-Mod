@@ -15,8 +15,14 @@ import net.minecraft.world.*;
 
 public final class BlockMeatBlock extends Block {
     public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 7);
-    private static final AxisAlignedBB[] MEAT_AAB = new AxisAlignedBB[] {new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.95D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
-
+    private static final AxisAlignedBB[] BOUNDING_BOXES = new AxisAlignedBB[] { new AxisAlignedBB(0D,     0D, 0D,     1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.125D, 0D, 0.125D, 1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.25D,  0D, 0.25D,  1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.375D, 0D, 0.375D, 1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.5D,   0D, 0.5D,   1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.625D, 0D, 0.625D, 1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.75D,  0D, 0.75D,  1D, 1D, 1D),
+                                                                                new AxisAlignedBB(0.875D, 0D, 0.875D, 1D, 1D, 1D)};
     public BlockMeatBlock() {
         super(Material.CAKE);
 
@@ -41,7 +47,7 @@ public final class BlockMeatBlock extends Block {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess acc, BlockPos pos){
-        return MEAT_AAB[state.getValue(BITES).intValue()];
+        return BOUNDING_BOXES[state.getValue(BITES).intValue()];
     }
 
     @Override

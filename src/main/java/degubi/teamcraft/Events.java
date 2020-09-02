@@ -234,14 +234,8 @@ public final class Events{
         Block original = event.getOriginal().getBlock();
 
         if(event.getBiome() == Main.iceDesert || event.getBiome() == Biomes.ICE_PLAINS || event.getBiome() == Biomes.ICE_MOUNTAINS || event.getBiome() == Biomes.MUTATED_ICE_FLATS){
-            if(original == Blocks.COBBLESTONE){
-                event.setReplacement(Blocks.ICE.getDefaultState());
-                event.setResult(Result.DENY);
-            }else if(original == Blocks.PLANKS){
+            if(original == Blocks.COBBLESTONE || original == Blocks.LAVA || original == Blocks.LOG || original == Blocks.PLANKS){
                 event.setReplacement(Blocks.PACKED_ICE.getDefaultState());
-                event.setResult(Result.DENY);
-            }else if(original == Blocks.LOG){
-                event.setReplacement(Blocks.ICE.getDefaultState());
                 event.setResult(Result.DENY);
             }else if(original == Blocks.STONE_STAIRS || original == Blocks.OAK_STAIRS){
                 event.setReplacement(Block.getBlockFromName("tcm:packedice_stairs").getDefaultState().withProperty(BlockStairs.FACING, event.getOriginal().getValue(BlockStairs.FACING)).withProperty(BlockStairs.SHAPE, event.getOriginal().getValue(BlockStairs.SHAPE)));
@@ -257,9 +251,6 @@ public final class Events{
                 event.setResult(Result.DENY);
             }else if(original == Blocks.OAK_DOOR){
                 event.setReplacement(Main.IceDoor.getDefaultState().withProperty(BlockDoor.FACING, event.getOriginal().getValue(BlockDoor.FACING)).withProperty(BlockDoor.HALF, event.getOriginal().getValue(BlockDoor.HALF)));
-                event.setResult(Result.DENY);
-            }else if(original == Blocks.LAVA){
-                event.setReplacement(Blocks.PACKED_ICE.getDefaultState());
                 event.setResult(Result.DENY);
             }else if(original == Blocks.GRAVEL){
                 event.setReplacement(Blocks.GRASS_PATH.getDefaultState());
@@ -295,9 +286,6 @@ public final class Events{
                 event.setResult(Result.DENY);
             }else if(original == Blocks.PLANKS){
                 event.setReplacement(Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.DARK_OAK));
-                event.setResult(Result.DENY);
-            }else if(original == Blocks.LOG){
-                event.setReplacement(Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.DARK_OAK));
                 event.setResult(Result.DENY);
             }
         }else if(event.getBiome() == Biomes.BIRCH_FOREST || event.getBiome() == Biomes.BIRCH_FOREST_HILLS){
