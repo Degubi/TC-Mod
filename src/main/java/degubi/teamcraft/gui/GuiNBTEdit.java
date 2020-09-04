@@ -38,6 +38,7 @@ public class GuiNBTEdit extends GuiScreen {
     protected void keyTyped(char typedChar, int keyCode) throws IOException{
         super.keyTyped(typedChar, keyCode);
         commandTextField.textboxKeyTyped(typedChar, keyCode);
+
         if(keyCode == Keyboard.KEY_RETURN){
             Main.nbtChannel.sendToServer(new MessageString(commandTextField.getText()));
             mc.displayGuiScreen(null);

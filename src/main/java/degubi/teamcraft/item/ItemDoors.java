@@ -7,6 +7,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
+// TODO: Ez a class haszontalan, csak a FurnaceFuelBurnTimeEvent-ek miatt kell, hogy a block amit letesz látható legyen.. :/
+// Ha ItemDoor-ban public lesz a block amit letesz ezt lelehet cserélni
 public final class ItemDoors extends ItemBlock {
 
     public ItemDoors(Block theBlock){

@@ -13,7 +13,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class BlockConveyor extends Block {
-    private static final AxisAlignedBB BOX = new AxisAlignedBB(0, 0, 0, 1, 0.95D, 1);
+    private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(0, 0, 0, 1, 0.95D, 1);
 
     public BlockConveyor() {
         super(Material.ROCK);
@@ -63,7 +63,7 @@ public final class BlockConveyor extends Block {
 
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
-        return BOX;
+        return COLLISION_BOX;
     }
 
     @Override

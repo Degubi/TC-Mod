@@ -30,13 +30,13 @@ import net.minecraftforge.registries.*;
 @EventBusSubscriber(modid = "tcm")
 public final class Registry {
     private static int entityID = 0, biomeCounter = 0, networkID = 0, slabCounter = 0, soundCounter = 0, blockCounter = 0, itemCounter = 0, doorCounter = 0;
-    private static final Block[] blockArray = new Block[286];
-    private static final Item[] itemArray = new Item[304];
-    private static final SoundEvent[] soundArray = new SoundEvent[14];
-    private static final Biome[] biomeArray = new Biome[11];
-    private static final EntityEntry[] entityArray = new EntityEntry[12];
-    private static final Block[] doorArray = new Block[17];
-    private static final Item[] slabArray = new Item[3];
+    static Block[] blockArray = new Block[286];
+    static Item[] itemArray = new Item[304];
+    static SoundEvent[] soundArray = new SoundEvent[14];
+    static Biome[] biomeArray = new Biome[11];
+    static EntityEntry[] entityArray = new EntityEntry[12];
+    static Block[] doorArray = new Block[17];
+    static Item[] slabArray = new Item[3];
     private static final Method setStepSound = Registry.getMethod(Block.class, "func_149672_a", "setSoundType", SoundType.class);
 
     private Registry(){}
@@ -111,11 +111,23 @@ public final class Registry {
     }
 
     public static void registerEntity(Class<? extends Entity> entityclass, int updateFrequency, boolean sendVelUpdates) {
-        entityArray[entityID] = EntityEntryBuilder.create().entity(entityclass).id(entityclass.getSimpleName(), entityID++).name("tcm." + entityclass.getSimpleName().substring(6)).tracker(64, updateFrequency, sendVelUpdates).build();
+        entityArray[entityID] = EntityEntryBuilder.create()
+                                                  .entity(entityclass)
+                                                  .id(entityclass.getSimpleName(), entityID++)
+                                                  .name("tcm." + entityclass.getSimpleName().substring(6))
+                                                  .tracker(64, updateFrequency, sendVelUpdates)
+                                                  .build();
     }
 
     public static void registerEntityWithSpawn(Class<? extends Entity> entityclass, int backColor, int frontColor, EnumCreatureType type, int spawnChance, int minSpawnWeight, int maxSpawnWeight, Biome... biomes) {
-        entityArray[entityID] = EntityEntryBuilder.create().entity(entityclass).id(entityclass.getSimpleName(), entityID++).name("tcm." + entityclass.getSimpleName().substring(6)).tracker(64, 3, true).egg(backColor, frontColor).spawn(type, spawnChance, minSpawnWeight, maxSpawnWeight, biomes).build();
+        entityArray[entityID] = EntityEntryBuilder.create()
+                                                  .entity(entityclass)
+                                                  .id(entityclass.getSimpleName(), entityID++)
+                                                  .name("tcm." + entityclass.getSimpleName().substring(6))
+                                                  .tracker(64, 3, true)
+                                                  .egg(backColor, frontColor)
+                                                  .spawn(type, spawnChance, minSpawnWeight, maxSpawnWeight, biomes)
+                                                  .build();
     }
 
     @SuppressWarnings("unchecked")

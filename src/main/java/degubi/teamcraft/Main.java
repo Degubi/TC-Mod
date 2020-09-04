@@ -535,6 +535,16 @@ public final class Main{
         Items.IRON_PICKAXE.setHarvestLevel("pickaxe", 1);
     }
 
+    public void postLoad(@SuppressWarnings("unused") FMLPostInitializationEvent event) {
+        Registry.biomeArray = null;
+        Registry.blockArray = null;
+        Registry.doorArray = null;
+        Registry.entityArray = null;
+        Registry.itemArray = null;
+        Registry.slabArray = null;
+        Registry.soundArray = null;
+    }
+
     @EventHandler
     public void server(FMLServerStartingEvent event){
         event.registerServerCommand(new CommandExport());

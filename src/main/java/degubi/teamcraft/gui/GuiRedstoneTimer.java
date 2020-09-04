@@ -25,13 +25,7 @@ public class GuiRedstoneTimer extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button){
         if(button.enabled){
-            if(button.id == 0){
-                Main.redstoneTimerChannel.sendToServer(new MessageCoordInt(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 0));
-            }else if(button.id == 1){
-                Main.redstoneTimerChannel.sendToServer(new MessageCoordInt(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 1));
-            }else if(button.id == 2){
-                Main.redstoneTimerChannel.sendToServer(new MessageCoordInt(blockPos.getX(), blockPos.getY(), blockPos.getZ(), 2));
-            }
+            Main.redstoneTimerChannel.sendToServer(new MessageCoordInt(blockPos.getX(), blockPos.getY(), blockPos.getZ(), button.id));
         }
     }
 

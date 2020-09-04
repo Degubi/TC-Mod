@@ -28,7 +28,6 @@ public final class ClientThings {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityIceBlock.class, new TileRenderIceBlock());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWoolSign.class, new TileRenderWoolSign());
         RenderingRegistry.registerEntityRenderingHandler(EntityGoat.class, RenderGoat::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityChair.class, RenderChairEntity::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityPigman.class, RenderPigman::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityCowBrine.class, RenderCowbrine::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityNetherCreeper.class, RenderNetherCreeper::new);

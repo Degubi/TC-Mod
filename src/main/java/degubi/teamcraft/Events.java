@@ -500,9 +500,7 @@ public final class Events{
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void keyPressedEvent(@SuppressWarnings("unused") KeyInputEvent event){
-        Minecraft mc = Minecraft.getMinecraft();
-
-        if(mc.player.isCreative()) {
+        if(Minecraft.getMinecraft().player.isCreative()) {
             KeyBinding[] binds = ClientThings.binds;
 
             fireCommandKeybind(binds[0], ConfigMenu.customBind1);

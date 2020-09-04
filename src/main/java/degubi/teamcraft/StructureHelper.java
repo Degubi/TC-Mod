@@ -66,7 +66,9 @@ public final class StructureHelper {
 
     public static void clearExportFolder(int deleteMode, EntityPlayer player){
         try{
-            Files.walk(Paths.get("./structures/")).filter(Files::isRegularFile).forEach(filePath -> {
+            Files.walk(Paths.get("./structures/"))
+                 .filter(Files::isRegularFile)
+                 .forEach(filePath -> {
                     if(deleteMode == 0){
                         filePath.toFile().delete();
                         player.sendMessage(new TextComponentString(filePath.getFileName().toString() + " was deleted!"));

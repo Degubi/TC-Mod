@@ -17,10 +17,9 @@ public final class TileRenderIceBlock extends TileEntitySpecialRenderer<TileEnti
     private static final ModelZombie zombieModel = new ModelZombie();
     private static final ModelSkeleton skeletonModel = new ModelSkeleton();
 
-    private static final ResourceLocation[] textures = new ResourceLocation[] {new ResourceLocation("textures/entity/creeper/creeper.png"),
-            new ResourceLocation("textures/entity/skeleton/skeleton.png"), new ResourceLocation("textures/entity/zombie/zombie.png"),
-    };
-
+    private static final ResourceLocation[] textures = new ResourceLocation[] { new ResourceLocation("textures/entity/creeper/creeper.png"),
+                                                                                new ResourceLocation("textures/entity/skeleton/skeleton.png"),
+                                                                                new ResourceLocation("textures/entity/zombie/zombie.png") };
     private static EntitySkeleton skeleton;
     private static EntityZombie zombie;
 

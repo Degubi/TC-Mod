@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.*;
 
 @SideOnly(Side.CLIENT)
 public final class GuiTCMSettings extends GuiScreen {
-    private static final String MOD_VERSION = FMLCommonHandler.instance().findContainerFor("tcm").getVersion();
+    private static final String modVersion = "Mod version: " + FMLCommonHandler.instance().findContainerFor("tcm").getVersion();
     private static final String title = I18n.format("options.title");
 
     private final GuiScreen lastScreen;
@@ -83,7 +83,7 @@ public final class GuiTCMSettings extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
         drawDefaultBackground();
         drawCenteredString(fontRenderer, title, width / 2, 15, 16777215);
-        drawCenteredString(fontRenderer, "Mod version: " + MOD_VERSION, width - 50, height - 12, 16777215);
+        drawCenteredString(fontRenderer, modVersion, width - 50, height - 12, 16777215);
 
         for(GuiButton buttons : buttonList) {
             buttons.drawButton(mc, mouseX, mouseY, partialTicks);
