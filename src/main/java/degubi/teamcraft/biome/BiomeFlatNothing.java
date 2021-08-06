@@ -6,10 +6,11 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.init.*;
 import net.minecraft.world.biome.*;
 
-public final class BiomeFlatNothing extends Biome{
+public final class BiomeFlatNothing extends Biome {
 
     public BiomeFlatNothing() {
         super(new BiomeProperties("FlatNothing").setRainDisabled().setTemperature(2.0F).setRainfall(0.0F).setBaseHeight(0.0F).setHeightVariation(0.0F));
+
         topBlock = Blocks.DIRT.getDefaultState().withProperty(BlockDirt.VARIANT, DirtType.COARSE_DIRT);
         fillerBlock = Blocks.DIRT.getDefaultState();
         spawnableCreatureList.clear();

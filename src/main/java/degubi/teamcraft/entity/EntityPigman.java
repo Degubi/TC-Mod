@@ -24,17 +24,12 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         super(theWorld);
         setSize(0.7F, 1.95F);
 
-        if(!this.world.isRemote){
+        if(!this.world.isRemote) {
             this.tasks.removeTask(this.aiAttackOnCollide);
             this.tasks.removeTask(this.aiArrowAttack);
 
-            if(getHeldItemMainhand().getItem() == Items.BOW){
-                int i = 40;
-
-                if (this.world.getDifficulty() == EnumDifficulty.HARD){
-                    i = 20;
-                }
-                this.aiArrowAttack.setAttackCooldown(i);
+            if(getHeldItemMainhand().getItem() == Items.BOW) {
+                this.aiArrowAttack.setAttackCooldown(20);
                 this.tasks.addTask(4, this.aiArrowAttack);
             }else{
                 this.tasks.addTask(4, this.aiAttackOnCollide);
@@ -58,7 +53,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         super.applyEntityAttributes();
 
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(80.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
     }
@@ -97,13 +92,14 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     protected void dropFewItems(boolean idk, int weight){
         int i = rand.nextInt(3) + 1 + rand.nextInt(1 + weight);
 
-        for(int j = 0; j < i; ++j)
+        for(int j = 0; j < i; ++j) {
             if(isBurning()){
                 dropItem(Items.COOKED_PORKCHOP, 1);
             }else{
                 dropItem(Items.PORKCHOP, 1);
                 dropItem(Items.LEATHER, 1);
             }
+        }
     }
 
     @Override
@@ -121,10 +117,9 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
         }
 
-        int k = rand.nextInt(25);
-        if(k < 5) {
+        if(rand.nextInt(25) < 5) {
             setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(Main.EmeraldChestPlate));
-        }else if(k > 5) {
+        }else{
             setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(Main.EmeraldHelmet));
         }
         return data;
@@ -146,19 +141,23 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
         double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
         double d2 = target.posZ - this.posZ;
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - this.world.getDifficulty().getDifficultyId() * 4);
-        int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, this);
-        int j = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
-        entityarrow.setDamage(dmg * 2.0F + this.rand.nextGaussian() * 0.25D + this.world.getDifficulty().getDifficultyId() * 0.11F);
+        int powerEnchantmentLevel = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, this);
+        int punchEnchantmentLevel = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
+        int difficultyID = world.getDifficulty().getDifficultyId();
 
-        if (i > 0){
-            entityarrow.setDamage(entityarrow.getDamage() + i * 0.5D + 0.5D);
+        entityarrow.setDamage(dmg * 2.0F + this.rand.nextGaussian() * 0.25D + difficultyID * 0.11F);
+        entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - difficultyID * 4);
+
+        if(powerEnchantmentLevel > 0){
+            entityarrow.setDamage(entityarrow.getDamage() + powerEnchantmentLevel * 0.5D + 0.5D);
         }
-        if (j > 0){
-            entityarrow.setKnockbackStrength(j);
+
+        if(punchEnchantmentLevel > 0){
+            entityarrow.setKnockbackStrength(punchEnchantmentLevel);
         }
-        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.spawnEntity(entityarrow);
+
+        playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        world.spawnEntity(entityarrow);
     }
 
     @Override

@@ -13,8 +13,8 @@ public class GuiChunkHandler extends GuiScreen {
     private GuiTextField commandTextField;
     private final GuiScreen parent;
 
-    public GuiChunkHandler(GuiScreen last){
-        parent = last;
+    public GuiChunkHandler(GuiScreen parent) {
+        this.parent = parent;
     }
 
     @Override
@@ -51,12 +51,14 @@ public class GuiChunkHandler extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException{
         super.keyTyped(typedChar, keyCode);
+
         commandTextField.textboxKeyTyped(typedChar, keyCode);
     }
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException{
         super.mouseClicked(mouseX, mouseY, mouseButton);
+
         commandTextField.mouseClicked(mouseX, mouseY, mouseButton);
     }
 

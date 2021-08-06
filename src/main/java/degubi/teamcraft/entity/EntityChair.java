@@ -31,6 +31,7 @@ public final class EntityChair extends Entity{
     @Override
     public void onUpdate(){
         super.onUpdate();
+
         if(!world.isRemote && !isBeingRidden()){
             world.setBlockState(getPosition(), world.getBlockState(getPosition()).withProperty(BlockChair.isOccupied, Boolean.FALSE));
             setDead();

@@ -8,7 +8,7 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.relauncher.*;
 
-public final class BiomeForbiddenForest extends Biome{
+public final class BiomeForbiddenForest extends Biome {
     private static final WorldGenMegaJungle jungleTree = new WorldGenMegaJungle(false, 7, 15, Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.JUNGLE), Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.JUNGLE));
     private static final WorldGenCanopyTree darkTree = new WorldGenCanopyTree(false);
     private static final WorldGenSavannaTree savannaTree = new WorldGenSavannaTree(false);
@@ -17,6 +17,7 @@ public final class BiomeForbiddenForest extends Biome{
 
     public BiomeForbiddenForest() {
         super(new BiomeProperties("ForbiddenForest").setBaseHeight(0.1F).setHeightVariation(0.2F));
+
         decorator.bigMushroomsPerChunk = 8;
         decorator.treesPerChunk = 30;
         decorator.grassPerChunk = 20;
@@ -27,24 +28,24 @@ public final class BiomeForbiddenForest extends Biome{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getGrassColorAtPos(BlockPos pos){
+    public int getGrassColorAtPos(BlockPos pos) {
         return 0x2f2f2f;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getFoliageColorAtPos(BlockPos pos){
+    public int getFoliageColorAtPos(BlockPos pos) {
         return 6975545;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getSkyColorByTemp(float temp){
+    public int getSkyColorByTemp(float currentTemperature) {
         return 0;
     }
 
     @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand){
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         int i = rand.nextInt(20);
 
         if(i > 18){

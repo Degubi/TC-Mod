@@ -7,6 +7,7 @@ public class HandlerNBTMessage implements IMessageHandler<MessageString, IMessag
     @Override
     public IMessage onMessage(MessageString message, MessageContext ctx) {
         ctx.getServerHandler().player.getHeldItemMainhand().setStackDisplayName(message.name);
+
         return null;
     }
 }

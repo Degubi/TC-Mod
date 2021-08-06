@@ -11,13 +11,14 @@ import net.minecraft.world.*;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.*;
 
-public final class BiomeIceDesert extends Biome{
+public final class BiomeIceDesert extends Biome {
     private static final IBlockState cactus = Main.Cactus.getDefaultState();
     private static final WorldGenMinable ice = new WorldGenMinable(Blocks.ICE.getDefaultState(), 10, k -> k == Blocks.SAND);
     private static final WorldGenMinable packedIce = new WorldGenMinable(Blocks.PACKED_ICE.getDefaultState(), 6, k -> k == Blocks.SANDSTONE);
 
     public BiomeIceDesert() {
         super(new BiomeProperties("IceDesert").setBaseHeight(0.3F).setHeightVariation(0.1F).setTemperature(0).setRainfall(0.1F));
+
         fillerBlock = Blocks.SAND.getDefaultState();
         topBlock = Blocks.SNOW_LAYER.getDefaultState();
     }

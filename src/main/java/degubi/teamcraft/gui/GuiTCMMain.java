@@ -1,7 +1,6 @@
 package degubi.teamcraft.gui;
 
 import com.mojang.realmsclient.gui.*;
-import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.*;
@@ -30,18 +29,13 @@ public final class GuiTCMMain extends GuiScreen {
     private static final ResourceLocation gear = new ResourceLocation("tcm:textures/gui/settings.png");
     private static final BufferBuilder worldRenderer = Tessellator.getInstance().getBuffer();
     private static final ResourceLocation mainMenuLogo = new ResourceLocation("tcm:textures/gui/tclogo.png");
-    private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] {new ResourceLocation("tcm:textures/gui/menu/panorama_0.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_1.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_2.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_3.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_4.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_5.jpg")};
+    private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] { new ResourceLocation("tcm:textures/gui/menu/panorama_0.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_1.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_2.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_3.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_4.jpg"), new ResourceLocation("tcm:textures/gui/menu/panorama_5.jpg") };
     private static long lastClicked;
     private static ResourceLocation backgroundTexture;
     private static int panoTimer;
 
     @Override
-    public boolean doesGuiPauseGame(){return false;}
-    @Override
-    protected void keyTyped(char character, int keyCode) {}
-
-    @Override
-    public void initGui(){
+    public void initGui() {
         super.initGui();
 
         if(backgroundTexture == null) {
@@ -57,7 +51,7 @@ public final class GuiTCMMain extends GuiScreen {
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException{
+    protected void actionPerformed(GuiButton button) {
         switch(button.id) {
             case 0: mc.displayGuiScreen(new GuiWorldSelection(this)); break;
             case 1: mc.displayGuiScreen(new GuiMultiplayer(this)); break;
@@ -79,16 +73,20 @@ public final class GuiTCMMain extends GuiScreen {
 
     public static void openWebpage(String topass){
         try{
-            Desktop.getDesktop().browse(new URI(topass));
+            java.awt.Desktop.getDesktop().browse(new URI(topass));
         }catch(IOException | URISyntaxException e){
             System.out.println("Couldn't open " + topass);
         }
     }
 
     @Override
-    public void updateScreen(){
-        ++panoTimer;
-    }
+    public boolean doesGuiPauseGame() { return false; }
+
+    @Override
+    protected void keyTyped(char character, int keyCode) {}
+
+    @Override
+    public void updateScreen() { ++panoTimer; }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks){
@@ -110,7 +108,7 @@ public final class GuiTCMMain extends GuiScreen {
         GlStateManager.disableCull();
         GlStateManager.depthMask(false);
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
-        //eredeti 64
+
         for(int j = 0; j < 32; ++j){
             GlStateManager.pushMatrix();
             float f = ((float)(j % 8) / (float)8 - 0.5F) / 64.0F;
@@ -118,6 +116,7 @@ public final class GuiTCMMain extends GuiScreen {
             GlStateManager.translate(f, f1, 0.0F);
             GlStateManager.rotate(MathHelper.sin((panoTimer + partialTicks) / 400.0F) * 25.0F + 20.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(-(panoTimer + partialTicks) * 0.1F, 0.0F, 1.0F, 0.0F);
+
             for(int k = 0; k < 6; ++k){
                 GlStateManager.pushMatrix();
                 if (k == 1){
@@ -144,6 +143,7 @@ public final class GuiTCMMain extends GuiScreen {
             GlStateManager.popMatrix();
             GlStateManager.colorMask(true, true, true, false);
         }
+
         worldRenderer.setTranslation(0.0D, 0.0D, 0.0D);
         GlStateManager.colorMask(true, true, true, true);
         GlStateManager.matrixMode(5889);
@@ -159,6 +159,7 @@ public final class GuiTCMMain extends GuiScreen {
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
         GlStateManager.enableBlend();
         GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
+
         for(int k = 0; k < 5; ++k) {
             GL11.glCopyTexSubImage2D(GL11.GL_TEXTURE_2D, 0, 0, 0, 0, 0, 512, 512);
             GlStateManager.colorMask(true, true, true, false);
@@ -173,10 +174,12 @@ public final class GuiTCMMain extends GuiScreen {
                 worldRenderer.pos(0.0D, 0.0D, zLevel).tex(1.0F + f1, 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
                 worldRenderer.pos(0.0D, height, zLevel).tex(0.0F + f1, 0.0D).color(1.0F, 1.0F, 1.0F, f).endVertex();
             }
+
             Tessellator.getInstance().draw();
             GlStateManager.enableAlpha();
             GlStateManager.colorMask(true, true, true, true);
         }
+
         mc.getFramebuffer().bindFramebuffer(true);
         GlStateManager.viewport(0, 0, mc.displayWidth, mc.displayHeight);
         float f = width > height ? 110.0F / width : 110.0F / height;
@@ -234,7 +237,7 @@ public final class GuiTCMMain extends GuiScreen {
         GL11.glPopMatrix();
     }
 
-    private static final java.util.List<String> readFromURL(String url) {
+    private static final List<String> readFromURL(String url) {
         try(CloseableHttpClient httpclient = HttpClients.createDefault();
             CloseableHttpResponse response = httpclient.execute(new HttpGet(url));
             InputStream content = response.getEntity().getContent()) {
@@ -246,7 +249,7 @@ public final class GuiTCMMain extends GuiScreen {
         }
     }
 
-    public static void loadGuiResources(){
+    public static void loadGuiResources() {
         LocalDate date = LocalDate.now();
 
         if(date.getMonth() == Month.JUNE && date.getDayOfMonth() == 1){
@@ -260,7 +263,7 @@ public final class GuiTCMMain extends GuiScreen {
         }else if(date.getMonth() == Month.MARCH && date.getDayOfMonth() == 15) {
             splashText = "RIP";
         }else{
-            java.util.List<String> splashes = readFromURL("http://pastebin.com/raw/97FAqQva");
+            List<String> splashes = readFromURL("https://raw.githubusercontent.com/Degubi/TC-Mod/master/splashes.txt");
 
             splashes.add(Minecraft.getMinecraft().getVersion() + "!");
             splashes.add(date.getYear() + "!");

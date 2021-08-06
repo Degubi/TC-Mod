@@ -21,6 +21,7 @@ public final class ClientThings {
 
     public static void registerClientThings(){
         ClientRegistry.registerKeyBinding(zoomBind = new KeyBinding("Zoom", Keyboard.KEY_C, "TeamCraft"));
+
         for(int k = 0; k < 5; ++k) {
             ClientRegistry.registerKeyBinding(binds[k] = new KeyBinding("CustomBind_" + (k + 1), Keyboard.KEY_NUMPAD1, "TeamCraft"));
         }

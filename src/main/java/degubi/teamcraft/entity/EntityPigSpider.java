@@ -16,6 +16,7 @@ public final class EntityPigSpider extends EntitySpider{
 
     public EntityPigSpider(World theWorld){
         super(theWorld);
+
         if(theWorld.provider.isNether()){
             setIsNetherSpider(true);
             webCounter = 200+rand.nextInt(500);
@@ -28,6 +29,7 @@ public final class EntityPigSpider extends EntitySpider{
     public void onLivingUpdate() {
         if(isNetherSpider() && !world.isRemote){
             --webCounter;
+
             if (webCounter <= 30){
                 playSound(SoundEvents.BLOCK_CLOTH_PLACE, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
                 world.setBlockState(getPosition(), Blocks.WEB.getDefaultState());
@@ -40,12 +42,14 @@ public final class EntityPigSpider extends EntitySpider{
     @Override
     protected void entityInit() {
         super.entityInit();
+
         dataManager.register(isNetherSpider, Boolean.FALSE);
     }
 
     @Override
     protected void applyEntityAttributes(){
         super.applyEntityAttributes();
+
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
     }
@@ -53,6 +57,7 @@ public final class EntityPigSpider extends EntitySpider{
     @Override
     public void writeEntityToNBT(NBTTagCompound tag) {
         super.writeEntityToNBT(tag);
+
         tag.setInteger("webCounter", webCounter);
         tag.setBoolean("isNether", isNetherSpider());
     }
@@ -91,6 +96,7 @@ public final class EntityPigSpider extends EntitySpider{
                 world.spawnEntity(skele);
             }
         }
+
         super.setDead();
     }
 
@@ -107,6 +113,7 @@ public final class EntityPigSpider extends EntitySpider{
     @Override
     protected void dropFewItems(boolean wasRecentlyHit, int weight){
         super.dropFewItems(wasRecentlyHit, weight);
+
         if(wasRecentlyHit && (rand.nextInt(3) == 0 || rand.nextInt(1 + weight) > 0)){
             dropItem(Items.STRING, 2);
         }
@@ -120,6 +127,7 @@ public final class EntityPigSpider extends EntitySpider{
             }
             return true;
         }
+
         return false;
     }
 }

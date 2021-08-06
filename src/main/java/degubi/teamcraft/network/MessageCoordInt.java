@@ -10,7 +10,7 @@ public final class MessageCoordInt implements IMessage {
     public int messageType;
 
     public MessageCoordInt(){}
-    public MessageCoordInt(int posX, int posY, int posZ, int type){
+    public MessageCoordInt(int posX, int posY, int posZ, int type) {
         x = posX;
         y = posY;
         z = posZ;
@@ -18,7 +18,7 @@ public final class MessageCoordInt implements IMessage {
     }
 
     @Override
-    public void fromBytes(ByteBuf buf){
+    public void fromBytes(ByteBuf buf) {
         x = buf.readInt();
         y = buf.readInt();
         z = buf.readInt();
@@ -26,7 +26,7 @@ public final class MessageCoordInt implements IMessage {
     }
 
     @Override
-    public void toBytes(ByteBuf buf){
+    public void toBytes(ByteBuf buf) {
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);

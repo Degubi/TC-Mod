@@ -11,13 +11,14 @@ public class HandlerRedstoneTimer implements IMessageHandler<MessageCoordInt, IM
         TileEntityTimer tile = (TileEntityTimer) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
         int type = message.messageType;
 
-        if(type == 0){
+        if(type == 0) {
             tile.switchActiveState();
         }else if(type == 1){
             tile.incMaxCounter();
         }else{
             tile.decMaxCounter();
         }
+
         return null;
     }
 }

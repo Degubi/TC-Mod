@@ -10,11 +10,13 @@ public final class CreaTab extends CreativeTabs {
 
     public CreaTab(String label, Item item) {
         super(label);
+
         icon = new ItemStack(item);
     }
 
     public CreaTab(String label, Block block) {
         super(label);
+
         icon = new ItemStack(block);
     }
 

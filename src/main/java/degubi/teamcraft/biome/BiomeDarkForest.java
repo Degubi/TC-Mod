@@ -11,12 +11,13 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.fml.relauncher.*;
 
-public final class BiomeDarkForest extends Biome{
+public final class BiomeDarkForest extends Biome {
     private static final IBlockState log = Blocks.LOG.getDefaultState();
     private static final IBlockState leaf = Blocks.LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.FALSE);
 
     public BiomeDarkForest() {
         super(new BiomeProperties("darkforest").setBaseHeight(0.1F).setHeightVariation(0.2F).setRainfall(1000F));
+
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
         decorator.treesPerChunk = 3;
@@ -26,13 +27,13 @@ public final class BiomeDarkForest extends Biome{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getFoliageColorAtPos(BlockPos pos){
+    public int getFoliageColorAtPos(BlockPos pos) {
         return 6975545;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getGrassColorAtPos(BlockPos pos){
+    public int getGrassColorAtPos(BlockPos pos) {
         return 6975545;
     }
 
@@ -46,10 +47,10 @@ public final class BiomeDarkForest extends Biome{
         super.decorate(world, rand, pos);
 
         MutableBlockPos pos1 = new MutableBlockPos();
-        for(int x = 0; x < 30; x++){
+        for(int x = 0; x < 30; x++) {
             pos1.setPos(pos.getX() + rand.nextInt(16) + 8, 30 + rand.nextInt(70), pos.getZ() + rand.nextInt(16) + 8);
 
-            if(world.getBlockState(pos1.up()).getBlock() == Blocks.LEAVES && world.getBlockState(pos1).getBlock() == Blocks.AIR){
+            if(world.getBlockState(pos1.up()).getBlock() == Blocks.LEAVES && world.getBlockState(pos1).getBlock() == Blocks.AIR) {
                 world.setBlockState(pos1, Blocks.WEB.getDefaultState(), 2);
             }
         }
@@ -58,14 +59,15 @@ public final class BiomeDarkForest extends Biome{
         addCustomTree1(world, rand, pos.getX(), pos.getZ());
     }
 
-    private static void addBushGens(World world, Random rand, int blockXPos, int blockZPos){
+    private static void addBushGens(World world, Random rand, int blockXPos, int blockZPos) {
         MutableBlockPos pos = new MutableBlockPos();
 
-        for(int mul = 0; mul < 30; mul++){
+        for(int mul = 0; mul < 30; ++mul) {
              pos.setPos(blockXPos + rand.nextInt(16) + 8, 40 + rand.nextInt(80), blockZPos + rand.nextInt(16) + 8);
 
              if(world.getBlockState(pos.down()).getBlock() == Blocks.GRASS && world.isAirBlock(pos.up(2).west(3)) && world.isAirBlock(pos.up(2).east(3)) && world.isAirBlock(pos.up(2).north(3)) && world.isAirBlock(pos.up(2).south(3))){
                 int height = 1+rand.nextInt(2);
+
                 if(rand.nextBoolean()){
                     world.setBlockState(pos.up(height), leaf, 2);
                     world.setBlockState(pos.north().up(height - 1), leaf, 2);
@@ -74,6 +76,7 @@ public final class BiomeDarkForest extends Biome{
                     world.setBlockState(pos.west().up(height - 1), leaf, 2);
                 }else{
                     int x = -1;
+
                     if(height == 2) {
                         do {
                             x++;
@@ -110,7 +113,7 @@ public final class BiomeDarkForest extends Biome{
         }
     }
 
-    private static void addCustomTree1(World world, Random rand, int blockXPos, int blockZPos){
+    private static void addCustomTree1(World world, Random rand, int blockXPos, int blockZPos) {
         MutableBlockPos pos = new MutableBlockPos();
 
         for(int mul = 0; mul < 15; mul++){
@@ -146,7 +149,7 @@ public final class BiomeDarkForest extends Biome{
     }
 
     @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand){
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
         return rand.nextInt(2) == 0 ? BiomeForbiddenForest.birchTree : TREE_FEATURE;
     }
 }

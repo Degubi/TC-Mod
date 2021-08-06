@@ -111,23 +111,23 @@ public final class Events{
                 freePos = pos.east();
             }
 
-            int k = 0;
+            int droppedItemCount = 0;
             for(EntityItem lope : event.getDrops()){
                 ItemStack items = lope.getItem();
 
-                if(k < 27) {
-                    chest.setInventorySlotContents(k, items);
+                if(droppedItemCount < 27) {
+                    chest.setInventorySlotContents(droppedItemCount, items);
                 }else{
-                    chest2.setInventorySlotContents(k - 27, items);
+                    chest2.setInventorySlotContents(droppedItemCount - 27, items);
                 }
-                ++k;
+                ++droppedItemCount;
             }
 
             event.getDrops().clear();
             world.setBlockState(pos, Blocks.CHEST.getDefaultState());
             world.setTileEntity(pos, chest);
 
-            if(k > 26) {
+            if(droppedItemCount > 26) {
                 world.setBlockState(freePos, Blocks.CHEST.getDefaultState());
                 world.setTileEntity(freePos, chest2);
             }
@@ -159,12 +159,13 @@ public final class Events{
                 ItemStack stack = player.getHeldItemMainhand();
 
                 if(!stack.isEmpty() && stack.getItem() == Item.getItemFromBlock(Blocks.WOOL)){
-                    int level = blockAtPos.getValue(BlockCauldron.LEVEL).intValue();
+                    int waterLevel = blockAtPos.getValue(BlockCauldron.LEVEL).intValue();
 
-                    if(level > 0 && stack.getMetadata() != 0){
+                    if(waterLevel > 0 && stack.getMetadata() != 0){
                         event.setCanceled(true);
-                        --level;
-                        world.setBlockState(pos, blockAtPos.withProperty(BlockCauldron.LEVEL, Integer.valueOf(level)));
+                        --waterLevel;
+
+                        world.setBlockState(pos, blockAtPos.withProperty(BlockCauldron.LEVEL, Integer.valueOf(waterLevel)));
                         stack.shrink(1);
 
                         if (!player.inventory.addItemStackToInventory(new ItemStack(Blocks.WOOL))){
@@ -176,12 +177,14 @@ public final class Events{
                 }
             }else if(blockAtPos.getBlock() instanceof BlockBed && player.trySleep(pos) == SleepResult.OK){
                 event.setCanceled(true);
+
                 BlockBed bed = (BlockBed) blockAtPos.getBlock();
                 Vec3d hitVec = event.getHitVec();
 
                 bed.onBlockActivated(world, pos, blockAtPos, player, event.getHand(), event.getFace(), (float) hitVec.x, (float) hitVec.y, (float) hitVec.z);
                 world.playSound(null, pos, Main.SLEEPING, SoundCategory.PLAYERS, 1.0F, 1.0F);
             }
+
             if(blockAtPos.getBlock() instanceof BlockSign){
                 player.openEditSign((TileEntitySign) world.getTileEntity(pos));
             }

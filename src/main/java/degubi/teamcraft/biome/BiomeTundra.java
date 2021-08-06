@@ -11,7 +11,7 @@ import net.minecraft.world.biome.*;
 import net.minecraft.world.chunk.*;
 import net.minecraft.world.gen.feature.*;
 
-public final class BiomeTundra extends Biome{
+public final class BiomeTundra extends Biome {
     private static final WorldGenTrees spruceTree = new WorldGenTrees(false, 12, Blocks.LOG.getDefaultState().withProperty(BlockOldLog.VARIANT, BlockPlanks.EnumType.SPRUCE), Blocks.LEAVES.getDefaultState().withProperty(BlockOldLeaf.VARIANT, BlockPlanks.EnumType.SPRUCE), false);
 
     public BiomeTundra() {
@@ -33,7 +33,7 @@ public final class BiomeTundra extends Biome{
     }
 
     @Override
-    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal){
+    public void genTerrainBlocks(World world, Random rand, ChunkPrimer primer, int x, int z, double noiseVal) {
         IBlockState iblockstate = topBlock;
         int k = -1;
         int l = (int)(noiseVal / 3.0D + 3.0D + rand.nextDouble() * 0.25D);

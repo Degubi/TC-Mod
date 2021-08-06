@@ -37,6 +37,7 @@ public final class EntitySkeletonSpider extends EntitySpider{
         if(wasRecentlyHit && (rand.nextInt(3) == 0 || rand.nextInt(1 + weight) > 0)){
             entityDropItem(new ItemStack(Items.COAL, 1, 1), 100);
         }
+
         if(rand.nextInt(1000) == 5){
             entityDropItem(new ItemStack(Items.SKULL, 1, 1), 0.0F);
         }
