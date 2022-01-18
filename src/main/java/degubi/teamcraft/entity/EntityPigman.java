@@ -17,7 +17,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
 public final class EntityPigman extends EntityMob implements IRangedAttackMob{
-    private final EntityAIAttackRangedBow<EntityPigman> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 5, 15.0F);
+    private final EntityAIAttackRangedBow<EntityPigman> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 30, 15.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false);
 
     public EntityPigman(World theWorld){
@@ -29,7 +29,6 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
             this.tasks.removeTask(this.aiArrowAttack);
 
             if(getHeldItemMainhand().getItem() == Items.BOW) {
-                this.aiArrowAttack.setAttackCooldown(20);
                 this.tasks.addTask(4, this.aiArrowAttack);
             }else{
                 this.tasks.addTask(4, this.aiAttackOnCollide);
@@ -54,7 +53,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
 
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60.0D);
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(20.0D);
     }
 

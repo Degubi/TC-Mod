@@ -47,10 +47,10 @@ public final class WorldGens implements IWorldGenerator {
             int x = chunkX * 16;
             int z = chunkZ * 16;
 
-            addBaseGenNew(netherObsidian, world, random, x, z, 80, 20, 125);
-            addBaseGenNew(netherCoal, world, random, x, z, 50, 20, 125);
-            addBaseGenNew(netherIron, world, random, x, z, 50, 20, 125);
-            addBaseGenNew(netherGold, world, random, x, z, 20, 20, 125);
+            addBaseGenNew(netherObsidian, world, random, x, z, 50, 20, 125);
+            addBaseGenNew(netherCoal, world, random, x, z, 30, 20, 125);
+            addBaseGenNew(netherIron, world, random, x, z, 25, 20, 125);
+            addBaseGenNew(netherGold, world, random, x, z, 15, 20, 125);
             addBaseGenNew(netherLapis, world, random, x, z, 10, 20, 125);
             addBaseGenNew(netherEmerald, world, random, x, z, 10, 20, 125);
             addBaseGenNew(netherDiamond, world, random, x, z, 5, 20, 125);

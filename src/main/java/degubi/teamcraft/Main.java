@@ -465,9 +465,9 @@ public final class Main{
         registerEntityWithSpawn(EntitySkeletonSpider.class, 0, 0x555555, EnumCreatureType.MONSTER, 0, 0, 0, Biomes.HELL);
         registerEntity(EntityChair.class, 1, false);
         registerEntity(EntityCureItem.class, 7, true);
-        registerEntityWithSpawn(EntityPigman.class, 0xda6969, 0x743b3b, EnumCreatureType.MONSTER, 50, 1, 2, Biomes.PLAINS, Biomes.BEACH, Biomes.SWAMPLAND, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.MESA, Biomes.EXTREME_HILLS, Biomes.EXTREME_HILLS_EDGE, Biomes.EXTREME_HILLS_WITH_TREES, Biomes.ROOFED_FOREST, forbiddenForest);
+        registerEntityWithSpawn(EntityPigman.class, 0xda6969, 0x743b3b, EnumCreatureType.MONSTER, 25, 1, 1, Biomes.PLAINS, Biomes.BEACH, Biomes.SWAMPLAND, Biomes.SAVANNA, Biomes.SAVANNA_PLATEAU, Biomes.MESA, Biomes.EXTREME_HILLS, Biomes.EXTREME_HILLS_EDGE, Biomes.EXTREME_HILLS_WITH_TREES, Biomes.ROOFED_FOREST, forbiddenForest);
         registerEntityWithSpawn(EntityEnderSpider.class, 0x1f1c1c, 0x6d6d6d, EnumCreatureType.MONSTER, 0, 0, 0, Biomes.PLAINS);
-        registerEntityWithSpawn(EntityClimberZombie.class, 0x008789, 0x6a2500, EnumCreatureType.MONSTER, 25, 1, 1, Biomes.FOREST, Biomes.DESERT, Biomes.EXTREME_HILLS, Biomes.JUNGLE);
+        registerEntityWithSpawn(EntityClimberZombie.class, 0x008789, 0x6a2500, EnumCreatureType.MONSTER, 25, 1, 1, Biomes.FOREST, Biomes.PLAINS, Biomes.DESERT, Biomes.EXTREME_HILLS, Biomes.JUNGLE);
         registerEntityWithSpawn(EntityWolfMan.class, 0, 0, EnumCreatureType.MONSTER, 0, 0, 0, Biomes.BEACH);
         addMobSpawn(EntitySnowman.class, EnumCreatureType.CREATURE, 50, 1, 3, iceDesert, Biomes.COLD_TAIGA, Biomes.COLD_TAIGA_HILLS, Biomes.TAIGA_HILLS, snowHills, iceHills);
         removeMobSpawn(EntityEnderman.class, Biomes.SKY);

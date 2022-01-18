@@ -17,7 +17,7 @@ public final class BlockQuickSand extends BlockFalling{
     public BlockQuickSand() {
         super(Material.SAND);
         setCreativeTab(Main.tabBlocks);
-        setHardness(Blocks.SAND.getDefaultState().getBlockHardness(null, null) * 64);
+        setHardness(Blocks.SAND.getDefaultState().getBlockHardness(null, null) * 32);
         setResistance(Blocks.SAND.getExplosionResistance(null, null, null, null));
         setSoundType(Blocks.SAND.getSoundType(null, null, null, null));
         setHarvestLevel("shovel", 3);
@@ -30,15 +30,11 @@ public final class BlockQuickSand extends BlockFalling{
 
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-        if(world.getBlockState(pos.down()).getBlock() != Main.QuickSand && world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
-            world.setBlockState(pos.down(), Main.QuickSand.getDefaultState(), 2);
-        }
-
         if(entity instanceof EntityFallingBlock){
             entity.setDead();
         }else{
             entity.motionX *= 0.0000001D;
-            entity.motionY = 0.025D;
+            entity.motionY = 0.0125D;
             entity.motionZ *= 0.0000001D;
         }
     }
