@@ -11,10 +11,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class EntityWolfMan extends EntityMob{
+public final class EntityWolfMan extends EntityMob {
 
-    public EntityWolfMan(World theWorld) {
-        super(theWorld);
+    public EntityWolfMan(World world) {
+        super(world);
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class EntityWolfMan extends EntityMob{
         super.onLivingUpdate();
 
         World world = this.world;
-        if(!world.isRemote && world.getCurrentMoonPhaseFactor() == 1 && world.getCelestialAngleRadians(1F) > 4.5F){
+        if(!world.isRemote && world.getCurrentMoonPhaseFactor() == 1 && world.getCelestialAngleRadians(1F) > 4.5F) {
             EntityWolf wolf = new EntityWolf(world);
 
             wolf.setLocationAndAngles(posX, posY, posZ, 0, 0);
@@ -45,29 +45,30 @@ public final class EntityWolfMan extends EntityMob{
     @Override
     protected void applyEntityAttributes(){
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
-        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+        getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(80.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn){
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_WOLF_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    protected SoundEvent getAmbientSound(){
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_WOLF_GROWL;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource){
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_WOLF_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound(){
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_WOLF_DEATH;
     }
 }

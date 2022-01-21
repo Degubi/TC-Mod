@@ -8,7 +8,6 @@ import degubi.teamcraft.block.interactive.*;
 import degubi.teamcraft.block.tile.*;
 import degubi.teamcraft.block.vanilla.*;
 import degubi.teamcraft.block.variant.*;
-import degubi.teamcraft.command.*;
 import degubi.teamcraft.entity.*;
 import degubi.teamcraft.gui.*;
 import degubi.teamcraft.item.*;
@@ -214,8 +213,6 @@ public final class Main{
     public static final Block HalfAndesiteBrick = registerBlock(new BlockHalfBlocks(Blocks.STONE), "halfandesitebrick");
     public static final Block HalfBasaltBrick = registerBlock(new BlockHalfBlocks(Blocks.STONE), "halfbasaltbrick");
 
-    public static final Item PositionItem = registerItem(new ItemPosItem(), "positem");
-    public static final Item GenerationItem = registerItem(new ItemGenItem(), "genitem");
     public static final Item MultiTool = registerItem(new ItemMultiTool(multitool), "multitool");
     public static final Item LapisHelmet = registerItem(new ItemArmor(lasulitArmor, 4, EntityEquipmentSlot.HEAD).setCreativeTab(ToolsWeapons), "lasulit_helmet");
     public static final Item LapisChestPlate = registerItem(new ItemArmor(lasulitArmor, 4, EntityEquipmentSlot.CHEST).setCreativeTab(ToolsWeapons), "lasulit_chestplate");
@@ -543,15 +540,6 @@ public final class Main{
         Registry.itemArray = null;
         Registry.slabArray = null;
         Registry.soundArray = null;
-    }
-
-    @EventHandler
-    public void server(FMLServerStartingEvent event){
-        event.registerServerCommand(new CommandExport());
-        event.registerServerCommand(new CommandUndo());
-        event.registerServerCommand(new CommandClear());
-        event.registerServerCommand(new CommandHalfSphere());
-        event.registerServerCommand(new CommandExpand());
     }
 
 

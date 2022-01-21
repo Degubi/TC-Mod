@@ -12,12 +12,14 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class EntityCowBrine extends EntityMob{
+public final class EntityCowBrine extends EntityMob {
 
     public EntityCowBrine(World theWorld){
         super(theWorld);
+
         setSize(0.9F, 1.3F);
         setPathPriority(PathNodeType.WATER, -1.0F);
+
         tasks.addTask(1, new EntityAIWander(this, 1.0D));
         tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
         tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -27,44 +29,45 @@ public final class EntityCowBrine extends EntityMob{
     }
 
     @Override
-    protected void applyEntityAttributes(){
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
+
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
-    public EnumCreatureAttribute getCreatureAttribute(){
+    public EnumCreatureAttribute getCreatureAttribute() {
         return EnumCreatureAttribute.UNDEAD;
     }
 
     @Override
-    protected SoundEvent getAmbientSound(){
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_COW_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource){
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_COW_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound(){
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_COW_DEATH;
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block blockIn){
+    protected void playStepSound(BlockPos pos, Block blockIn) {
         this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    protected float getSoundVolume(){
+    protected float getSoundVolume() {
         return 0.4F;
     }
 
     @Override
-    protected Item getDropItem(){
+    protected Item getDropItem() {
         return Items.ROTTEN_FLESH;
     }
 }

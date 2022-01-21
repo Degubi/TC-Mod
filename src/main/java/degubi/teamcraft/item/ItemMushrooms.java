@@ -17,7 +17,7 @@ public final class ItemMushrooms extends ItemFood {
 
     @Override
     public int getMaxItemUseDuration(ItemStack stack){
-        return 100;
+        return 75;
     }
 
     @Override

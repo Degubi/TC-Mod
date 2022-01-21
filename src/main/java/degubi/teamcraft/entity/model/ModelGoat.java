@@ -3,6 +3,7 @@ package degubi.teamcraft.entity.model;
 import degubi.teamcraft.entity.*;
 import net.minecraft.client.model.*;
 import net.minecraft.entity.*;
+import net.minecraft.util.math.*;
 import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.opengl.*;
 
@@ -47,28 +48,31 @@ public final class ModelGoat extends ModelCow {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale){
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float scale) {
         EntityGoat goat = (EntityGoat) entity;
 
-        if(goat.getCustomNameTag().equals("N0RRIS56")){
+        if(goat.getCustomNameTag().equals("N0RRIS56")) {
             GL11.glTranslatef(0, -3.1F, 0);
             GL11.glScalef(3F, 3F, 3F);
         }
 
-        if(!isChild){
+        if(!isChild) {
             udders.render(scale);
             beard.render(scale);
-            if(goat.getHornColor() == 0){
+
+            if(goat.getHornColor() == 0) {
                 hornbrown.render(scale);
             }else{
                 hornyellow.render(scale);
             }
         }
+
         super.render(goat, f, f1, f2, f3, f4, scale);
     }
 
-    public void renderIce(){
+    public void renderIce() {
         setRotationAngles(0, 0, 0, 0, 0, 0, null);
+
         GL11.glPushMatrix();
         GL11.glScalef(0.99f, 0.99f, 0.99f);
         head.render(0.0625F);
@@ -83,13 +87,17 @@ public final class ModelGoat extends ModelCow {
     @Override
     public void setLivingAnimations(EntityLivingBase entity, float limbSwing, float limbSwingAmount, float partialTickTime) {
         super.setLivingAnimations(entity, limbSwing, limbSwingAmount, partialTickTime);
-        head.rotationPointY = 6.0F + ((EntityGoat)entity).getHeadRotationPointY(partialTickTime) * 9.0F;
-        headRotationAngleX = ((EntityGoat)entity).getHeadRotationAngleX(partialTickTime);
+
+        EntityGoat goat = (EntityGoat) entity;
+
+        head.rotationPointY = 6.0F + getHeadRotationPointY(partialTickTime, goat) * 9.0F;
+        headRotationAngleX = getHeadRotationAngleX(partialTickTime, goat);
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity){
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+
         hornbrown.rotateAngleX = head.rotateAngleX;
         hornbrown.rotateAngleY = head.rotateAngleY;
         hornbrown.rotateAngleX -= 0.2F;
@@ -99,5 +107,22 @@ public final class ModelGoat extends ModelCow {
         beard.rotateAngleX = head.rotateAngleX;
         beard.rotateAngleY = head.rotateAngleY;
         head.rotateAngleX = headRotationAngleX;
+    }
+
+    private float getHeadRotationPointY(float partialTickTime, EntityGoat goat) {
+        int sheepTimer = goat.sheepTimer;
+
+        return sheepTimer <= 0 ? 0.0F : (sheepTimer >= 4 && sheepTimer <= 36 ? 1.0F : (sheepTimer < 4 ? (sheepTimer - partialTickTime) / 4.0F : -(sheepTimer - 40 - partialTickTime) / 4.0F));
+    }
+
+    private float getHeadRotationAngleX(float partialTickTime, EntityGoat goat) {
+        int sheepTimer = goat.sheepTimer;
+
+        if(sheepTimer > 4 && sheepTimer <= 36){
+            float f = (sheepTimer - 4 - partialTickTime) / 32.0F;
+
+            return ((float)Math.PI / 5F) + ((float)Math.PI * 7F / 100F) * MathHelper.sin(f * 28.7F);
+        }
+        return sheepTimer > 0 ? ((float)Math.PI / 5F) : goat.rotationPitch * 0.017453292F;
     }
 }

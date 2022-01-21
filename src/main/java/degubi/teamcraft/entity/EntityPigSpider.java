@@ -10,16 +10,17 @@ import net.minecraft.potion.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 
-public final class EntityPigSpider extends EntitySpider{
-    private static final DataParameter<Boolean> isNetherSpider = EntityDataManager.<Boolean>createKey(EntityPigSpider.class, DataSerializers.BOOLEAN);
+public final class EntityPigSpider extends EntitySpider {
+    private static final DataParameter<Boolean> isNetherSpider = EntityDataManager.createKey(EntityPigSpider.class, DataSerializers.BOOLEAN);
+
     private int webCounter;
 
-    public EntityPigSpider(World theWorld){
-        super(theWorld);
+    public EntityPigSpider(World world) {
+        super(world);
 
-        if(theWorld.provider.isNether()){
+        if(world.provider.isNether()) {
             setIsNetherSpider(true);
-            webCounter = 200+rand.nextInt(500);
+            webCounter = 200 + rand.nextInt(500);
         }else{
             setIsNetherSpider(false);
         }
@@ -27,15 +28,16 @@ public final class EntityPigSpider extends EntitySpider{
 
     @Override
     public void onLivingUpdate() {
-        if(isNetherSpider() && !world.isRemote){
+        if(isNetherSpider() && !world.isRemote) {
             --webCounter;
 
-            if (webCounter <= 30){
+            if(webCounter <= 30 && getAttackTarget() != null) {
                 playSound(SoundEvents.BLOCK_CLOTH_PLACE, 1.0F, (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
                 world.setBlockState(getPosition(), Blocks.WEB.getDefaultState());
-                webCounter = 200+rand.nextInt(500);
+                webCounter = 200 + rand.nextInt(500);
             }
         }
+
         super.onLivingUpdate();
     }
 
@@ -47,7 +49,7 @@ public final class EntityPigSpider extends EntitySpider{
     }
 
     @Override
-    protected void applyEntityAttributes(){
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
@@ -67,17 +69,17 @@ public final class EntityPigSpider extends EntitySpider{
         super.readEntityFromNBT(tag);
 
         webCounter = tag.getInteger("webCounter");
-        if(tag.hasKey("isNether")){
+        if(tag.hasKey("isNether")) {
             setIsNetherSpider(tag.getBoolean("isNether"));
         }
     }
 
-    public boolean isNetherSpider(){
+    public boolean isNetherSpider() {
         return dataManager.get(isNetherSpider).booleanValue();
     }
 
-    private void setIsNetherSpider(boolean is){
-        if(is){
+    private void setIsNetherSpider(boolean is) {
+        if(is) {
             dataManager.set(isNetherSpider, Boolean.TRUE);
             isImmuneToFire = true;
             setSize(2F, 1.1F);
@@ -88,8 +90,8 @@ public final class EntityPigSpider extends EntitySpider{
     }
 
     @Override
-    public void setDead(){
-        if(world.provider.getDimension() == -1 && !world.isRemote){
+    public void setDead() {
+        if(world.provider.isNether() && !world.isRemote) {
             if(rand.nextInt(3) == 1) {
                 EntitySkeletonSpider skele = new EntitySkeletonSpider(world);
                 skele.setLocationAndAngles(posX, posY + 0.5D, posZ, rand.nextFloat() * 360.0F, 0.0F);
@@ -101,17 +103,17 @@ public final class EntityPigSpider extends EntitySpider{
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource){
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_PIG_HURT;
     }
 
     @Override
-    protected Item getDropItem(){
+    protected Item getDropItem() {
         return isBurning() ? Items.COOKED_PORKCHOP : Items.PORKCHOP;
     }
 
     @Override
-    protected void dropFewItems(boolean wasRecentlyHit, int weight){
+    protected void dropFewItems(boolean wasRecentlyHit, int weight) {
         super.dropFewItems(wasRecentlyHit, weight);
 
         if(wasRecentlyHit && (rand.nextInt(3) == 0 || rand.nextInt(1 + weight) > 0)){
@@ -120,9 +122,9 @@ public final class EntityPigSpider extends EntitySpider{
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity target)    {
-        if(super.attackEntityAsMob(target)){
-            if(target instanceof EntityLivingBase && !world.provider.isSurfaceWorld()){
+    public boolean attackEntityAsMob(Entity target) {
+        if(super.attackEntityAsMob(target)) {
+            if(target instanceof EntityLivingBase && !world.provider.isSurfaceWorld()) {
                 ((EntityLivingBase)target).addPotionEffect(new PotionEffect(MobEffects.POISON, 15 * 20, 0));
             }
             return true;

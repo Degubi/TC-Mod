@@ -11,16 +11,18 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class EntityClimberZombie extends EntityZombie{
+public final class EntityClimberZombie extends EntityZombie {
 
     public EntityClimberZombie(World theWorld) {
         super(theWorld);
+
         setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Blocks.LADDER));
     }
 
     @Override
     protected void initEntityAI() {
         super.initEntityAI();
+
         this.tasks.addTask(3, new EntityAIFleeSun(this, 1.0D));
     }
 
@@ -45,7 +47,7 @@ public final class EntityClimberZombie extends EntityZombie{
     }
 
     @Override
-    protected PathNavigate createNavigator(World worldIn){
-        return new PathNavigateClimber(this, worldIn);
+    protected PathNavigate createNavigator(World world) {
+        return new PathNavigateClimber(this, world);
     }
 }

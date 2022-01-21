@@ -1,8 +1,8 @@
 package degubi.teamcraft.entity;
 
 import degubi.teamcraft.*;
+import java.util.*;
 import net.minecraft.block.*;
-import net.minecraft.enchantment.*;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.*;
@@ -16,12 +16,14 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.*;
 import net.minecraft.world.*;
 
-public final class EntityPigman extends EntityMob implements IRangedAttackMob{
+public final class EntityPigman extends EntityMob implements IRangedAttackMob {
+
     private final EntityAIAttackRangedBow<EntityPigman> aiArrowAttack = new EntityAIAttackRangedBow<>(this, 1.0D, 30, 15.0F);
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false);
 
-    public EntityPigman(World theWorld){
-        super(theWorld);
+    public EntityPigman(World world) {
+        super(world);
+
         setSize(0.7F, 1.95F);
 
         if(!this.world.isRemote) {
@@ -48,7 +50,7 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     }
 
     @Override
-    protected void applyEntityAttributes(){
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
@@ -58,41 +60,41 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     }
 
     @Override
-    protected SoundEvent getAmbientSound(){
+    protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_ZOMBIE_PIG_AMBIENT;
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource){
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_PIG_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound(){
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_PIG_DEATH;
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, Block block){
+    protected void playStepSound(BlockPos pos, Block block) {
         this.playSound(SoundEvents.ENTITY_PIG_STEP, 0.15F, 1.0F);
     }
 
     @Override
-    public double getYOffset(){
+    public double getYOffset() {
         return super.getYOffset() - 0.4D;
     }
 
     @Override
-    protected Item getDropItem(){
+    protected Item getDropItem() {
         return Items.ROTTEN_FLESH;
     }
 
     @Override
-    protected void dropFewItems(boolean idk, int weight){
-        int i = rand.nextInt(3) + 1 + rand.nextInt(1 + weight);
+    protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
+        int i = rand.nextInt(3) + 1 + rand.nextInt(1 + lootingModifier);
 
         for(int j = 0; j < i; ++j) {
-            if(isBurning()){
+            if(isBurning()) {
                 dropItem(Items.COOKED_PORKCHOP, 1);
             }else{
                 dropItem(Items.PORKCHOP, 1);
@@ -102,18 +104,23 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     }
 
     @Override
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data){
-        int i = rand.nextInt(10);
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData data) {
+        int rng = rand.nextInt(10);
 
-        if(i < 4){
+        if(rng < 4) {
             this.tasks.addTask(1, this.aiArrowAttack);
+
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
-        }else if(i == 5){
+        }else if(rng == 5) {
             this.tasks.addTask(1, this.aiAttackOnCollide);
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Main.MultiTool));
         }else{
             this.tasks.addTask(1, this.aiAttackOnCollide);
             setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+
+            if(rng == 9) {
+                setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(Items.SHIELD));
+            }
         }
 
         if(rand.nextInt(25) < 5) {
@@ -134,29 +141,21 @@ public final class EntityPigman extends EntityMob implements IRangedAttackMob{
     }
 
     @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float dmg) {
-        EntityArrow entityarrow = new EntityTippedArrow(this.world, this);
-        double d0 = target.posX - this.posX;
-        double d1 = target.getEntityBoundingBox().minY + target.height / 3.0F - entityarrow.posY;
-        double d2 = target.posZ - this.posZ;
-        double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        int powerEnchantmentLevel = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.POWER, this);
-        int punchEnchantmentLevel = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.PUNCH, this);
-        int difficultyID = world.getDifficulty().getDifficultyId();
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
+        EntityArrow arrow = new EntityTippedArrow(this.world, this);
+        double x = target.posX - this.posX;
+        double y = target.getEntityBoundingBox().minY + target.height / 3.0F - arrow.posY;
+        double zDiff = target.posZ - this.posZ;
+        double z = Math.sqrt(x * x + zDiff * zDiff);
+        Random rand = this.rand;
+        double baseDamage = distanceFactor * 2.0F + this.rand.nextGaussian() * 0.25D + world.getDifficulty().getDifficultyId() * 0.11F;
 
-        entityarrow.setDamage(dmg * 2.0F + this.rand.nextGaussian() * 0.25D + difficultyID * 0.11F);
-        entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, 14 - difficultyID * 4);
+        arrow.setDamage(baseDamage + (1 + rand.nextInt(3)) * 0.5D + 0.5D);
+        arrow.setKnockbackStrength(1 + rand.nextInt(3));
+        arrow.shoot(x, y + z * 0.20000000298023224D, zDiff, 1.6F, 4);
 
-        if(powerEnchantmentLevel > 0){
-            entityarrow.setDamage(entityarrow.getDamage() + powerEnchantmentLevel * 0.5D + 0.5D);
-        }
-
-        if(punchEnchantmentLevel > 0){
-            entityarrow.setKnockbackStrength(punchEnchantmentLevel);
-        }
-
-        playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        world.spawnEntity(entityarrow);
+        playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (rand.nextFloat() * 0.4F + 0.8F));
+        world.spawnEntity(arrow);
     }
 
     @Override

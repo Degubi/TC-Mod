@@ -31,7 +31,7 @@ import net.minecraftforge.registries.*;
 public final class Registry {
     private static int entityID = 0, biomeCounter = 0, networkID = 0, slabCounter = 0, soundCounter = 0, blockCounter = 0, itemCounter = 0, doorCounter = 0;
     static Block[] blockArray = new Block[286];
-    static Item[] itemArray = new Item[304];
+    static Item[] itemArray = new Item[302];
     static SoundEvent[] soundArray = new SoundEvent[14];
     static Biome[] biomeArray = new Biome[11];
     static EntityEntry[] entityArray = new EntityEntry[12];

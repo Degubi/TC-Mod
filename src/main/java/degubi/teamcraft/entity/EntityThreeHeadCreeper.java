@@ -14,23 +14,25 @@ import net.minecraft.network.datasync.*;
 import net.minecraft.util.*;
 import net.minecraft.world.*;
 import net.minecraft.world.storage.loot.*;
-import net.minecraftforge.fml.relauncher.*;
 
-public final class EntityThreeHeadCreeper extends EntityMob{
-    private static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityThreeHeadCreeper.class, DataSerializers.VARINT);
-    private static final DataParameter<Boolean> POWERED = EntityDataManager.<Boolean>createKey(EntityThreeHeadCreeper.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IGNITED = EntityDataManager.<Boolean>createKey(EntityThreeHeadCreeper.class, DataSerializers.BOOLEAN);
-    private int lastActiveTime, timeSinceIgnited;
-    private int fuseTime = 100;
+public final class EntityThreeHeadCreeper extends EntityMob {
+    private static final DataParameter<Integer> STATE = EntityDataManager.createKey(EntityThreeHeadCreeper.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> POWERED = EntityDataManager.createKey(EntityThreeHeadCreeper.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IGNITED = EntityDataManager.createKey(EntityThreeHeadCreeper.class, DataSerializers.BOOLEAN);
+
+    public int lastActiveTime;
+    public int timeSinceIgnited;
+    public int fuseTime = 100;
     private int explosionRadius = 10;
 
-    public EntityThreeHeadCreeper(World worldIn){
-        super(worldIn);
+    public EntityThreeHeadCreeper(World world) {
+        super(world);
+
         this.setSize(0.6F, 1.7F);
     }
 
     @Override
-    protected void initEntityAI(){
+    protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICreeperSwellExt(this));
         this.tasks.addTask(3, new EntityAIAvoidEntity<>(this, EntityOcelot.class, 6.0F, 1.0D, 1.2D));
@@ -43,30 +45,30 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     }
 
     @Override
-    protected void applyEntityAttributes(){
+    protected void applyEntityAttributes() {
         super.applyEntityAttributes();
 
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
     @Override
-    public int getMaxFallHeight(){
+    public int getMaxFallHeight() {
         return this.getAttackTarget() == null ? 3 : 3 + (int)(this.getHealth() - 1.0F);
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier){
+    public void fall(float distance, float damageMultiplier) {
         super.fall(distance, damageMultiplier);
 
         this.timeSinceIgnited = (int)(this.timeSinceIgnited + distance * 1.5F);
 
-        if(this.timeSinceIgnited > this.fuseTime - 5){
+        if(this.timeSinceIgnited > this.fuseTime - 5) {
             this.timeSinceIgnited = this.fuseTime - 5;
         }
     }
 
     @Override
-    protected void entityInit(){
+    protected void entityInit() {
         super.entityInit();
 
         this.dataManager.register(STATE, Integer.valueOf(-1));
@@ -75,10 +77,10 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     }
 
     @Override
-    public void writeEntityToNBT(NBTTagCompound compound){
+    public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
 
-        if(this.dataManager.get(POWERED).booleanValue()){
+        if(this.dataManager.get(POWERED).booleanValue()) {
             compound.setBoolean("powered", true);
         }
 
@@ -88,47 +90,47 @@ public final class EntityThreeHeadCreeper extends EntityMob{
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound compound){
+    public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
 
         this.dataManager.set(POWERED, Boolean.valueOf(compound.getBoolean("powered")));
 
-        if(compound.hasKey("Fuse", 99)){
+        if(compound.hasKey("Fuse", 99)) {
             this.fuseTime = compound.getShort("Fuse");
         }
 
-        if(compound.hasKey("ExplosionRadius", 99)){
+        if(compound.hasKey("ExplosionRadius", 99)) {
             this.explosionRadius = compound.getByte("ExplosionRadius");
         }
 
-        if(compound.getBoolean("ignited")){
+        if(compound.getBoolean("ignited")) {
             this.dataManager.set(IGNITED, Boolean.TRUE);
         }
     }
 
     @Override
-    public void onUpdate(){
-        if(this.isEntityAlive()){
+    public void onUpdate() {
+        if(this.isEntityAlive()) {
             this.lastActiveTime = this.timeSinceIgnited;
 
-            if(this.dataManager.get(IGNITED).booleanValue()){
+            if(this.dataManager.get(IGNITED).booleanValue()) {
                 this.setCreeperState(1);
             }
 
-            int i = this.getCreeperState();
-            if(i > 0 && this.timeSinceIgnited == 0){
+            int creeperState = this.getCreeperState();
+            if(creeperState > 0 && this.timeSinceIgnited == 0) {
                 this.playSound(SoundEvents.ENTITY_CREEPER_PRIMED, 1.0F, 0.5F);
             }
 
-            this.timeSinceIgnited += i;
+            this.timeSinceIgnited += creeperState;
             if(this.timeSinceIgnited < 0){
                 this.timeSinceIgnited = 0;
             }
 
-            if(this.timeSinceIgnited >= this.fuseTime){
+            if(this.timeSinceIgnited >= this.fuseTime) {
                 this.timeSinceIgnited = this.fuseTime;
 
-                if (!this.world.isRemote){
+                if (!this.world.isRemote) {
                     float explosionRadiusMultiplier = this.dataManager.get(POWERED).booleanValue() ? 2.0F : 1.0F;
                     boolean isGriefingEnabled = this.world.getGameRules().getBoolean("mobGriefing");
 
@@ -138,68 +140,65 @@ public final class EntityThreeHeadCreeper extends EntityMob{
                 }
             }
 
-            if(isBurning()){
+            if(isBurning()) {
                 fuseTime = 0;
                 explosionRadius = 15;
             }
         }
+
         super.onUpdate();
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource damageSource){
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return SoundEvents.ENTITY_CREEPER_HURT;
     }
 
     @Override
-    protected SoundEvent getDeathSound(){
+    protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_CREEPER_DEATH;
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity){
+    public boolean attackEntityAsMob(Entity entity) {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    public float getCreeperFlashIntensity(float p_70831_1_){
-        return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * p_70831_1_) / (this.fuseTime - 2);
-    }
-
     @Override
-    protected ResourceLocation getLootTable(){
+    protected ResourceLocation getLootTable() {
         return LootTableList.ENTITIES_CREEPER;
     }
 
-    public int getCreeperState(){
+    public int getCreeperState() {
         return this.dataManager.get(STATE).intValue();
     }
 
-    public void setCreeperState(int state){
+    public void setCreeperState(int state) {
         this.dataManager.set(STATE, Integer.valueOf(state));
     }
 
     @Override
-    public void onStruckByLightning(EntityLightningBolt lightningBolt){
+    public void onStruckByLightning(EntityLightningBolt lightningBolt) {
         super.onStruckByLightning(lightningBolt);
 
         this.dataManager.set(POWERED, Boolean.TRUE);
     }
 
     @Override
-    protected boolean processInteract(EntityPlayer player, EnumHand hand){
+    protected boolean processInteract(EntityPlayer player, EnumHand hand) {
         ItemStack stack = player.getHeldItem(hand);
 
-        if(!stack.isEmpty() && stack.getItem() == Items.FLINT_AND_STEEL){
+        if(!stack.isEmpty() && stack.getItem() == Items.FLINT_AND_STEEL) {
             this.world.playSound(player, this.posX, this.posY, this.posZ, SoundEvents.ITEM_FLINTANDSTEEL_USE, this.getSoundCategory(), 1.0F, this.rand.nextFloat() * 0.4F + 0.8F);
             player.swingArm(hand);
 
-            if(!this.world.isRemote){
+            if(!this.world.isRemote) {
                 this.dataManager.set(IGNITED, Boolean.TRUE);
                 stack.damageItem(1, player);
                 return true;
             }
         }
+
         return super.processInteract(player, hand);
     }
 }
